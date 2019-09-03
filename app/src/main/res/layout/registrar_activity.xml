@@ -10,102 +10,131 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarRegistrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorTituloText"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="@string/registro_titulo"
-            app:titleTextColor="#050505" />
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="132dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bttn_rounded"
 
-        <TextView
-            android:id="@+id/textViewNombre"
+            android:text="@string/button_registrar"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CheckBoxTerminosYCondiciones" />
+
+        <CheckBox
+            android:id="@+id/CheckBoxTerminosYCondiciones"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/registro_nombre"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNombre"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/textViewPassword"
-            app:layout_constraintTop_toTopOf="@+id/editTextNombre" />
+            android:layout_marginTop="16dp"
+            android:text="@string/registro_terminosYCondiciones"
+            app:layout_constraintStart_toStartOf="@+id/textViewCBU"
+            app:layout_constraintTop_toBottomOf="@+id/editTextCBU" />
 
         <EditText
             android:id="@+id/editTextNombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:ems="12"
+            android:layout_marginTop="82dp"
+            android:layout_marginEnd="8dp"
+            android:ems="10"
             android:inputType="textPersonName"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewNombre"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/registro_password"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextPassword"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@+id/textViewPasswordRepeat"
-            app:layout_constraintTop_toTopOf="@+id/editTextPassword" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:ems="12"
+            android:ems="10"
             android:inputType="textPersonName"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRepeat"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNombre"
             app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
-
-        <TextView
-            android:id="@+id/textViewPasswordRepeat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/registro_password2"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextPasswordRepeat"
-            app:layout_constraintEnd_toStartOf="@+id/editTextPasswordRepeat"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editTextPasswordRepeat" />
 
         <EditText
             android:id="@+id/editTextPasswordRepeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:ems="12"
+            android:ems="10"
             android:inputType="textPersonName"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+            app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
-
-        <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/registro_email"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextEmail"
-            app:layout_constraintStart_toStartOf="@+id/textViewPasswordRepeat"
-            app:layout_constraintTop_toTopOf="@+id/editTextEmail" />
 
         <EditText
             android:id="@+id/editTextEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/editTextPasswordRepeat"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRepeat" />
+
+        <EditText
+            android:id="@+id/editTextNumeroTarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="9"
+            android:hint="@string/registro_numeroTarjeta"
+            android:inputType="number"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextCodigoTarjeta"
+            app:layout_constraintStart_toStartOf="@+id/textViewTarjetaDeCredito" />
+
+        <EditText
+            android:id="@+id/editTextCodigoTarjeta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:ems="3"
+            android:hint="@string/registro_numeroSeguridad"
+            android:inputType="number"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextDateVencimiento"
+            app:layout_constraintEnd_toStartOf="@+id/editTextDateVencimiento"
+            app:layout_constraintStart_toEndOf="@+id/editTextNumeroTarjeta" />
+
+        <EditText
+            android:id="@+id/editTextDateVencimiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="5"
+            android:hint="@string/registro_dateVencimiento"
+            android:inputType="date"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/editTextEmail"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTarjetaDeCredito" />
+
+        <EditText
+            android:id="@+id/editTextAliasCBU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="12"
+            android:inputType="textPersonName"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewValorCredito"
+            app:layout_constraintTop_toBottomOf="@+id/switchNotificacionEmail" />
+
+        <EditText
+            android:id="@+id/editTextCBU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -113,77 +142,15 @@
             android:inputType="textPersonName"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/editTextAliasCBU"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRepeat" />
-
-        <TextView
-            android:id="@+id/textViewTarjetaDeCredito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/registro_tarjetaCredito"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewEmail"
-            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
-
-        <EditText
-            android:id="@+id/editTextNumeroTarjeta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="9"
-            android:hint="@string/registro_numeroTarjeta"
-            android:inputType="number"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewTarjetaDeCredito"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTarjetaDeCredito" />
-
-        <EditText
-            android:id="@+id/editTextCodigoTarjeta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="5"
-            android:hint="@string/registro_numeroSeguridad"
-            android:inputType="number"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextNumeroTarjeta"
-            app:layout_constraintEnd_toStartOf="@+id/editTextDateVencimiento"
-            app:layout_constraintStart_toEndOf="@+id/editTextNumeroTarjeta"
-            app:layout_constraintTop_toTopOf="@+id/editTextNumeroTarjeta" />
-
-        <EditText
-            android:id="@+id/editTextDateVencimiento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:ems="5"
-            android:hint="@string/registro_dateVencimiento"
-            android:inputType="date"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextCodigoTarjeta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/editTextCodigoTarjeta" />
-
-        <TextView
-            android:id="@+id/textViewTipoDeCuenta"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/registro_tipoCuenta"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/editTextNumeroTarjeta"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumeroTarjeta" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextAliasCBU" />
 
         <RadioGroup
             android:id="@+id/radioGroup2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextDateVencimiento"
             app:layout_constraintStart_toStartOf="@+id/textViewTipoDeCuenta"
             app:layout_constraintTop_toBottomOf="@+id/textViewTipoDeCuenta">
 
@@ -212,37 +179,16 @@
                 android:textSize="16sp" />
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/textViewCreditoInicial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/registro_credito"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewTipoDeCuenta"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
-
         <SeekBar
             android:id="@+id/seekBar3"
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="213dp"
             android:layout_height="22dp"
-            android:layout_marginStart="8dp"
             android:scrollbarSize="8sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewCreditoInicial"
+            app:layout_constraintEnd_toStartOf="@+id/textViewValorCredito"
             app:layout_constraintStart_toEndOf="@+id/textViewCreditoInicial"
             app:layout_constraintTop_toTopOf="@+id/textViewCreditoInicial" />
-
-        <TextView
-            android:id="@+id/textViewValorCredito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:text="000"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/seekBar3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/seekBar3" />
 
         <Switch
             android:id="@+id/switchNotificacionEmail"
@@ -258,36 +204,101 @@
             android:id="@+id/switchVendedor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="76dp"
+            android:layout_marginStart="16dp"
             android:switchPadding="8dp"
             android:text="@string/regsitro_vendedor"
-            app:layout_constraintBottom_toBottomOf="@+id/switchNotificacionEmail"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/switchNotificacionEmail"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/switchNotificacionEmail"
+            app:layout_constraintEnd_toEndOf="@+id/textViewValorCredito"
+            app:layout_constraintStart_toEndOf="@+id/switchNotificacionEmail" />
+
+        <TextView
+            android:id="@+id/textViewNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="70dp"
+            android:text="@string/registro_nombre"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextNombre"
+            app:layout_constraintEnd_toStartOf="@+id/editTextNombre"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registro_password"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextPassword"
+            app:layout_constraintStart_toStartOf="@+id/textViewNombre" />
+
+        <TextView
+            android:id="@+id/textViewPasswordRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registro_password2"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextPasswordRepeat"
+            app:layout_constraintStart_toStartOf="@+id/textViewPassword" />
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registro_email"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextEmail"
+            app:layout_constraintStart_toStartOf="@+id/textViewPasswordRepeat"
+            app:layout_constraintTop_toTopOf="@+id/editTextEmail" />
+
+        <TextView
+            android:id="@+id/textViewTarjetaDeCredito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/registro_tarjetaCredito"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textViewEmail"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+
+        <TextView
+            android:id="@+id/textViewTipoDeCuenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/registro_tipoCuenta"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/editTextNumeroTarjeta"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumeroTarjeta" />
+
+        <TextView
+            android:id="@+id/textViewCreditoInicial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/registro_credito"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/textViewTipoDeCuenta"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+
+        <TextView
+            android:id="@+id/textViewValorCredito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="000"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
+            tools:layout_editor_absoluteY="480dp" />
 
         <TextView
             android:id="@+id/textViewAliasCBU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/registro_CtaAlias"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextAliasCBU"
-            app:layout_constraintStart_toStartOf="@+id/switchNotificacionEmail"
-            app:layout_constraintTop_toTopOf="@+id/editTextAliasCBU" />
-
-        <EditText
-            android:id="@+id/editTextAliasCBU"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="16dp"
-            android:ems="12"
-            android:inputType="textPersonName"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switchNotificacionEmail" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextAliasCBU"
+            app:layout_constraintStart_toStartOf="@+id/switchNotificacionEmail" />
 
         <TextView
             android:id="@+id/textViewCBU"
@@ -295,47 +306,22 @@
             android:layout_height="wrap_content"
             android:text="@string/registro_CtaCBU"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextCBU"
-            app:layout_constraintStart_toStartOf="@+id/textViewAliasCBU"
-            app:layout_constraintTop_toTopOf="@+id/editTextCBU" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/editTextCBU"
+            app:layout_constraintStart_toStartOf="@+id/textViewAliasCBU" />
 
-        <EditText
-            android:id="@+id/editTextCBU"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarRegistrar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:ems="12"
-            android:inputType="textPersonName"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/editTextAliasCBU"
-            app:layout_constraintTop_toBottomOf="@+id/editTextAliasCBU" />
-
-        <CheckBox
-            android:id="@+id/CheckBoxTerminosYCondiciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/registro_terminosYCondiciones"
-            app:layout_constraintStart_toStartOf="@+id/textViewCBU"
-            app:layout_constraintTop_toBottomOf="@+id/editTextCBU" />
-
-        <Button
-            android:id="@+id/button"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="132dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/bttn_rounded"
-
-            android:text="@string/button_registrar"
-            android:textColor="@android:color/background_dark"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/colorTituloText"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CheckBoxTerminosYCondiciones" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="@string/registro_titulo"
+            app:titleTextColor="#050505" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

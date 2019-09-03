@@ -1,15 +1,21 @@
-package CobelliMoixTomas.isi.frsf.utn.sendmeal;
+package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
+
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -107,31 +113,67 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean focus) {
                 if(!focus){
-                    if(editTextDateVencimiento.getText().length()==0){
+                    if(editTextDateVencimiento.getText().length() == 0 || editTextDateVencimiento.getText().toString().equals("MM/YY")) {
                         editTextDateVencimiento.setError("*Campo Obligatorio");
                     }else{
                         editTextDateVencimiento.setError(null);
                     }
+                    Calendar dateToday = Calendar.getInstance();
+
+
                 }else{
-                    editTextDateVencimiento.addTextChangedListener(new TextWatcher() {
+
+
+
+                    TextWatcher tw = new TextWatcher() {
+
+                        private String current = "";
+                        private String mmyy = "MMYY";
+                        private Calendar calendar = Calendar.getInstance();
+
                         @Override
                         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
                         }
 
-
                         @Override
-                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                                if (i1 == 1 && charSequence.charAt(1) != '/') {
-                                    editTextDateVencimiento.setText(charSequence + "/");
-                                    editTextDateVencimiento.setSelection(editTextDateVencimiento.getText().length());
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            if(!s.toString().equals(current)) {
+
+                                String clean = s.toString().replaceAll("[^\\d.]|\\.", "");
+                                String cleanC = current.replaceAll("[^\\d.]|\\.", "");
+
+                                int c1 = clean.length();
+                                int sel = c1;
+
+                                for(int i = 2; i <= c1 && i < 6; i += 2) {
+                                    sel++;
                                 }
-                                if (i1 == 4) {
-                                    if (charSequence.toString().charAt(3) > 1 && charSequence.toString().charAt(3) <= 9) {
-                                        Character lastChar = charSequence.toString().charAt(3);
-                                        editTextDateVencimiento.setText(charSequence.toString().replace(lastChar, '0') + lastChar);
-                                    }
+
+                                if(clean.equals(cleanC)) sel--;
+
+                                if(clean.length() < 4) {
+                                    clean = clean + mmyy.substring(clean.length());
+                                } else {
+
+                                    int mon  = Integer.parseInt(clean.substring(0,2));
+                                    int year = Integer.parseInt(clean.substring(2,4));
+
+                                    calendar.set(Calendar.MONTH, mon);
+                                    calendar.set(Calendar.YEAR, year);
+
+                                    clean = String.format("%02d%02d", mon, year);
                                 }
+
+                                clean = String.format("%s/%s",clean.substring(0,2),clean.substring(2,4));
+
+                                sel = sel < 0 ? 0: sel;
+                                current = clean;
+                                editTextDateVencimiento.setText(current);
+                                editTextDateVencimiento.setSelection(sel < current.length() ? sel : current.length());
+
+                            }
 
                         }
 
@@ -139,7 +181,12 @@ public class MainActivity extends AppCompatActivity {
                         public void afterTextChanged(Editable editable) {
 
                         }
-                    });
+                    };
+
+                    editTextDateVencimiento.addTextChangedListener(tw);
+
+
+
                 }
             }
         });
