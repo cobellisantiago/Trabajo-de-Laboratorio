@@ -323,6 +323,5 @@
             app:title="@string/registro_titulo"
             app:titleTextColor="#050505" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

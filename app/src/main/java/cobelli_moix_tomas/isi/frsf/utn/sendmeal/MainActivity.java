@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -24,7 +28,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrar_activity);
 
+        //Inicializar campos
+        final TextView textViewAliasCBU = findViewById(R.id.textViewAliasCBU);
+        final TextView textViewCBU = findViewById(R.id.textViewCBU);
+
+        final EditText editTextNombre = findViewById(R.id.editTextNombre);
+        final EditText editTextPassword = findViewById(R.id.editTextPassword);
+        final EditText editTextPasswordRepeat = findViewById(R.id.editTextPasswordRepeat);
         final EditText editTextEmail = findViewById(R.id.editTextEmail);
+        final EditText editTextTarjeta = findViewById(R.id.editTextCodigoTarjeta);
+        final EditText editTextCodigoTarjeta = findViewById(R.id.editTextCodigoTarjeta);
+        final EditText editTextDateVencimiento = findViewById(R.id.editTextDateVencimiento);
+        final EditText editTextAliasCBU = findViewById(R.id.editTextAliasCBU);
+        final EditText editTextCBU = findViewById(R.id.editTextCBU);
+
+        Button radioButtonCuentaBase = findViewById(R.id.radioButtonCuentaBase);
+        Button radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
+        Button radioButtonCuentaPremium = findViewById(R.id.radioButtonCuentaPremium);
+
+        final Switch switchNotificacionEmail = findViewById(R.id.switchNotificacionEmail);
+        final Switch switchVendedor = findViewById(R.id.switchVendedor);
+
+        textViewAliasCBU.setVisibility(View.INVISIBLE);
+        editTextAliasCBU.setVisibility(View.INVISIBLE);
+        textViewCBU.setVisibility(View.INVISIBLE);
+        editTextCBU.setVisibility(View.INVISIBLE);
+
+        esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
+
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
@@ -43,9 +74,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final EditText editTextPassword = findViewById(R.id.editTextPassword);
-        final EditText editTextPasswordRepeat = findViewById(R.id.editTextPasswordRepeat);
-        //final TextView textViewPasswordError = findViewById(R.id.textViewPasswordError);
         editTextPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
@@ -118,7 +146,10 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         editTextDateVencimiento.setError(null);
                     }
-                    Calendar dateToday = Calendar.getInstance();
+                    /*Calendar dateToday = Calendar.getInstance();
+                    int mes = dateToday.MONTH;
+                    EditText test = findViewById(R.id.editTextNombre);
+                    test.setText(mes);*/
 
 
                 }else{
@@ -191,7 +222,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    void validarRadioButtonGroup(){
+
+    private void validarRadioButtonGroup(){
         final RadioGroup radioGroupTipoCuenta = findViewById(R.id.radioGroup2);
         final RadioButton radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
         radioGroupTipoCuenta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -203,5 +235,31 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private void esVendedor(final Switch s, final TextView textViewAliasCBU, final TextView textViewCBU, final EditText editTextAliasCBU, final EditText editTextCBU) {
+
+        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+
+                    textViewAliasCBU.setVisibility(View.VISIBLE);
+                    editTextAliasCBU.setVisibility(View.VISIBLE);
+                    textViewCBU.setVisibility(View.VISIBLE);
+                    editTextCBU.setVisibility(View.VISIBLE);
+
+                }else{
+
+                    textViewAliasCBU.setVisibility(View.INVISIBLE);
+                    editTextAliasCBU.setVisibility(View.INVISIBLE);
+                    textViewCBU.setVisibility(View.INVISIBLE);
+                    editTextCBU.setVisibility(View.INVISIBLE);
+
+
+                }
+            }
+        });
+
+
     }
 }
