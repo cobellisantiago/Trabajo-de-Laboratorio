@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         final Switch switchNotificacionEmail = findViewById(R.id.switchNotificacionEmail);
         final Switch switchVendedor = findViewById(R.id.switchVendedor);
 
-        final SeekBar seekBar = findViewById(R.id.seekBarValorCredito);
+        final SeekBar seekBarValorCredito = findViewById(R.id.seekBarValorCredito);
 
         textViewAliasCBU.setVisibility(View.GONE);
         editTextAliasCBU.setVisibility(View.GONE);
@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         editTextCBU.setVisibility(View.GONE);
 
         esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
+        progresoSeekBar(seekBarValorCredito, textViewValorCredito);
+
 
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -267,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                textViewValorCredito.setText(i);
+                textViewValorCredito.setText(new Integer(i).toString());
 
 
             }
