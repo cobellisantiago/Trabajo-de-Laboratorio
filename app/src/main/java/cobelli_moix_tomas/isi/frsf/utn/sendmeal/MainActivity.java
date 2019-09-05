@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         final Switch switchNotificacionEmail = findViewById(R.id.switchNotificacionEmail);
         final Switch switchVendedor = findViewById(R.id.switchVendedor);
 
-        textViewAliasCBU.setVisibility(View.INVISIBLE);
-        editTextAliasCBU.setVisibility(View.INVISIBLE);
-        textViewCBU.setVisibility(View.INVISIBLE);
-        editTextCBU.setVisibility(View.INVISIBLE);
+        textViewAliasCBU.setVisibility(View.GONE);
+        editTextAliasCBU.setVisibility(View.GONE);
+        textViewCBU.setVisibility(View.GONE);
+        editTextCBU.setVisibility(View.GONE);
 
         esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
 
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     if(editTextPasswordRepeat.getText().length()==0){
                         editTextPasswordRepeat.setError("*Campo Obligatorio");
                     }else{
-                        if(!editTextPassword.getText().equals(editTextPasswordRepeat.getText())){
+                        if(!editTextPassword.getText().toString().equals(editTextPasswordRepeat.getText().toString())){
                             editTextPasswordRepeat.setError("*Passwords no coinciden");
                         }else{
                             editTextPasswordRepeat.setError(null);
@@ -250,10 +250,10 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
 
-                    textViewAliasCBU.setVisibility(View.INVISIBLE);
-                    editTextAliasCBU.setVisibility(View.INVISIBLE);
-                    textViewCBU.setVisibility(View.INVISIBLE);
-                    editTextCBU.setVisibility(View.INVISIBLE);
+                    textViewAliasCBU.setVisibility(View.GONE);
+                    editTextAliasCBU.setVisibility(View.GONE);
+                    textViewCBU.setVisibility(View.GONE);
+                    editTextCBU.setVisibility(View.GONE);
 
 
                 }
