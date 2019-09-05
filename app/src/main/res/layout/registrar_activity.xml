@@ -180,7 +180,7 @@
         </RadioGroup>
 
         <SeekBar
-            android:id="@+id/seekBar3"
+            android:id="@+id/seekBarValorCredito"
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="213dp"
             android:layout_height="22dp"

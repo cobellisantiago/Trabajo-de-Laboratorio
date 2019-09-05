@@ -1,25 +1,21 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //Inicializar campos
         final TextView textViewAliasCBU = findViewById(R.id.textViewAliasCBU);
         final TextView textViewCBU = findViewById(R.id.textViewCBU);
+        final TextView textViewValorCredito = findViewById(R.id.textViewValorCredito);
 
         final EditText editTextNombre = findViewById(R.id.editTextNombre);
         final EditText editTextPassword = findViewById(R.id.editTextPassword);
@@ -48,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Switch switchNotificacionEmail = findViewById(R.id.switchNotificacionEmail);
         final Switch switchVendedor = findViewById(R.id.switchVendedor);
+
+        final SeekBar seekBar = findViewById(R.id.seekBarValorCredito);
 
         textViewAliasCBU.setVisibility(View.GONE);
         editTextAliasCBU.setVisibility(View.GONE);
@@ -260,6 +259,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+    private void progresoSeekBar(final SeekBar s, final TextView textViewValorCredito) {
+
+        s.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                textViewValorCredito.setText(i);
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
     }
 }
