@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -39,14 +40,17 @@ public class MainActivity extends AppCompatActivity {
         final EditText editTextAliasCBU = findViewById(R.id.editTextAliasCBU);
         final EditText editTextCBU = findViewById(R.id.editTextCBU);
 
-        Button radioButtonCuentaBase = findViewById(R.id.radioButtonCuentaBase);
-        Button radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
-        Button radioButtonCuentaPremium = findViewById(R.id.radioButtonCuentaPremium);
+        final Button radioButtonCuentaBase = findViewById(R.id.radioButtonCuentaBase);
+        final Button radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
+        final Button radioButtonCuentaPremium = findViewById(R.id.radioButtonCuentaPremium);
+        final Button buttonRegistrar = findViewById(R.id.buttonRegistrar);
 
         final Switch switchNotificacionEmail = findViewById(R.id.switchNotificacionEmail);
         final Switch switchVendedor = findViewById(R.id.switchVendedor);
 
         final SeekBar seekBarValorCredito = findViewById(R.id.seekBarValorCredito);
+
+        final CheckBox checkBoxTerminosYCondiciones = findViewById(R.id.checkBoxTerminosYCondiciones);
 
         textViewAliasCBU.setVisibility(View.GONE);
         editTextAliasCBU.setVisibility(View.GONE);
@@ -55,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
         progresoSeekBar(seekBarValorCredito, textViewValorCredito);
+        estadoBotonGuardar(checkBoxTerminosYCondiciones, buttonRegistrar);
 
 
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -285,5 +290,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void estadoBotonGuardar(final CheckBox checkBoxTerminosYCOndiciones, final Button buttonRegistrar) {
+        checkBoxTerminosYCOndiciones.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    buttonRegistrar.setEnabled(true);
+                } else {
+                    buttonRegistrar.setEnabled(false);
+                }
+            }
+        });
     }
 }
