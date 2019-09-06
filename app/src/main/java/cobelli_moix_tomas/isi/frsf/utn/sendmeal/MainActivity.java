@@ -110,14 +110,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        validarDatosTarjetaCredito();
+        validarDatosTarjetaCredito(editTextTarjeta, editTextCodigoTarjeta, editTextDateVencimiento);
         validarRadioButtonGroup();
     }
 
-    void validarDatosTarjetaCredito(){
-        final EditText editTextNumeroTarjeta = findViewById(R.id.editTextNumeroTarjeta);
-        final EditText editTextNumeroSeguridad = findViewById(R.id.editTextCodigoTarjeta);
-        final EditText editTextDateVencimiento = findViewById(R.id.editTextDateVencimiento);
+    void validarDatosTarjetaCredito(final EditText editTextNumeroTarjeta, final EditText editTextNumeroSeguridad, final EditText editTextDateVencimiento){
 
         editTextNumeroTarjeta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -152,10 +149,6 @@ public class MainActivity extends AppCompatActivity {
                     }else{
                         editTextDateVencimiento.setError(null);
                     }
-                    /*Calendar dateToday = Calendar.getInstance();
-                    int mes = dateToday.MONTH;
-                    EditText test = findViewById(R.id.editTextNombre);
-                    test.setText(mes);*/
 
 
                 }else{
@@ -163,11 +156,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                     TextWatcher tw = new TextWatcher() {
-
+/*
                         private String current = "";
                         private String mmyy = "MMYY";
                         private Calendar calendar = Calendar.getInstance();
-
+*/
                         @Override
                         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -175,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+/*
                             if(!s.toString().equals(current)) {
 
                                 String clean = s.toString().replaceAll("[^\\d.]|\\.", "");
@@ -211,6 +204,19 @@ public class MainActivity extends AppCompatActivity {
                                 editTextDateVencimiento.setSelection(sel < current.length() ? sel : current.length());
 
                             }
+*/
+                            String aux = editTextDateVencimiento.getText().toString();
+
+                            if(editTextDateVencimiento.length() == 1) {
+                                editTextDateVencimiento.setText("0" + aux + "/");
+                                editTextDateVencimiento.setSelection(editTextDateVencimiento.length());
+                            }else if(editTextDateVencimiento.length() == 4) {
+                                editTextDateVencimiento.setText(aux.charAt(1) + aux.charAt(3) + "/" + aux.charAt(0) + aux.charAt(2));
+                                editTextDateVencimiento.setSelection(editTextDateVencimiento.length());
+
+                            } else if (editTextDateVencimiento.length() == 6) {
+                                editTextDateVencimiento.setText(aux.charAt(1) + aux.charAt(4) + "/0" + aux.charAt(5));
+                            }
 
                         }
 
@@ -228,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void validarRadioButtonGroup(){
         final RadioGroup radioGroupTipoCuenta = findViewById(R.id.radioGroup2);
         final RadioButton radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
