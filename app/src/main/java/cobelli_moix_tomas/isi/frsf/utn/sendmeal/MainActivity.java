@@ -2,6 +2,8 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         editTextAliasCBU.setVisibility(View.GONE);
         textViewCBU.setVisibility(View.GONE);
         editTextCBU.setVisibility(View.GONE);
+        buttonRegistrar.setEnabled(false);
 
         esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
         progresoSeekBar(seekBarValorCredito, textViewValorCredito);
@@ -297,8 +300,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     buttonRegistrar.setEnabled(true);
+                    buttonRegistrar.setBackgroundResource(R.drawable.bttn_rounded);
                 } else {
                     buttonRegistrar.setEnabled(false);
+                    buttonRegistrar.setBackgroundResource(R.drawable.bttn_rounded_disabled);
                 }
             }
         });
