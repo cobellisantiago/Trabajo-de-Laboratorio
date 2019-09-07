@@ -6,25 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarRegistrar"
+    <Toolbar
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:backgroundTint="#26A69A"
-        android:background="#26A69A"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="?attr/colorAccent"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:title="@string/registro_titulo"
+        android:titleMargin="10dp"
+        android:titleTextColor="#050505"></Toolbar>
 
-        app:title="@string/registro_titulo"
-        app:titleTextColor="#050505" />
+
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,8 +34,7 @@
             android:layout_height="43dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bttn_rounded"
-
+            android:background="@drawable/bttn_rounded_disabled"
             android:text="@string/button_registrar"
             android:textColor="@android:color/background_dark"
             android:textSize="16sp"

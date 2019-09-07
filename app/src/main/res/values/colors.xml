@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorErrorText">#d32f2f</color>
     <color name="colorTituloText">#26A69A</color>
+    <color name="colorGrisDesactivado">#bdbdbd</color>
 </resources>
