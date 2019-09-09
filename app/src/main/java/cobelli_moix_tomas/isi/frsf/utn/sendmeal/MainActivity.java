@@ -18,7 +18,11 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registrar_activity);
 
+        //Fecha actual
+
+
         //Inicializar campos
+
         final TextView textViewAliasCBU = findViewById(R.id.textViewAliasCBU);
         final TextView textViewCBU = findViewById(R.id.textViewCBU);
         final TextView textViewValorCredito = findViewById(R.id.textViewValorCredito);
@@ -38,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
         final EditText editTextEmail = findViewById(R.id.editTextEmail);
         final EditText editTextTarjeta = findViewById(R.id.editTextCodigoTarjeta);
         final EditText editTextCodigoTarjeta = findViewById(R.id.editTextCodigoTarjeta);
-        final EditText editTextDateVencimiento = findViewById(R.id.editTextDateVencimiento);
+        //final EditText editTextDateVencimiento = findViewById(R.id.editTextDateVencimiento);
         final EditText editTextAliasCBU = findViewById(R.id.editTextAliasCBU);
         final EditText editTextCBU = findViewById(R.id.editTextCBU);
+        //Test Date Vencimiento
+        final EditText editTextDateVencimientoMonth = findViewById(R.id.editTextDateVencimientoMonth);
+        final EditText editTextDateVencimientoYear = findViewById(R.id.editTextDateVencimientoYear);
 
         final Button radioButtonCuentaBase = findViewById(R.id.radioButtonCuentaBase);
         final Button radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
@@ -60,9 +71,16 @@ public class MainActivity extends AppCompatActivity {
         editTextCBU.setVisibility(View.GONE);
         buttonRegistrar.setEnabled(false);
 
+        //fecha acutal
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+
+        String fecha = dateFormat.format(date);
+
         esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
         progresoSeekBar(seekBarValorCredito, textViewValorCredito);
         estadoBotonGuardar(checkBoxTerminosYCondiciones, buttonRegistrar);
+        validarDatosTarjetaCredito(editTextTarjeta, editTextCodigoTarjeta, editTextDateVencimientoMonth, editTextDateVencimientoYear, fecha);
 
 
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -113,130 +131,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        validarDatosTarjetaCredito(editTextTarjeta, editTextCodigoTarjeta, editTextDateVencimiento);
+        //validarDatosTarjetaCredito(editTextTarjeta, editTextCodigoTarjeta, editTextDateVencimiento);
         validarRadioButtonGroup();
     }
 
-    void validarDatosTarjetaCredito(final EditText editTextNumeroTarjeta, final EditText editTextNumeroSeguridad, final EditText editTextDateVencimiento){
-
-        editTextNumeroTarjeta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(!focus){
-                    if(editTextNumeroTarjeta.getText().length()==0){
-                        editTextNumeroTarjeta.setError("*Campo Obligatorio");
-                    }else{
-                        editTextNumeroTarjeta.setError(null);
-                    }
-                }
-            }
-        });
-        editTextNumeroSeguridad.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(!focus){
-                    if(editTextNumeroSeguridad.getText().length()==0){
-                        editTextNumeroSeguridad.setError("*Campo Obligatorio");
-                    }else{
-                        editTextNumeroSeguridad.setError(null);
-                    }
-                }
-            }
-        });
-        editTextDateVencimiento.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(!focus){
-                    if(editTextDateVencimiento.getText().length() == 0 || editTextDateVencimiento.getText().toString().equals("MM/YY")) {
-                        editTextDateVencimiento.setError("*Campo Obligatorio");
-                    }else{
-                        editTextDateVencimiento.setError(null);
-                    }
-
-
-                }else{
-
-
-
-                    TextWatcher tw = new TextWatcher() {
-/*
-                        private String current = "";
-                        private String mmyy = "MMYY";
-                        private Calendar calendar = Calendar.getInstance();
-*/
-                        @Override
-                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                        }
-
-                        @Override
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-/*
-                            if(!s.toString().equals(current)) {
-
-                                String clean = s.toString().replaceAll("[^\\d.]|\\.", "");
-                                String cleanC = current.replaceAll("[^\\d.]|\\.", "");
-
-                                int c1 = clean.length();
-                                int sel = c1;
-
-                                for(int i = 2; i <= c1 && i < 6; i += 2) {
-                                    sel++;
-                                }
-
-                                if(clean.equals(cleanC)) sel--;
-
-                                if(clean.length() < 4) {
-                                    clean = clean + mmyy.substring(clean.length());
-                                } else {
-
-                                    int mon  = Integer.parseInt(clean.substring(0,2));
-                                    int year = Integer.parseInt(clean.substring(2,4));
-
-                                    calendar.set(Calendar.MONTH, mon);
-                                    calendar.set(Calendar.YEAR, year);
-
-                                    clean = String.format("%02d%02d", mon, year);
-                                }
-
-                                clean = String.format("%s/%s",clean.substring(0,2),clean.substring(2,4));
-
-                                sel = sel < 0 ? 0: sel;
-                                current = clean;
-                                editTextDateVencimiento.setText(current);
-                                editTextDateVencimiento.setSelection(sel < current.length() ? sel : current.length());
-
-                            }
-*/
-                            String aux = editTextDateVencimiento.getText().toString();
-
-                            if(editTextDateVencimiento.length() == 1) {
-                                editTextDateVencimiento.setText("0" + aux + "/");
-                                editTextDateVencimiento.setSelection(editTextDateVencimiento.length());
-                            }else if(editTextDateVencimiento.length() == 4) {
-                                editTextDateVencimiento.setText(aux.charAt(1) + aux.charAt(3) + "/" + aux.charAt(0) + aux.charAt(2));
-                                editTextDateVencimiento.setSelection(editTextDateVencimiento.length());
-
-                            } else if (editTextDateVencimiento.length() == 6) {
-                                editTextDateVencimiento.setText(aux.charAt(1) + aux.charAt(4) + "/0" + aux.charAt(5));
-                            }
-
-                        }
-
-                        @Override
-                        public void afterTextChanged(Editable editable) {
-
-                        }
-                    };
-
-                    editTextDateVencimiento.addTextChangedListener(tw);
-
-
-
-                }
-            }
-        });
-    }
     private void validarRadioButtonGroup(){
         final RadioGroup radioGroupTipoCuenta = findViewById(R.id.radioGroup2);
         final RadioButton radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
@@ -312,5 +210,192 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    void validarDatosTarjetaCredito(final EditText editTextNumeroTarjeta, final EditText editTextNumeroSeguridad, final EditText editTextDateVencimientoMonth, final EditText editTextDateVencimientoYear, final String fecha){
+
+        editTextNumeroTarjeta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean focus) {
+                if(!focus){
+                    if(editTextNumeroTarjeta.getText().length()==0){
+                        editTextNumeroTarjeta.setError("*Campo Obligatorio");
+                    }else{
+                        editTextNumeroTarjeta.setError(null);
+                    }
+                }
+            }
+        });
+        editTextNumeroSeguridad.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean focus) {
+                if(!focus){
+                    if(editTextNumeroSeguridad.getText().length()==0){
+                        editTextNumeroSeguridad.setError("*Campo Obligatorio");
+                    }else{
+                        editTextNumeroSeguridad.setError(null);
+                    }
+                }
+            }
+        });
+        editTextDateVencimientoMonth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean focus) {
+                if(!focus){
+                    if(editTextDateVencimientoMonth.getText().length() == 0 || editTextDateVencimientoYear.length() == 0) {
+                        editTextDateVencimientoYear.setError("*Campo Obligatorio");
+                    }else{
+
+                        Integer yearToday = Integer.parseInt(fecha.substring(2,4));
+                        Integer monthToday = Integer.parseInt(fecha.substring(5,7));
+
+                        Integer month = Integer.parseInt(editTextDateVencimientoMonth.getText().toString());
+                        Integer year = Integer.parseInt(editTextDateVencimientoYear.getText().toString());
+
+                        switch(monthToday) {
+                            case 9:
+                                if(year <= yearToday) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            case 10:
+                                if(year <= yearToday || (month == 1 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            case 11:
+                                if(year <= yearToday || (month <= 2 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            case 12:
+                                if(year <= yearToday || (month <= 3 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            default:
+                                if(year < yearToday || (month - monthToday) <= 3) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                        }
+
+                        if(editTextDateVencimientoYear.getError() == null && month <= 12) editTextDateVencimientoYear.setError(null);
+                        else editTextDateVencimientoYear.setError("*Fecha erronea");
+                    }
+
+                }else{
+
+                    TextWatcher twMonth = new TextWatcher() {
+
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            if(editTextDateVencimientoMonth.length() == 1) {
+                                editTextDateVencimientoMonth.setText("0" + s);
+                                editTextDateVencimientoMonth.setSelection(editTextDateVencimientoMonth.length());
+                            } else if(editTextDateVencimientoMonth.length() == 3) {
+                                editTextDateVencimientoMonth.setText(editTextDateVencimientoMonth.getText().toString().substring(1));
+                                editTextDateVencimientoYear.requestFocus();
+                            } else if(editTextDateVencimientoMonth.getText().toString().equals("00")){
+                                editTextDateVencimientoMonth.setText("");
+                            }
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    };
+
+                    editTextDateVencimientoMonth.addTextChangedListener(twMonth);
+
+
+
+                }
+            }
+        });
+
+        editTextDateVencimientoYear.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean focus) {
+                if(!focus){
+                    if(editTextDateVencimientoMonth.getText().length() == 0 || editTextDateVencimientoYear.length() == 0) {
+                        editTextDateVencimientoYear.setError("*Campo Obligatorio");
+                    }else{
+
+                        Integer yearToday = Integer.parseInt(fecha.substring(2,4));
+                        Integer monthToday = Integer.parseInt(fecha.substring(5,7));
+
+                        Integer month = Integer.parseInt(editTextDateVencimientoMonth.getText().toString());
+                        Integer year = Integer.parseInt(editTextDateVencimientoYear.getText().toString());
+
+                        switch(monthToday) {
+                            case 9:
+                                if(year <= yearToday) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            case 10:
+                                if(year <= yearToday || (month == 1 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            case 11:
+                                if(year <= yearToday || (month <= 2 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            case 12:
+                                if(year <= yearToday || (month <= 3 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                            default:
+                                if(year < yearToday || (month - monthToday) <= 3) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                else editTextDateVencimientoYear.setError(null);
+                                break;
+                        }
+
+                        if(editTextDateVencimientoYear.getError() == null && month <= 12) editTextDateVencimientoYear.setError(null);
+                        else editTextDateVencimientoYear.setError("*Fecha erronea");
+                    }
+
+                }else{
+
+                    TextWatcher twYear = new TextWatcher() {
+
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            if(editTextDateVencimientoYear.length() == 1) {
+                                editTextDateVencimientoYear.setText("0" + s);
+                                editTextDateVencimientoYear.setSelection(editTextDateVencimientoYear.length());
+                            } else if(editTextDateVencimientoYear.length() == 3) {
+                                editTextDateVencimientoYear.setText(editTextDateVencimientoYear.getText().toString().substring(1));
+                                editTextDateVencimientoYear.setSelection(editTextDateVencimientoYear.length());
+                            } else if(editTextDateVencimientoYear.getText().toString().equals("00")) {
+                                editTextDateVencimientoYear.setText("");
+                                editTextDateVencimientoMonth.requestFocus();
+                                editTextDateVencimientoMonth.setSelection(editTextDateVencimientoMonth.length());
+                            }
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    };
+
+                    editTextDateVencimientoYear.addTextChangedListener(twYear);
+
+
+
+                }
+            }
+        });
+
     }
 }
