@@ -1,9 +1,10 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,10 +18,9 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -44,18 +44,17 @@ public class MainActivity extends AppCompatActivity {
         final EditText editTextPassword = findViewById(R.id.editTextPassword);
         final EditText editTextPasswordRepeat = findViewById(R.id.editTextPasswordRepeat);
         final EditText editTextEmail = findViewById(R.id.editTextEmail);
-        final EditText editTextTarjeta = findViewById(R.id.editTextCodigoTarjeta);
+        final EditText editTextTarjeta = findViewById(R.id.editTextNumeroTarjeta);
         final EditText editTextCodigoTarjeta = findViewById(R.id.editTextCodigoTarjeta);
-        //final EditText editTextDateVencimiento = findViewById(R.id.editTextDateVencimiento);
         final EditText editTextAliasCBU = findViewById(R.id.editTextAliasCBU);
         final EditText editTextCBU = findViewById(R.id.editTextCBU);
-        //Test Date Vencimiento
         final EditText editTextDateVencimientoMonth = findViewById(R.id.editTextDateVencimientoMonth);
         final EditText editTextDateVencimientoYear = findViewById(R.id.editTextDateVencimientoYear);
 
-        final Button radioButtonCuentaBase = findViewById(R.id.radioButtonCuentaBase);
-        final Button radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
-        final Button radioButtonCuentaPremium = findViewById(R.id.radioButtonCuentaPremium);
+        final RadioGroup radioGroupTipoCuenta = findViewById(R.id.radioGroupTipoCuenta);
+        final RadioButton radioButtonCuentaBase = findViewById(R.id.radioButtonCuentaBase);
+        final RadioButton radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
+        final RadioButton radioButtonCuentaPremium = findViewById(R.id.radioButtonCuentaPremium);
         final Button buttonRegistrar = findViewById(R.id.buttonRegistrar);
 
         final Switch switchNotificacionEmail = findViewById(R.id.switchNotificacionEmail);
@@ -71,17 +70,45 @@ public class MainActivity extends AppCompatActivity {
         editTextCBU.setVisibility(View.GONE);
         buttonRegistrar.setEnabled(false);
 
+
         //fecha acutal
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
 
         String fecha = dateFormat.format(date);
 
+        //Funciones
         esVendedor(switchVendedor, textViewAliasCBU, textViewCBU, editTextAliasCBU, editTextCBU);
         progresoSeekBar(seekBarValorCredito, textViewValorCredito);
         estadoBotonGuardar(checkBoxTerminosYCondiciones, buttonRegistrar);
         validarDatosTarjetaCredito(editTextTarjeta, editTextCodigoTarjeta, editTextDateVencimientoMonth, editTextDateVencimientoYear, fecha);
+        validarRadioButtonGroup(radioGroupTipoCuenta, radioButtonCuentaBase, radioButtonCuentaFull, radioButtonCuentaPremium, textViewValorCredito, seekBarValorCredito);
 
+        //Boton
+        buttonRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = getApplicationContext();
+                CharSequence text;
+                int duration = Toast.LENGTH_SHORT;
+
+                if(editTextEmail.length() == 0) editTextEmail.setError("*Campo obligatorio");
+                if(editTextPassword.length() == 0) editTextPassword.setError("*Campo obligatorio");
+                if(editTextPasswordRepeat.length() == 0) editTextPasswordRepeat.setError("*Campo obligatorio");
+                if(editTextCodigoTarjeta.length() == 0) editTextCodigoTarjeta.setError("*Campo obligatorio");
+                if(editTextTarjeta.length() == 0) editTextTarjeta.setError("*Campo obligatorio");
+                if(editTextDateVencimientoYear.length() == 0) editTextDateVencimientoYear.setError("*Campo obligatorio");
+                if(radioGroupTipoCuenta.getCheckedRadioButtonId() == -1)radioButtonCuentaFull.setError("*Campo Obligatorio");
+
+                if(editTextEmail.getError()==null || editTextPassword.getError() == null || editTextPasswordRepeat.getError() == null || editTextCodigoTarjeta.getError() == null || editTextTarjeta.getError() == null || editTextDateVencimientoYear.getError() == null || radioButtonCuentaFull.getError() == null || editTextAliasCBU.getError() == null || editTextCBU.getError() == null || radioButtonCuentaFull.getError() == null){
+                    text = "Datos guardados correctamente";
+                } else{
+                    text = "Datos Incorrectos";
+                }
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+        });
 
         editTextEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -107,10 +134,8 @@ public class MainActivity extends AppCompatActivity {
                 if(!focus){
                     if(editTextPassword.getText().length()==0){
                        editTextPassword.setError("*Campo obligatorio");
-                        //textViewPasswordError.setText("*Campo obligatorio");
                     }else{
                         editTextEmail.setError(null);
-                        //textViewPasswordError.setText("");
                     }
                 }
             }
@@ -131,22 +156,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        //validarDatosTarjetaCredito(editTextTarjeta, editTextCodigoTarjeta, editTextDateVencimiento);
-        validarRadioButtonGroup();
+
     }
 
-    private void validarRadioButtonGroup(){
-        final RadioGroup radioGroupTipoCuenta = findViewById(R.id.radioGroup2);
-        final RadioButton radioButtonCuentaFull = findViewById(R.id.radioButtonCuentaFull);
-        radioGroupTipoCuenta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    private void validarRadioButtonGroup(final RadioGroup radioGroupTipoCuenta, final RadioButton radioButtonCuentaBase, final RadioButton radioButtonCuentaFull, final RadioButton radioButtonCuentaPremium, final TextView textViewCreditoInicial, final SeekBar s){
+
+        radioGroupTipoCuenta.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onFocusChange(View view, boolean focus) {
-                if(!focus){
-                    if(radioGroupTipoCuenta.getCheckedRadioButtonId() == -1)radioButtonCuentaFull.setError("*Campo Obligatorio");
-                    else radioButtonCuentaFull.setError(null);
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(radioButtonCuentaBase.isChecked()){
+                    textViewCreditoInicial.setText("100");
+                    s.setMax(1400);
+                }
+                else if(radioButtonCuentaPremium.isChecked()){
+                    textViewCreditoInicial.setText("250");
+                    s.setMax(1250);
+                }
+                else if(radioButtonCuentaFull.isChecked()){
+                    textViewCreditoInicial.setText("500");
+                    s.setMax(1000);
                 }
             }
         });
+
     }
     private void esVendedor(final Switch s, final TextView textViewAliasCBU, final TextView textViewCBU, final EditText editTextAliasCBU, final EditText editTextCBU) {
 
@@ -180,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
 
-                textViewValorCredito.setText(new Integer(i).toString());
+                textViewValorCredito.setText(new Integer(i + (1500-s.getMax())).toString());
 
 
             }
@@ -211,13 +243,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    void validarDatosTarjetaCredito(final EditText editTextNumeroTarjeta, final EditText editTextNumeroSeguridad, final EditText editTextDateVencimientoMonth, final EditText editTextDateVencimientoYear, final String fecha){
+    private void validarDatosTarjetaCredito(final EditText editTextNumeroTarjeta, final EditText editTextNumeroSeguridad, final EditText editTextDateVencimientoMonth, final EditText editTextDateVencimientoYear, final String fecha){
 
         editTextNumeroTarjeta.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean focus) {
                 if(!focus){
-                    if(editTextNumeroTarjeta.getText().length()==0){
+                    if(editTextNumeroTarjeta.length()==0){
                         editTextNumeroTarjeta.setError("*Campo Obligatorio");
                     }else{
                         editTextNumeroTarjeta.setError(null);
@@ -229,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean focus) {
                 if(!focus){
-                    if(editTextNumeroSeguridad.getText().length()==0){
+                    if(editTextNumeroSeguridad.length()==0){
                         editTextNumeroSeguridad.setError("*Campo Obligatorio");
                     }else{
                         editTextNumeroSeguridad.setError(null);
@@ -241,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View view, boolean focus) {
                 if(!focus){
-                    if(editTextDateVencimientoMonth.getText().length() == 0 || editTextDateVencimientoYear.length() == 0) {
+                    if(editTextDateVencimientoMonth.length() == 0 || editTextDateVencimientoYear.length() == 0) {
                         editTextDateVencimientoYear.setError("*Campo Obligatorio");
                     }else{
 
@@ -398,4 +430,5 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 }

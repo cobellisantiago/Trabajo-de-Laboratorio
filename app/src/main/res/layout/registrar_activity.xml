@@ -169,7 +169,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewTarjetaDeCredito" />
 
             <RadioGroup
-                android:id="@+id/radioGroup2"
+                android:id="@+id/radioGroupTipoCuenta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -304,7 +304,7 @@
                 android:text="@string/registro_credito"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewTipoDeCuenta"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupTipoCuenta" />
 
             <TextView
                 android:id="@+id/textViewValorCredito"
@@ -313,8 +313,8 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/textViewValorCredito"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/radioGroup2"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+                app:layout_constraintEnd_toEndOf="@+id/radioGroupTipoCuenta"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupTipoCuenta" />
 
             <TextView
                 android:id="@+id/textViewAliasCBU"
