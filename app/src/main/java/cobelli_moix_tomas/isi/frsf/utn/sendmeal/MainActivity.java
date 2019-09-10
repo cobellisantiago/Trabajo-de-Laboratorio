@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 if(editTextTarjeta.length() == 0) editTextTarjeta.setError("*Campo obligatorio");
                 if(editTextDateVencimientoYear.length() == 0) editTextDateVencimientoYear.setError("*Campo obligatorio");
                 if(radioGroupTipoCuenta.getCheckedRadioButtonId() == -1)radioButtonCuentaFull.setError("*Campo Obligatorio");
+                if(editTextAliasCBU.length() == 0) editTextAliasCBU.setError("*Campo Obligatorio");
+                if(editTextCBU.length() == 0) editTextCBU.setError("*Campo Obligatorio");
 
                 if(editTextEmail.getError()==null || editTextPassword.getError() == null || editTextPasswordRepeat.getError() == null || editTextCodigoTarjeta.getError() == null || editTextTarjeta.getError() == null || editTextDateVencimientoYear.getError() == null || radioButtonCuentaFull.getError() == null || editTextAliasCBU.getError() == null || editTextCBU.getError() == null || radioButtonCuentaFull.getError() == null){
                     text = "Datos guardados correctamente";
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                editTextEmail.getText().toString().indexOf("@"),editTextEmail.getText().toString().length()-1)).length()>=3){
                             editTextEmail.setError(null);
                         }else {
-                            editTextEmail.setError("Email incorrecto");
+                            editTextEmail.setError("El email debe contener al menos un @ y 3 letras luego del mismo");
                         }
                     }
                 }
@@ -285,29 +287,29 @@ public class MainActivity extends AppCompatActivity {
 
                         switch(monthToday) {
                             case 9:
-                                if(year <= yearToday) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             case 10:
-                                if(year <= yearToday || (month == 1 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday || (month == 1 || yearToday == year-1)) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             case 11:
-                                if(year <= yearToday || (month <= 2 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday || (month <= 2 || yearToday == year-1)) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             case 12:
-                                if(year <= yearToday || (month <= 3 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday || (month <= 3 || yearToday == year-1)) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             default:
-                                if(year < yearToday || (month - monthToday) <= 3) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year < yearToday || (month - monthToday) <= 3) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                         }
 
-                        if(editTextDateVencimientoYear.getError() == null && month <= 12) editTextDateVencimientoYear.setError(null);
-                        else editTextDateVencimientoYear.setError("*Fecha erronea");
+                        if (month>12) editTextDateVencimientoYear.setError("*Debe ingresar un mes valido entre 1 y 12");
+                        else if(editTextDateVencimientoYear.getError() == null) editTextDateVencimientoYear.setError(null);
                     }
 
                 }else{
@@ -364,29 +366,28 @@ public class MainActivity extends AppCompatActivity {
 
                         switch(monthToday) {
                             case 9:
-                                if(year <= yearToday) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             case 10:
-                                if(year <= yearToday || (month == 1 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday || (month == 1 || yearToday == year-1)) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             case 11:
-                                if(year <= yearToday || (month <= 2 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday || (month <= 2 || yearToday == year-1)) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             case 12:
-                                if(year <= yearToday || (month <= 3 || yearToday == year-1)) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year <= yearToday || (month <= 3 || yearToday == year-1)) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                             default:
-                                if(year < yearToday || (month - monthToday) <= 3) editTextDateVencimientoYear.setError("*Fecha erronea");
+                                if(year < yearToday || (month - monthToday) <= 3) editTextDateVencimientoYear.setError("*La fecha de vencimiento debe ser superior a los proximos 3 meses");
                                 else editTextDateVencimientoYear.setError(null);
                                 break;
                         }
-
-                        if(editTextDateVencimientoYear.getError() == null && month <= 12) editTextDateVencimientoYear.setError(null);
-                        else editTextDateVencimientoYear.setError("*Fecha erronea");
+                        if (month>12) editTextDateVencimientoYear.setError("*Debe ingresar un mes valido entre 1 y 12");
+                        else if(editTextDateVencimientoYear.getError() == null) editTextDateVencimientoYear.setError(null);
                     }
 
                 }else{
