@@ -49,6 +49,9 @@ public class Home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //funciones
+        changeItemNavigationBar(drawer, navigationView);
     }
 
     @Override
@@ -65,7 +68,7 @@ public class Home extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void changeItemNavigationBar(final DrawerLayout drawerLayout, NavigationView navigationView) {
+    private void changeItemNavigationBar(final DrawerLayout drawerLayout, final NavigationView navigationView) {
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
