@@ -9,8 +9,8 @@ public class RegistrarmeViewModel extends ViewModel {
     private MutableLiveData<String> mText;
 
     public RegistrarmeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+       /* mText = new MutableLiveData<>();
+        mText.setValue("This is home fragment");*/
     }
 
     public LiveData<String> getText() {

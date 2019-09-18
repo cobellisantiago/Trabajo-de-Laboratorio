@@ -23,13 +23,13 @@ public class CrearItemFragment extends Fragment {
         crearItemViewModel =
                 ViewModelProviders.of(this).get(CrearItemViewModel.class);
         View root = inflater.inflate(R.layout.fragment_crear_plato, container, false);
-        final TextView textView = root.findViewById(R.id.text_crear_plato);
+        /*final TextView textView = root.findViewById(R.id.text_crear_plato);
         crearItemViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-        });
+        });*/
         return root;
     }
 }
