@@ -39,4 +39,6 @@
     <string name="menu_crear_plato">Crear plato</string>
     <string name="itemRegistrarme">Registrarme</string>
     <string name="itemCrearPLato">Crear plato</string>
+    <string name="menu_home">Home</string>
+    <string name="itemHome">Home</string>
 </resources>

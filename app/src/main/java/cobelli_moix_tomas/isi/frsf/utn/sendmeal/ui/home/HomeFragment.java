@@ -1,4 +1,4 @@
-package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item;
+package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 
-public class CrearItemFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-    private CrearItemViewModel crearItemViewModel;
+    private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        crearItemViewModel =
-                ViewModelProviders.of(this).get(CrearItemViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_crear_plato, container, false);
-        final TextView textView = root.findViewById(R.id.text_crear_plato);
-        crearItemViewModel.getText().observe(this, new Observer<String>() {
+        homeViewModel =
+                ViewModelProviders.of(this).get(HomeViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final TextView textView = root.findViewById(R.id.text_home);
+        homeViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

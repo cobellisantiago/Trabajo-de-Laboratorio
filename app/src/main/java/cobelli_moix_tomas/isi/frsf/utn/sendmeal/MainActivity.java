@@ -1,10 +1,8 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registrar_activity);
+        setContentView(R.layout.fragment_registrarme);
 
         //Fecha actual
 
