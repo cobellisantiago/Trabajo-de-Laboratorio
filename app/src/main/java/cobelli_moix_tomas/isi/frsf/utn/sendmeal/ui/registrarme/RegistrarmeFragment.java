@@ -23,13 +23,6 @@ public class RegistrarmeFragment extends Fragment {
         registrarmeViewModel =
                 ViewModelProviders.of(this).get(RegistrarmeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registrarme, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        registrarmeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 }

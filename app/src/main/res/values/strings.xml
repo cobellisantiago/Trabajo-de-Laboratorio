@@ -39,10 +39,13 @@
     <string name="menu_crear_plato">Crear plato</string>
     <string name="itemRegistrarme">Registrarme</string>
     <string name="itemCrearPLato">Crear plato</string>
+
     <string name="id_alta_plato">ID Plato:</string>
     <string name="alta_plato_nombre">Nombre:</string>
     <string name="alta_plato_descripcion">Descripcion:</string>
     <string name="alta_platp_precio">Precio:</string>
     <string name="alta_plato_calorias">Calorias:</string>
     <string name="alta_plato_guardar">Guardar</string>
+    <string name="menu_home">Home</string>
+    <string name="itemHome">Home</string>
 </resources>
