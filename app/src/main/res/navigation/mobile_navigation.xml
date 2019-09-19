@@ -21,6 +21,6 @@
         android:id="@+id/navigation_crear_plato"
         android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment"
         android:label="@string/menu_crear_plato"
-        tools:layout="@layout/fragment_crear_plato" />
+        tools:layout="@layout/fragment_new_item" />
 
 </navigation>
