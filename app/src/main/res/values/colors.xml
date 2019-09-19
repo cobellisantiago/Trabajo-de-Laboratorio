@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorErrorText">#d32f2f</color>
-    <color name="colorTituloText">#26A69A</color>
+    <color name="colorTituloText">#FFDA3A</color>
     <color name="colorGrisDesactivado">#bdbdbd</color>
+    <color name="colorFondoAmarillo">#FFDA3A</color>
 </resources>

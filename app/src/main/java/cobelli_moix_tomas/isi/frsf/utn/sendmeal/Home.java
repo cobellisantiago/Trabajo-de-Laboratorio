@@ -50,8 +50,6 @@ public class Home extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //funciones
-        changeItemNavigationBar(drawer, navigationView);
     }
 
     @Override
@@ -68,43 +66,4 @@ public class Home extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    private void changeItemNavigationBar(final DrawerLayout drawerLayout, final NavigationView navigationView) {
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
-                boolean fragmentTransaction = false;
-                Fragment fragment = null;
-
-                switch(menuItem.getItemId()) {
-                    case R.id.navigation_home:
-                        fragment = new HomeFragment();
-                        fragmentTransaction = true;
-                        break;
-                    case R.id.navigation_registrarme:
-                        fragment = new RegistrarmeFragment();
-                        fragmentTransaction = true;
-                        break;
-                    case R.id.navigation_crear_plato:
-                        fragment = new CrearItemFragment();
-                        fragmentTransaction = true;
-                        break;
-                }
-
-                if(fragmentTransaction) {
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
-
-                    menuItem.setChecked(true);
-                    getSupportActionBar().setTitle(menuItem.getTitle());
-                }
-
-                drawerLayout.closeDrawers();
-
-                return true;
-
-            }
-        });
-    }
 }
