@@ -1,4 +1,4 @@
-package CobelliMoixTomas.isi.frsf.utn.sendmeal;
+package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
