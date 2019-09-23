@@ -1,4 +1,4 @@
-package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home;
+package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,15 +13,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 
-public class HomeFragment extends Fragment {
+public class ListarItemsFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private ListarItemsViewModel listarItemsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        listarItemsViewModel =
+                ViewModelProviders.of(this).get(ListarItemsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_listar_item, container, false);
 
         return root;
     }

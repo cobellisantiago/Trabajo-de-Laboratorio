@@ -37,8 +37,10 @@
 
     <string name="menu_registrarme">Registrar usuario</string>
     <string name="menu_crear_plato">Crear plato</string>
+    <string name="menu_listar_item">Lista de platos</string>
     <string name="itemRegistrarme">Registrarme</string>
     <string name="itemCrearPLato">Crear plato</string>
+    <string name="itemListarPLatos">Lista de platos</string>
 
     <string name="id_alta_plato">ID Plato:</string>
     <string name="alta_plato_nombre">Nombre:</string>

@@ -40,7 +40,6 @@ public class RegistrarmeFragment extends Fragment {
         registrarmeViewModel =
                 ViewModelProviders.of(this).get(RegistrarmeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registrarme, container, false);
-        //return root;
 
 
         final TextView textViewAliasCBU = root.findViewById(R.id.textViewAliasCBU);
@@ -106,10 +105,11 @@ public class RegistrarmeFragment extends Fragment {
                 if(editTextTarjeta.length() == 0) editTextTarjeta.setError("*Campo obligatorio");
                 if(editTextDateVencimientoYear.length() == 0) editTextDateVencimientoYear.setError("*Campo obligatorio");
                 if(radioGroupTipoCuenta.getCheckedRadioButtonId() == -1)radioButtonCuentaFull.setError("*Campo Obligatorio");
+                else radioButtonCuentaFull.setError(null);
                 if(editTextAliasCBU.length() == 0) editTextAliasCBU.setError("*Campo Obligatorio");
                 if(editTextCBU.length() == 0) editTextCBU.setError("*Campo Obligatorio");
 
-                if(editTextEmail.getError()==null || editTextPassword.getError() == null || editTextPasswordRepeat.getError() == null || editTextCodigoTarjeta.getError() == null || editTextTarjeta.getError() == null || editTextDateVencimientoYear.getError() == null || radioButtonCuentaFull.getError() == null || editTextAliasCBU.getError() == null || editTextCBU.getError() == null || radioButtonCuentaFull.getError() == null){
+                if(editTextEmail.getError()==null && editTextPassword.getError() == null && editTextPasswordRepeat.getError() == null && editTextCodigoTarjeta.getError() == null && editTextTarjeta.getError() == null && editTextDateVencimientoYear.getError() == null && radioButtonCuentaFull.getError() == null && editTextAliasCBU.getError() == null && editTextCBU.getError() == null && radioButtonCuentaFull.getError() == null){
                     text = "Datos guardados correctamente";
                 } else{
                     text = "Datos Incorrectos";

@@ -23,4 +23,10 @@
         android:label="@string/menu_crear_plato"
         tools:layout="@layout/fragment_new_item" />
 
+    <fragment
+        android:id="@+id/navigation_listar_items"
+        android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment"
+        android:label="@string/menu_listar_item"
+        tools:layout="@layout/fragment_listar_item" />
+
 </navigation>

@@ -16,6 +16,10 @@
             android:id="@+id/navigation_crear_plato"
             android:icon="@drawable/ic_dish"
             android:title="@string/itemCrearPLato" />
+        <item
+            android:id="@+id/navigation_listar_items"
+            android:icon="@drawable/ic_dish"
+            android:title="@string/itemListarPLatos" />
 
     </group>
 
