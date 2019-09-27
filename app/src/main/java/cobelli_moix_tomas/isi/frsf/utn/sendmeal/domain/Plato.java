@@ -1,29 +1,42 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Plato {
 
-    private Long idPlato;
+
+
+    private static List<Plato> platos = new ArrayList<>();
+    private Integer idPlato;
     private String nombre;
     private String descripcion;
     private Double precio;
-    private Double calorias;
+    private Integer calorias;
 
     public Plato() {
     }
 
-    public Plato(Long idPlato, String nombre, String descripcion, Double precio, Double calorias) {
-        this.idPlato = idPlato;
+    public Plato( String nombre, String descripcion, Double precio, Integer calorias) {
+
+        this.idPlato = platos.size();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.calorias = calorias;
+        platos.add(this);
+
     }
 
-    public Long getIdPlato() {
+    public static List<Plato> getPlatos() {
+        return platos;
+    }
+
+    public Integer getIdPlato() {
         return idPlato;
     }
 
-    public void setIdPlato(Long idPlato) {
+    public void setIdPlato(Integer idPlato) {
         this.idPlato = idPlato;
     }
 
@@ -51,11 +64,11 @@ public class Plato {
         this.precio = precio;
     }
 
-    public Double getCalorias() {
+    public Integer getCalorias() {
         return calorias;
     }
 
-    public void setCalorias(Double calorias) {
+    public void setCalorias(Integer calorias) {
         this.calorias = calorias;
     }
 }

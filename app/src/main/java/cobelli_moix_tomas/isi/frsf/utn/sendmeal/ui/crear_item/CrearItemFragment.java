@@ -54,11 +54,10 @@ public class CrearItemFragment extends Fragment {
 
                 if(editTextNombrePLato.getError() == null && editTextDecripcionPlato.getError() == null && editTextPrecioPlato.getError() == null && editTextCaloriasPlato.getError() == null) {
 
-                    plato = new Plato(Long.parseLong(editTextIdPlato.getText().toString()),
-                            editTextNombrePLato.getText().toString(),
+                    plato = new Plato(editTextNombrePLato.getText().toString(),
                             editTextDecripcionPlato.getText().toString(),
                             Double.parseDouble(editTextPrecioPlato.getText().toString()),
-                            Double.parseDouble(editTextCaloriasPlato.getText().toString()));
+                            Integer.parseInt(editTextCaloriasPlato.getText().toString()));
 
                     text = "Plato creado correctamente";
                 } else{
