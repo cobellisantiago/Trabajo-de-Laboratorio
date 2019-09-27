@@ -42,6 +42,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
         holder.textViewNombre.setText(plato.getNombre());
         holder.textViewPrecio.setText("Precio: $"+format.format(plato.getPrecio()));
+        holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
 
     }
 

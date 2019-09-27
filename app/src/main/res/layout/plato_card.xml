@@ -14,12 +14,12 @@
             android:layout_width="128dp"
             android:layout_height="22dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="8dp"
             android:text="Nombre"
             app:layout_constraintEnd_toStartOf="@+id/textViewPrecio"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
         <TextView
             android:id="@+id/textViewPrecio"
@@ -30,6 +30,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textViewNombre" />
+
+        <ImageView
+            android:id="@+id/imageViewPlato"
+            android:layout_width="209dp"
+            android:layout_height="133dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/hamburguesa" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
