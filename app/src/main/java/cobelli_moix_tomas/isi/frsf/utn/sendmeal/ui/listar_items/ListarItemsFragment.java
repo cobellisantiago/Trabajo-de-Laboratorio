@@ -24,13 +24,12 @@ public class ListarItemsFragment extends Fragment {
     private RecyclerView.ViewHolder viewHolder;
     private RecyclerView.LayoutManager layoutManager;
 
-
     private ListarItemsViewModel listarItemsViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        listarItemsViewModel =
-                ViewModelProviders.of(this).get(ListarItemsViewModel.class);
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        listarItemsViewModel = ViewModelProviders.of(this).get(ListarItemsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_listar_item, container, false);
 
         platoRecyclerView = root.findViewById(R.id.dishRecyclerView);
@@ -41,7 +40,6 @@ public class ListarItemsFragment extends Fragment {
 
         adapter = new PlatoAdapter(Plato.getPlatos());
         platoRecyclerView.setAdapter(adapter);
-
 
         return root;
     }

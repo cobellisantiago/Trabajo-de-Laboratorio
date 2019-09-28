@@ -17,13 +17,12 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
     private List<Plato> platoViewDataSet;
-
+    private Context context;
 
     public PlatoAdapter (List<Plato> myPlatosDataSet) {
         platoViewDataSet = myPlatosDataSet;
     }
 
-    private Context context;
 
     @NonNull
     @Override
@@ -43,12 +42,10 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         holder.textViewNombre.setText(plato.getNombre());
         holder.textViewPrecio.setText("Precio: $"+format.format(plato.getPrecio()));
         holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
-
     }
 
     @Override
     public int getItemCount() {
         return platoViewDataSet.size();
     }
-
 }
