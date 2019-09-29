@@ -7,15 +7,53 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/buttonOferta"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/boton_ofertar_plato"
+            android:background="@drawable/bttn_rounded"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonEditar"
+            app:layout_constraintEnd_toStartOf="@+id/buttonEditar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonEditar"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/boton_editar_plato"
+            android:background="@drawable/bttn_rounded"
+            app:layout_constraintBaseline_toBaselineOf="@+id/buttonEliminar"
+            app:layout_constraintEnd_toStartOf="@+id/buttonEliminar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonOferta" />
+
+        <Button
+            android:id="@+id/buttonEliminar"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/boton_eliminar_plato"
+            android:background="@drawable/bttn_rounded"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonEditar"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageViewPlato"
             android:layout_width="209dp"
             android:layout_height="133dp"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="150dp"
             android:cropToPadding="true"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,26 +62,26 @@
             app:srcCompat="@drawable/hamburguesa" />
 
         <TextView
-            android:id="@+id/textViewPrecio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Precio"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textViewNombre"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textViewNombre" />
-
-        <TextView
             android:id="@+id/textViewNombre"
             android:layout_width="128dp"
             android:layout_height="22dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="50dp"
             android:text="Nombre"
-            app:layout_constraintEnd_toStartOf="@+id/textViewPrecio"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPlato" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPlato"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="50dp"
+            android:text="Precio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPlato"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,4 +50,7 @@
     <string name="alta_plato_guardar">Guardar</string>
     <string name="menu_home">Home</string>
     <string name="itemHome">Home</string>
+    <string name="boton_editar_plato">Editar</string>
+    <string name="boton_ofertar_plato">Oferta</string>
+    <string name="boton_eliminar_plato">Eliminar</string>
 </resources>
