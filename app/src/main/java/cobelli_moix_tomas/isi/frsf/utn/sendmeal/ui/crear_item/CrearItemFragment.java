@@ -45,34 +45,42 @@ public class CrearItemFragment extends Fragment {
                 CharSequence text;
                 int duration = Toast.LENGTH_SHORT;
 
-                if(!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && !Double.toString(Double.parseDouble(editTextPrecioPlato.getText().toString())).equals(null) && !Integer.toString(Integer.parseInt(editTextCaloriasPlato.getText().toString())).equals(null)) {
+                Double precio;
+                try {
+                    precio = Double.parseDouble(editTextPrecioPlato.getText().toString());
+                } catch (NumberFormatException e) {
+                    precio = 0.0; //default value
+                }
 
-                    plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(),
-                            Double.parseDouble(editTextPrecioPlato.getText().toString()),
-                            Integer.parseInt(editTextCaloriasPlato.getText().toString()));
+                Integer calorias;
+                try {
+                    calorias = Integer.parseInt(editTextCaloriasPlato.getText().toString());
+                } catch (NumberFormatException e) {
+                    calorias = 0; //default value
+                }
 
+
+                if(!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && precio!=0.0 && calorias!=0) {
+
+                    plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
                     text = "Plato creado correctamente";
 
                     editTextNombrePLato.setText(null);
                     editTextDecripcionPlato.setText(null);
                     editTextPrecioPlato.setText(null);
                     editTextCaloriasPlato.setText(null);
-                    editTextCaloriasPlato.setError(null);
 
                     editTextNombrePLato.requestFocus();
-
                 }
                 else{
                     text = "Datos Incorrectos";
-
-                    editTextNombrePLato.requestFocus();
                 }
 
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
-
             }
         });
+
         return root;
     }
 
