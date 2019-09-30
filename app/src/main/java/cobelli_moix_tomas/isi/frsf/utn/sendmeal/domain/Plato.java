@@ -29,6 +29,10 @@ public class Plato {
         return platos;
     }
 
+    public static Plato getPlato (int pos){
+        return platos.get(pos);
+    }
+
     public Integer getIdPlato() {
         return idPlato;
     }
