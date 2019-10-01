@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_registrarme"
+        android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.RegistrarmeFragment"
+        android:label="@string/menu_registrarme"
+        tools:layout="@layout/fragment_registrarme" />
+
+    <fragment
+        android:id="@+id/navigation_crear_plato"
+        android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment"
+        android:label="@string/menu_crear_plato"
+        tools:layout="@layout/fragment_new_item" />
+
+    <fragment
+        android:id="@+id/navigation_listar_items"
+        android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment"
+        android:label="@string/menu_listar_item"
+        tools:layout="@layout/fragment_listar_item" />
+
+</navigation>
