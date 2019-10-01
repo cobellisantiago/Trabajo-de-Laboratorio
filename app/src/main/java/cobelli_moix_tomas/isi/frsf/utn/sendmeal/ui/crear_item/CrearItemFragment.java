@@ -71,6 +71,11 @@ public class CrearItemFragment extends Fragment {
                     editTextCaloriasPlato.setText(null);
 
                     editTextNombrePLato.requestFocus();
+
+                    editTextNombrePLato.setError(null);
+                    editTextDecripcionPlato.setError(null);
+                    editTextPrecioPlato.setError(null);
+                    editTextCaloriasPlato.setError(null);
                 }
                 else{
                     text = "Datos Incorrectos";
