@@ -19,6 +19,5 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
         this.textViewNombre = (TextView) base.findViewById(R.id.textViewNombre);
         this.textViewPrecio = (TextView) base.findViewById(R.id.textViewPrecio);
         this.imageViewFoto = (ImageView) base.findViewById(R.id.imageViewPlato);
-
     }
 }

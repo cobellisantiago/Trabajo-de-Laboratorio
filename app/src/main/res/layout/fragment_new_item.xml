@@ -9,9 +9,7 @@
     android:layout_height="match_parent"
     android:background="#F3F1F1">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="cobelli_moix_tomas.isi.frsf.utn.sendmeal.NewItem">
@@ -21,7 +19,7 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="132dp"
             android:layout_height="43dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bttn_rounded"
             android:text="@string/alta_plato_guardar"
@@ -34,27 +32,16 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextCaloriasPlato" />
 
         <EditText
-            android:id="@+id/editTextIdPlato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
             android:id="@+id/editTextNombrePlato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="@+id/editTextIdPlato"
-            app:layout_constraintTop_toBottomOf="@+id/editTextIdPlato" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextDescripcionPlato"
@@ -88,24 +75,14 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextPrecioPlato" />
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="70dp"
-            android:text="@string/id_alta_plato"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editTextIdPlato"
-            app:layout_constraintEnd_toStartOf="@+id/editTextIdPlato"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/alta_plato_nombre"
             app:layout_constraintBaseline_toBaselineOf="@+id/editTextNombrePlato"
-            app:layout_constraintStart_toStartOf="@+id/textView3" />
+            app:layout_constraintEnd_toStartOf="@+id/editTextNombrePlato"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/textView5"

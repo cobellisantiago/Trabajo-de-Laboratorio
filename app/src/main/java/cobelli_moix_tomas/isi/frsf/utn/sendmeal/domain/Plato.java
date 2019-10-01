@@ -1,14 +1,9 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
-import android.media.Image;
-import android.widget.ImageView;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Plato {
-
-
 
     private static List<Plato> platos = new ArrayList<>();
     private Integer idPlato;
@@ -20,7 +15,7 @@ public class Plato {
     public Plato() {
     }
 
-    public Plato( String nombre, String descripcion, Double precio, Integer calorias) {
+    public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
 
         this.idPlato = platos.size();
         this.nombre = nombre;
@@ -28,11 +23,14 @@ public class Plato {
         this.precio = precio;
         this.calorias = calorias;
         platos.add(this);
-
     }
 
     public static List<Plato> getPlatos() {
         return platos;
+    }
+
+    public static Plato getPlato (int pos){
+        return platos.get(pos);
     }
 
     public Integer getIdPlato() {
