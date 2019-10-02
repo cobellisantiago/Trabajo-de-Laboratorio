@@ -40,7 +40,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         DecimalFormat format = new DecimalFormat("0.00");
 
         holder.textViewNombre.setText(plato.getNombre());
-        holder.textViewPrecio.setText("Precio: $"+format.format(plato.getPrecio()));
+        holder.textViewPrecio.setText("$"+format.format(plato.getPrecio()));
         holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
     }
 

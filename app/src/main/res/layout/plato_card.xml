@@ -2,14 +2,15 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="400dp"
     android:layout_margin="8dp"
-    app:cardBackgroundColor="@android:color/transparent"
+    app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="10dp"
-    app:cardElevation="3dp">
+    app:cardElevation="5dp">
 
-<!--
+    <!--
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,90 +18,67 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp">
 -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageCard"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/buttonOferta"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bttn_rounded"
-                android:text="@string/boton_ofertar_plato"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/buttonEditar"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewPlato" />
-
-            <Button
-                android:id="@+id/buttonEditar"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bttn_rounded"
-                android:text="@string/boton_editar_plato"
-                app:layout_constraintBaseline_toBaselineOf="@+id/buttonOferta"
-                app:layout_constraintEnd_toStartOf="@+id/buttonEliminar"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/buttonOferta" />
-
-            <Button
-                android:id="@+id/buttonEliminar"
-                style="@style/Widget.AppCompat.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bttn_rounded"
-                android:text="@string/boton_eliminar_plato"
-                app:layout_constraintBaseline_toBaselineOf="@+id/buttonEditar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/buttonEditar" />
+            android:layout_height="250dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageViewPlato"
-                android:layout_width="209dp"
-                android:layout_height="133dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:cropToPadding="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                app:layout_constraintEnd_toStartOf="@+id/textViewNombre"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/hamburguesa" />
+        </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/textViewNombre"
-                android:layout_width="128dp"
-                android:layout_height="22dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="Nombre"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPlato"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewNombre"
+            android:layout_width="285dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="Nombre"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageCard" />
 
-            <TextView
-                android:id="@+id/textViewPrecio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:text="Precio"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPlato"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
+        <TextView
+            android:id="@+id/textViewPrecio"
+            android:layout_width="98dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/lato"
+            android:text="Precio"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/textViewNombre"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="&#8942;"
+            android:textAppearance="?android:textAppearanceLarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageCard" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!--</androidx.cardview.widget.CardView>-->
 
 </androidx.cardview.widget.CardView>

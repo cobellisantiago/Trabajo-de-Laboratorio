@@ -6,6 +6,7 @@ import java.util.List;
 public class Plato {
 
     private static List<Plato> platos = new ArrayList<>();
+    private static Plato platoGenerico = new Plato("Hamburguesa re gorda", "muy rica", 1800.00, 2000);
     private Integer idPlato;
     private String nombre;
     private String descripcion;
