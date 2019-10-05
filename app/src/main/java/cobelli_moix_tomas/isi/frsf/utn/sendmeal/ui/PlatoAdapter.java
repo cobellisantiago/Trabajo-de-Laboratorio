@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,12 +37,32 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
     public void onBindViewHolder(@NonNull PlatoViewHolder holder, int position) {
 
         Plato plato = platoViewDataSet.get(position);
-
         DecimalFormat format = new DecimalFormat("0.00");
 
         holder.textViewNombre.setText(plato.getNombre());
         holder.textViewPrecio.setText("$"+format.format(plato.getPrecio()));
         holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
+
+        holder.oferta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO ofertar
+            }
+        });
+
+        holder.editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO editar
+            }
+        });
+
+        holder.eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO eliminar
+            }
+        });
     }
 
     @Override

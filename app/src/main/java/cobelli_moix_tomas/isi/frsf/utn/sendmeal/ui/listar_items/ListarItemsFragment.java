@@ -27,7 +27,16 @@ public class ListarItemsFragment extends Fragment {
 
     private ListarItemsViewModel listarItemsViewModel;
 
+    /*private LayoutInflater inflater;
+    private ViewGroup container;
+    private Bundle savedInstanceState;
 
+    private View listaPlatos = this.getView();*/
+
+
+
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         listarItemsViewModel = ViewModelProviders.of(this).get(ListarItemsViewModel.class);
@@ -45,7 +54,12 @@ public class ListarItemsFragment extends Fragment {
         return root;
     }
 
-    /*public View getView (int position, View convertView, ViewGroup parent){
+    /*@Override
+    public View getView (){
+        return onCreateView(inflater, container, savedInstanceState);
+    }*/
+
+   /* public View getView (int position, View convertView, ViewGroup parent){
 
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
         View platoSeleccionado = convertView;
