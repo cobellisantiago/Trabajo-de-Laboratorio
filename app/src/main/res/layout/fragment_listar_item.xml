@@ -9,8 +9,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:context="cobelli_moix_tomas.isi.frsf.utn.sendmeal.NewItem">
+        android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dishRecyclerView"

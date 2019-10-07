@@ -11,8 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="cobelli_moix_tomas.isi.frsf.utn.sendmeal.NewItem">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/buttonCrearPlato"

@@ -4,11 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.PlatoAdapter;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.PlatoViewHolder;
 
 public class ListarItemsFragment extends Fragment {
 
@@ -28,10 +26,11 @@ public class ListarItemsFragment extends Fragment {
     private ListarItemsViewModel listarItemsViewModel;
 
 
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         listarItemsViewModel = ViewModelProviders.of(this).get(ListarItemsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_listar_item, container, false);
+        final View root = inflater.inflate(R.layout.fragment_listar_item, container, false);
 
         platoRecyclerView = root.findViewById(R.id.dishRecyclerView);
         platoRecyclerView.setHasFixedSize(true);
@@ -41,6 +40,19 @@ public class ListarItemsFragment extends Fragment {
 
         adapter = new PlatoAdapter(Plato.getPlatos());
         platoRecyclerView.setAdapter(adapter);
+
+        ((PlatoAdapter)adapter).setOnClickListener(new PlatoAdapter.EventoOnClickListenerListaPlatos() {
+            @Override
+            public void onButtonClickListaPlatos(Button button) {
+
+                switch (button.getId()){
+                    case R.id.
+                }
+
+            }
+        });
+
+
 
         return root;
     }
