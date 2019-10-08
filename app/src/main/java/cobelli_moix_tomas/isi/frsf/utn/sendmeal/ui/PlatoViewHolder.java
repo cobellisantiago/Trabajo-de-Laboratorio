@@ -10,34 +10,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 
-public class PlatoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class PlatoViewHolder extends RecyclerView.ViewHolder {
     public TextView textViewNombre;
     public TextView textViewPrecio;
     public ImageView imageViewFoto;
-
-    PlatoAdapter.EventoOnClickListenerListaPlatos listener; // Recibe la interfaz enviada desde el adaptador
-    Button button; // Recibe el button enviado desde el adaptador
+    public Button oferta;
+    public Button editar;
+    public Button eliminar;
 
     public PlatoViewHolder(@NonNull View base, PlatoAdapter.EventoOnClickListenerListaPlatos listener) {
         super(base);
         this.textViewNombre = (TextView) base.findViewById(R.id.textViewNombre);
         this.textViewPrecio = (TextView) base.findViewById(R.id.textViewPrecio);
         this.imageViewFoto = (ImageView) base.findViewById(R.id.imageViewPlato);
-
-        base.setOnClickListener(this);
-
-        // Inicializas el listener
-        this.listener = listener;
+        this.oferta = base.findViewById(R.id.buttonOferta);
+        this.editar = base.findViewById(R.id.buttonEditar);
+        this.eliminar = base.findViewById(R.id.buttonEliminar);
 
     }
 
-    public void setButton(Button button) {
-        this.button = button; // Inicializa la posicion
-    }
+    public void setButton(final Button button, final PlatoAdapter.EventoOnClickListenerListaPlatos listener) {
 
-    @Override
-    public void onClick(View view) {
-        listener.onButtonClickListaPlatos(button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onButtonClickListaPlatos(button);
+            }
+        });
     }
 
 }

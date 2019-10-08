@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.PlatoAdapter;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 
 public class ListarItemsFragment extends Fragment {
 
@@ -25,8 +26,7 @@ public class ListarItemsFragment extends Fragment {
 
     private ListarItemsViewModel listarItemsViewModel;
 
-
-
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         listarItemsViewModel = ViewModelProviders.of(this).get(ListarItemsViewModel.class);
@@ -38,26 +38,54 @@ public class ListarItemsFragment extends Fragment {
         layoutManager = new LinearLayoutManager(root.getContext());
         platoRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PlatoAdapter(Plato.getPlatos());
+        adapter = new PlatoAdapter(Plato.getPlatos(), new PlatoAdapter.EventoOnClickListenerListaPlatos() {
+            @Override
+            public void onButtonClickListaPlatos(Button button) {
+                switch (button.getId()){
+                    //case R.id.buttonOferta:
+                    case R.id.buttonEditar:
+                        CrearItemFragment fragmentEditarPlato = new CrearItemFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.nav_host_fragment,fragmentEditarPlato)
+                                .addToBackStack(null)
+                                .commit();
+                        break;
+                    //case R.id.buttonEliminar:
+                }
+            }
+        });
         platoRecyclerView.setAdapter(adapter);
 
-        ((PlatoAdapter)adapter).setOnClickListener(new PlatoAdapter.EventoOnClickListenerListaPlatos() {
+        /*((PlatoAdapter)adapter).setOnClickListener(new PlatoAdapter.EventoOnClickListenerListaPlatos() {
             @Override
             public void onButtonClickListaPlatos(Button button) {
 
                 switch (button.getId()){
-                    case R.id.
+                    //case R.id.buttonOferta:
+                    case R.id.buttonEditar:
+                                CrearItemFragment fragmentEditarPlato = new CrearItemFragment();
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.nav_host_fragment,fragmentEditarPlato)
+                                        .addToBackStack(null)
+                                        .commit();
+                        break;
+                    //case R.id.buttonEliminar:
                 }
 
             }
-        });
+        });*/
 
 
 
         return root;
     }
 
-    /*public View getView (int position, View convertView, ViewGroup parent){
+    /*@Override
+    public View getView (){
+        return onCreateView(inflater, container, savedInstanceState);
+    }*/
+
+   /* public View getView (int position, View convertView, ViewGroup parent){
 
         LayoutInflater inflater = LayoutInflater.from(this.getContext());
         View platoSeleccionado = convertView;

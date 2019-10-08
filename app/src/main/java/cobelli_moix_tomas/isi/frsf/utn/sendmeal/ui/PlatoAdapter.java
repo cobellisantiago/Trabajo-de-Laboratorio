@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import androidx.fragment.app.Fragment;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -18,22 +16,21 @@ import java.util.List;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 
 public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
     //creando interfaz para interactuar con el plato
     public interface EventoOnClickListenerListaPlatos {
-        public void onButtonClickListaPlatos(Button button);
+        void onButtonClickListaPlatos(Button button);
     }
 
-    EventoOnClickListenerListaPlatos listener;
-
     private List<Plato> platoViewDataSet;
+    private EventoOnClickListenerListaPlatos listener;
     private Context context;
 
-    public PlatoAdapter (List<Plato> myPlatosDataSet) {
+    public PlatoAdapter (List<Plato> myPlatosDataSet, EventoOnClickListenerListaPlatos listener) {
         platoViewDataSet = myPlatosDataSet;
+        this.listener = listener;
     }
 
     @NonNull
@@ -45,15 +42,35 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PlatoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PlatoViewHolder holder, int position) {
 
         Plato plato = platoViewDataSet.get(position);
-
         DecimalFormat format = new DecimalFormat("0.00");
 
         holder.textViewNombre.setText(plato.getNombre());
         holder.textViewPrecio.setText("$"+format.format(plato.getPrecio()));
         holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
+
+        holder.oferta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.setButton(holder.oferta, listener);
+            }
+        });
+
+        holder.editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.setButton(holder.editar, listener);
+            }
+        });
+
+        holder.eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.setButton(holder.eliminar, listener);
+            }
+        });
 
     }
 
@@ -62,7 +79,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         return platoViewDataSet.size();
     }
 
-    public void setOnClickListener(EventoOnClickListenerListaPlatos listener){
+    /*public void setOnClickListener(EventoOnClickListenerListaPlatos listener){
         this.listener=listener;
-    }
+    }*/
 }
