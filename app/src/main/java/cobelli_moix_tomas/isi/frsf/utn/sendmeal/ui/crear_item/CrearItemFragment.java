@@ -20,6 +20,21 @@ public class CrearItemFragment extends Fragment {
     private CrearItemViewModel crearItemViewModel;
     private Plato plato;
 
+    public CrearItemFragment() {
+
+    }
+
+    public CrearItemFragment(Plato plato) {
+
+        this.plato = plato;
+
+        for(Plato p: Plato.getPlatos()) {
+            if(p.equals(plato)) plato = p;
+        }
+
+
+    }
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         crearItemViewModel = ViewModelProviders.of(this).get(CrearItemViewModel.class);
@@ -32,59 +47,68 @@ public class CrearItemFragment extends Fragment {
 
         final Button buttonCrearPlato = root.findViewById(R.id.buttonCrearPlato);
 
-        validarCampoObligatorio(editTextNombrePLato);
-        validarCampoObligatorio(editTextDecripcionPlato);
-        validarCampoObligatorio(editTextPrecioPlato);
-        validarCampoObligatorio(editTextCaloriasPlato);
+        if(plato != null) {
 
-        buttonCrearPlato.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            editTextNombrePLato.setText(plato.getNombre());
+            editTextDecripcionPlato.setText(plato.getDescripcion());
+            editTextPrecioPlato.setText(plato.getPrecio().toString());
+            editTextCaloriasPlato.setText(plato.getCalorias().toString());
 
-                Context context = view.getContext();
-                CharSequence text;
-                int duration = Toast.LENGTH_SHORT;
+        }else {
 
-                Double precio;
-                try {
-                    precio = Double.parseDouble(editTextPrecioPlato.getText().toString());
-                } catch (NumberFormatException e) {
-                    precio = 0.0; //default value
+            validarCampoObligatorio(editTextNombrePLato);
+            validarCampoObligatorio(editTextDecripcionPlato);
+            validarCampoObligatorio(editTextPrecioPlato);
+            validarCampoObligatorio(editTextCaloriasPlato);
+
+            buttonCrearPlato.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Context context = view.getContext();
+                    CharSequence text;
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Double precio;
+                    try {
+                        precio = Double.parseDouble(editTextPrecioPlato.getText().toString());
+                    } catch (NumberFormatException e) {
+                        precio = 0.0; //default value
+                    }
+
+                    Integer calorias;
+                    try {
+                        calorias = Integer.parseInt(editTextCaloriasPlato.getText().toString());
+                    } catch (NumberFormatException e) {
+                        calorias = 0; //default value
+                    }
+
+
+                    if (!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && precio != 0.0 && calorias != 0) {
+
+                        plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
+                        text = "Plato creado correctamente";
+
+                        editTextNombrePLato.setText(null);
+                        editTextDecripcionPlato.setText(null);
+                        editTextPrecioPlato.setText(null);
+                        editTextCaloriasPlato.setText(null);
+
+                        editTextNombrePLato.requestFocus();
+
+                        editTextNombrePLato.setError(null);
+                        editTextDecripcionPlato.setError(null);
+                        editTextPrecioPlato.setError(null);
+                        editTextCaloriasPlato.setError(null);
+                    } else {
+                        text = "Datos Incorrectos";
+                    }
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
-
-                Integer calorias;
-                try {
-                    calorias = Integer.parseInt(editTextCaloriasPlato.getText().toString());
-                } catch (NumberFormatException e) {
-                    calorias = 0; //default value
-                }
-
-
-                if(!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && precio!=0.0 && calorias!=0) {
-
-                    plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
-                    text = "Plato creado correctamente";
-
-                    editTextNombrePLato.setText(null);
-                    editTextDecripcionPlato.setText(null);
-                    editTextPrecioPlato.setText(null);
-                    editTextCaloriasPlato.setText(null);
-
-                    editTextNombrePLato.requestFocus();
-
-                    editTextNombrePLato.setError(null);
-                    editTextDecripcionPlato.setError(null);
-                    editTextPrecioPlato.setError(null);
-                    editTextCaloriasPlato.setError(null);
-                }
-                else{
-                    text = "Datos Incorrectos";
-                }
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        });
+            });
+        }
 
         return root;
     }

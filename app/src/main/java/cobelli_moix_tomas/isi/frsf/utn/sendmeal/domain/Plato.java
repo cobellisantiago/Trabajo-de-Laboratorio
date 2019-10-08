@@ -2,6 +2,7 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Plato {
 
@@ -15,6 +16,7 @@ public class Plato {
 
     public Plato() {
     }
+
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
 
@@ -72,5 +74,18 @@ public class Plato {
 
     public void setCalorias(Integer calorias) {
         this.calorias = calorias;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Plato)) return false;
+        Plato plato = (Plato) o;
+        return Objects.equals(getIdPlato(), plato.getIdPlato());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getIdPlato(), getNombre(), getDescripcion(), getPrecio(), getCalorias());
     }
 }

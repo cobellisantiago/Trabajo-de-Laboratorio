@@ -40,11 +40,11 @@ public class ListarItemsFragment extends Fragment {
 
         adapter = new PlatoAdapter(Plato.getPlatos(), new PlatoAdapter.EventoOnClickListenerListaPlatos() {
             @Override
-            public void onButtonClickListaPlatos(Button button) {
+            public void onButtonClickListaPlatos(Button button, Plato platoApretado) {
                 switch (button.getId()){
                     //case R.id.buttonOferta:
                     case R.id.buttonEditar:
-                        CrearItemFragment fragmentEditarPlato = new CrearItemFragment();
+                        CrearItemFragment fragmentEditarPlato = new CrearItemFragment(platoApretado);
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.nav_host_fragment,fragmentEditarPlato)
                                 .addToBackStack(null)

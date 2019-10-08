@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 
 public class PlatoViewHolder extends RecyclerView.ViewHolder {
     public TextView textViewNombre;
@@ -29,12 +30,12 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setButton(final Button button, final PlatoAdapter.EventoOnClickListenerListaPlatos listener) {
+    public void setButton(final Button button, final PlatoAdapter.EventoOnClickListenerListaPlatos listener, final Plato plato) {
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onButtonClickListaPlatos(button);
+                listener.onButtonClickListaPlatos(button, plato);
             }
         });
     }

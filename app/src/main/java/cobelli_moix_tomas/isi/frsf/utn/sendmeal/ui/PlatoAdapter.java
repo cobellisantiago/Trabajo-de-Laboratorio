@@ -21,7 +21,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
     //creando interfaz para interactuar con el plato
     public interface EventoOnClickListenerListaPlatos {
-        void onButtonClickListaPlatos(Button button);
+        void onButtonClickListaPlatos(Button button, Plato plato);
     }
 
     private List<Plato> platoViewDataSet;
@@ -44,7 +44,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final PlatoViewHolder holder, int position) {
 
-        Plato plato = platoViewDataSet.get(position);
+        final Plato plato = platoViewDataSet.get(position);
         DecimalFormat format = new DecimalFormat("0.00");
 
         holder.textViewNombre.setText(plato.getNombre());
@@ -54,21 +54,21 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         holder.oferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.setButton(holder.oferta, listener);
+                holder.setButton(holder.oferta, listener, plato);
             }
         });
 
         holder.editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.setButton(holder.editar, listener);
+                holder.setButton(holder.editar, listener, plato);
             }
         });
 
         holder.eliminar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.setButton(holder.eliminar, listener);
+                holder.setButton(holder.eliminar, listener, plato);
             }
         });
 
