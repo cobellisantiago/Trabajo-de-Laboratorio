@@ -51,6 +51,8 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         holder.textViewPrecio.setText("$"+format.format(plato.getPrecio()));
         holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
 
+        holder.setPlato(listener, plato);
+        /*
         holder.oferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,7 +73,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
                 holder.setButton(holder.eliminar, listener, plato);
             }
         });
-
+        */
     }
 
     @Override

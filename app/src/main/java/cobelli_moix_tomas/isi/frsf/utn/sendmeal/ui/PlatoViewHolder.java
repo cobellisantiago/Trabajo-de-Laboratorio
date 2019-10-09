@@ -30,12 +30,26 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    public void setButton(final Button button, final PlatoAdapter.EventoOnClickListenerListaPlatos listener, final Plato plato) {
+    public void setPlato(final PlatoAdapter.EventoOnClickListenerListaPlatos listener, final Plato plato) {
 
-        button.setOnClickListener(new View.OnClickListener() {
+        oferta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onButtonClickListaPlatos(button, plato);
+                listener.onButtonClickListaPlatos(oferta, plato);
+            }
+        });
+
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onButtonClickListaPlatos(editar, plato);
+            }
+        });
+
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onButtonClickListaPlatos(eliminar, plato);
             }
         });
     }
