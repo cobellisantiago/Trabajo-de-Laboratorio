@@ -28,6 +28,10 @@ public class Plato {
         platos.add(this);
     }
 
+    public static void setPlatos(List<Plato> platos) {
+        Plato.platos = platos;
+    }
+
     public static List<Plato> getPlatos() {
         return platos;
     }

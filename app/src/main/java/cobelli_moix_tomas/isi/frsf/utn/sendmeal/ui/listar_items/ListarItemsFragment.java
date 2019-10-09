@@ -56,26 +56,6 @@ public class ListarItemsFragment extends Fragment {
         });
         platoRecyclerView.setAdapter(adapter);
 
-        /*((PlatoAdapter)adapter).setOnClickListener(new PlatoAdapter.EventoOnClickListenerListaPlatos() {
-            @Override
-            public void onButtonClickListaPlatos(Button button) {
-
-                switch (button.getId()){
-                    //case R.id.buttonOferta:
-                    case R.id.buttonEditar:
-                                CrearItemFragment fragmentEditarPlato = new CrearItemFragment();
-                                getActivity().getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.nav_host_fragment,fragmentEditarPlato)
-                                        .addToBackStack(null)
-                                        .commit();
-                        break;
-                    //case R.id.buttonEliminar:
-                }
-
-            }
-        });*/
-
-
 
         return root;
     }
