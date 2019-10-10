@@ -26,6 +26,7 @@ import android.view.Menu;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.RegistrarmeFragment;
 
 public class Home extends AppCompatActivity {
@@ -66,4 +67,54 @@ public class Home extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()) {
+            case R.id.navigation_home:
+                HomeFragment fragmentHome = new HomeFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment,fragmentHome)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.navigation_registrarme:
+                RegistrarmeFragment fragmentRegistrarme = new RegistrarmeFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment,fragmentRegistrarme)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.navigation_crear_plato:
+                CrearItemFragment fragmentCrearPlato = new CrearItemFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment,fragmentCrearPlato)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.navigation_listar_items:
+                ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment,fragmentListarPlato)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        
+        return super.onOptionsItemSelected(item);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        HomeFragment fragmentHome = new HomeFragment();
+        this.getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_host_fragment,fragmentHome)
+                .addToBackStack(null)
+                .commit();
+
+    }
 }

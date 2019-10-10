@@ -1,5 +1,6 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,7 +42,7 @@ public class ListarItemsFragment extends Fragment {
 
         adapter = new PlatoAdapter(Plato.getPlatos(), new PlatoAdapter.EventoOnClickListenerListaPlatos() {
             @Override
-            public void onButtonClickListaPlatos(Button button, Plato platoApretado) {
+            public void onButtonClickListaPlatos(Button button, final Plato platoApretado) {
                 switch (button.getId()){
                     //case R.id.buttonOferta:
                     case R.id.buttonEditar:
@@ -50,7 +52,31 @@ public class ListarItemsFragment extends Fragment {
                                 .addToBackStack(null)
                                 .commit();
                         break;
-                    //case R.id.buttonEliminar:
+                    case R.id.buttonEliminar:
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        builder.setTitle("Eliminar un Plato");
+                        builder.setMessage("¿Esta seguro que quiere eliminar este plato?");
+                        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //Hacer cosas aqui al hacer clic en el boton de aceptar
+                                Plato.getPlatos().remove(platoApretado);
+                                ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                                getActivity().getSupportFragmentManager().beginTransaction()
+                                        .replace(R.id.nav_host_fragment,fragmentListarPlato)
+                                        .addToBackStack(null)
+                                        .commit();
+                            }
+                        });
+                        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Podemos agregar un mensaje toast que diga que el plato no fue eliminado
+                            }
+                        });
+                        builder.show();
+                        break;
                 }
             }
         });

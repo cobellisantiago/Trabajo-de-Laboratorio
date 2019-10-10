@@ -141,6 +141,7 @@ public class CrearItemFragment extends Fragment {
             }
         });
 
+
         return root;
     }
 
