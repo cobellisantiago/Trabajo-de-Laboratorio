@@ -47,6 +47,8 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         final Plato plato = platoViewDataSet.get(position);
         DecimalFormat format = new DecimalFormat("0.00");
 
+        if(!plato.getOferta()) holder.ofertado.setVisibility(View.GONE);
+
         holder.textViewNombre.setText(plato.getNombre());
         holder.textViewPrecio.setText("$"+format.format(plato.getPrecio()));
         holder.imageViewFoto.setImageResource(R.drawable.hamburguesa);
@@ -58,5 +60,7 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
     public int getItemCount() {
         return platoViewDataSet.size();
     }
+
+
 
 }

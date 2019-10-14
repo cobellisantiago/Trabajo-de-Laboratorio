@@ -28,7 +28,6 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
         this.oferta = base.findViewById(R.id.buttonOferta);
         this.editar = base.findViewById(R.id.buttonEditar);
         this.eliminar = base.findViewById(R.id.buttonEliminar);
-
         this.ofertado = base.findViewById(R.id.ofertado);
 
     }
@@ -39,7 +38,13 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 listener.onButtonClickListaPlatos(oferta, plato);
-                ofertado.setVisibility(View.VISIBLE);
+
+                if(!plato.getOferta()) {
+                    ofertado.setVisibility(View.GONE);
+                } else {
+                    ofertado.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 

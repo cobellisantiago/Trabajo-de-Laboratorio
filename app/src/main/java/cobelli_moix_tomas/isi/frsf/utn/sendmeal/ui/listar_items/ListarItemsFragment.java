@@ -46,14 +46,31 @@ public class ListarItemsFragment extends Fragment {
             public void onButtonClickListaPlatos(Button button, final Plato platoApretado) {
                 switch (button.getId()){
                     case R.id.buttonOferta:
-                        ThreadOfertarPlato hilo = new ThreadOfertarPlato(getContext());
-                        hilo.start();
 
-                        for (Plato p: Plato.getPlatos()){
-                            if (p.equals(platoApretado)){
-                                platoApretado.setOferta(true);
+                        if(!platoApretado.getOferta()) {
 
+                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getContext());
+                            hilo.start();
+
+                            for (Plato p : Plato.getPlatos()) {
+                                if (p.equals(platoApretado)) {
+                                    platoApretado.setOferta(true);
+
+                                }
                             }
+
+                            //ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                            //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListarPlato).addToBackStack(null).commit();
+
+                        } else {
+
+                            for (Plato p : Plato.getPlatos()) {
+                                if (p.equals(platoApretado)) {
+                                    platoApretado.setOferta(false);
+
+                                }
+                            }
+
                         }
                         break;
 

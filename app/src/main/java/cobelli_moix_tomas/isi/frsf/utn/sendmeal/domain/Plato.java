@@ -28,6 +28,7 @@ public class Plato {
         this.descripcion = descripcion;
         this.precio = precio;
         this.calorias = calorias;
+        this.oferta = false;
         platos.add(this);
     }
 
