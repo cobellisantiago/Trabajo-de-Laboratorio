@@ -13,13 +13,16 @@ public class Plato {
     private String descripcion;
     private Double precio;
     private Integer calorias;
+    private Boolean oferta;
 
     public Plato() {
+
     }
 
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
 
+        //TODO implementar otra manera de hacer el id
         this.idPlato = platos.size();
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -78,6 +81,14 @@ public class Plato {
 
     public void setCalorias(Integer calorias) {
         this.calorias = calorias;
+    }
+
+    public Boolean getOferta() {
+        return oferta;
+    }
+
+    public void setOferta(Boolean oferta) {
+        this.oferta = oferta;
     }
 
     @Override

@@ -11,10 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
@@ -30,15 +26,15 @@ public class CrearItemFragment extends Fragment {
     }
 
     public CrearItemFragment(Plato plato) {
-
         this.plato = plato;
 
         //Buscar en base de datos luego
         for(Plato p: Plato.getPlatos()) {
-            if(p.equals(plato)) plato = p;
+            //if(p.equals(plato)) plato = p;
+            if (p.getIdPlato().equals(plato.getIdPlato())){
+                plato = p;
+            }
         }
-
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,18 +93,15 @@ public class CrearItemFragment extends Fragment {
                         plato.setCalorias(calorias);
                         text = "Plato Editado correctamente";
                         //Guardar en base de datos luego
-                        for(Plato p: Plato.getPlatos()) {
+                        /*for(Plato p: Plato.getPlatos()) {
                             if(p.equals(plato)) p = plato;
-                        }
+                        }*/
 
                         ListarItemsFragment fragmentListaPlato = new ListarItemsFragment();
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.nav_host_fragment,fragmentListaPlato)
-                                .addToBackStack(null)
-                                .commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListaPlato).addToBackStack(null).commit();
 
                     } else {
-                        text = "¡El plato no se ah podido editar, revise los campos erroneos!";
+                        text = "El plato no se ha podido editar, revise los campos erroneos.";
                     }
 
                     Toast toast = Toast.makeText(context, text, duration);
@@ -134,6 +127,7 @@ public class CrearItemFragment extends Fragment {
                         text = "Datos Incorrectos";
                     }
 
+                    plato = null;
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }

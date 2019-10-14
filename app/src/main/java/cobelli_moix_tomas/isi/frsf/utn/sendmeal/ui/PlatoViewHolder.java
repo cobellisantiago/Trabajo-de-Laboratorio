@@ -18,6 +18,7 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
     public Button oferta;
     public Button editar;
     public Button eliminar;
+    public TextView ofertado;
 
     public PlatoViewHolder(@NonNull View base, PlatoAdapter.EventoOnClickListenerListaPlatos listener) {
         super(base);
@@ -28,6 +29,8 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
         this.editar = base.findViewById(R.id.buttonEditar);
         this.eliminar = base.findViewById(R.id.buttonEliminar);
 
+        this.ofertado = base.findViewById(R.id.ofertado);
+
     }
 
     public void setPlato(final PlatoAdapter.EventoOnClickListenerListaPlatos listener, final Plato plato) {
@@ -36,6 +39,7 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View view) {
                 listener.onButtonClickListaPlatos(oferta, plato);
+                ofertado.setVisibility(View.VISIBLE);
             }
         });
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.PlatoAdapter;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.ThreadOfertarPlato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 
 public class ListarItemsFragment extends Fragment {
@@ -44,16 +45,24 @@ public class ListarItemsFragment extends Fragment {
             @Override
             public void onButtonClickListaPlatos(Button button, final Plato platoApretado) {
                 switch (button.getId()){
-                    //case R.id.buttonOferta:
+                    case R.id.buttonOferta:
+                        ThreadOfertarPlato hilo = new ThreadOfertarPlato(getContext());
+                        hilo.start();
+
+                        for (Plato p: Plato.getPlatos()){
+                            if (p.equals(platoApretado)){
+                                platoApretado.setOferta(true);
+
+                            }
+                        }
+                        break;
+
                     case R.id.buttonEditar:
                         CrearItemFragment fragmentEditarPlato = new CrearItemFragment(platoApretado);
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.nav_host_fragment,fragmentEditarPlato)
-                                .addToBackStack(null)
-                                .commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentEditarPlato).addToBackStack(null).commit();
                         break;
-                    case R.id.buttonEliminar:
 
+                    case R.id.buttonEliminar:
                         AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
                         builder.setTitle("Eliminar un Plato");
                         builder.setMessage("¿Esta seguro que quiere eliminar este plato?");
@@ -63,10 +72,7 @@ public class ListarItemsFragment extends Fragment {
                                 //Hacer cosas aqui al hacer clic en el boton de aceptar
                                 Plato.getPlatos().remove(platoApretado);
                                 ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
-                                getActivity().getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.nav_host_fragment,fragmentListarPlato)
-                                        .addToBackStack(null)
-                                        .commit();
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListarPlato).addToBackStack(null).commit();
                             }
                         });
                         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -82,35 +88,6 @@ public class ListarItemsFragment extends Fragment {
         });
         platoRecyclerView.setAdapter(adapter);
 
-
         return root;
     }
-
-    /*@Override
-    public View getView (){
-        return onCreateView(inflater, container, savedInstanceState);
-    }*/
-
-   /* public View getView (int position, View convertView, ViewGroup parent){
-
-        LayoutInflater inflater = LayoutInflater.from(this.getContext());
-        View platoSeleccionado = convertView;
-
-        if (platoSeleccionado == null){
-            platoSeleccionado = inflater.inflate(R.layout.plato_card, parent, false);
-        }
-
-        PlatoViewHolder holder = (PlatoViewHolder) platoSeleccionado.getTag();
-        if (holder == null){
-            holder = new PlatoViewHolder(platoSeleccionado);
-            platoSeleccionado.setTag(holder);
-        }
-
-        Plato plato = (Plato) super.getItem(position);
-
-        holder.textViewNombre.setText(plato.getNombre());
-        holder.textViewPrecio.setText(plato.getPrecio().toString());
-
-        return platoSeleccionado;
-    }*/
 }
