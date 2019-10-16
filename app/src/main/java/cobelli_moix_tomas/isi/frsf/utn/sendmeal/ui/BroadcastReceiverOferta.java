@@ -30,10 +30,10 @@ public class BroadcastReceiverOferta extends BroadcastReceiver {
         String CHANNEL_ID = "Notificacion oferta";
 
         Intent intent = new Intent(context, Home.class);
-        String name = null;
-        intent.putExtra("data", name);
-        System.out.println("SETEO EN BROADCAST   " + intent.getExtras());
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //String name = null;
+        //intent.putExtra("data", name);
+        //System.out.println("SETEO EN BROADCAST   " + intent.getExtras());
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
