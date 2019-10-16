@@ -55,7 +55,6 @@ public class ListarItemsFragment extends Fragment {
                             for (Plato p : Plato.getPlatos()) {
                                 if (p.equals(platoApretado)) {
                                     platoApretado.setOferta(true);
-
                                 }
                             }
 

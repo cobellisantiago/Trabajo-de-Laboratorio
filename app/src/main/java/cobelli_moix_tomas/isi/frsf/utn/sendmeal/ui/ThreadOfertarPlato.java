@@ -8,10 +8,10 @@ public class ThreadOfertarPlato extends Thread {
     Context context;
 
     public ThreadOfertarPlato(){}
+
     public ThreadOfertarPlato(Context context){
         this.context = context;
     }
-
 
     @Override
     public void run() {
