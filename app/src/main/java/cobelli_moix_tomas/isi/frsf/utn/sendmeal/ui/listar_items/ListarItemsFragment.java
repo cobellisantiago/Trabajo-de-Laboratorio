@@ -49,13 +49,19 @@ public class ListarItemsFragment extends Fragment {
 
                         if(!platoApretado.getOferta()) {
 
-                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getActivity());
+                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getActivity(), new ThreadOfertarPlato.EventoOnClickListenerNotification() {
+                                @Override
+                                public void onButtonClickNotification() {
+                                    //TODO hacer que el fragmento no sea editable cuando se entre desde aca
+                                    CrearItemFragment fragmentEditarPlato = new CrearItemFragment(platoApretado);
+                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentEditarPlato).addToBackStack(null).commit();
+                                }
+                            });
                             hilo.start();
 
                             for (Plato p : Plato.getPlatos()) {
                                 if (p.equals(platoApretado)) {
                                     platoApretado.setOferta(true);
-
                                 }
                             }
 

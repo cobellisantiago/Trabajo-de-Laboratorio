@@ -1,24 +1,23 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui;
 
-import android.app.Activity;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Icon;
-
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.navigation.NavDeepLinkBuilder;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.Home;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
+
 
 public class BroadcastReceiverOferta extends BroadcastReceiver {
 
     public BroadcastReceiverOferta(){
-
     }
 
     @Override
@@ -27,17 +26,53 @@ public class BroadcastReceiverOferta extends BroadcastReceiver {
     }
 
     private void showNotification(Context context) {
-        String CHANNEL_ID = "Notificacion oferta";
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, new Intent(context, Home.class), 0);
-        
-        Bitmap icon = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_hamburguesa_layer);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID).setSmallIcon(R.drawable.ic_hamburguesa_layer).setLargeIcon(icon).setContentTitle("El plato se encuentra en oferta").setContentText("").setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        //TODO hacer metodo del canal como en las diapositivas
+        String CHANNEL_ID = "Notificacion oferta";
+
+        Intent intent = new Intent(context, Home.class);
+        //String name = null;
+        //intent.putExtra("data", name);
+        //System.out.println("SETEO EN BROADCAST   " + intent.getExtras());
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+        Bitmap icon = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_hamburguesa2_round);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+                .setSmallIcon(R.mipmap.ic_hamburguesa2_round)
+                .setLargeIcon(icon)
+                .setContentTitle("Oferta!")
+                .setContentText("El plato se encuentra en oferta")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         builder.setContentIntent(contentIntent);
-        //mBuilder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setAutoCancel(true);
-        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, builder.build());
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
+        notificationManager.notify(1, builder.build());
+
+        //context.sendBroadcast(intent);
+
 
     }
+
+    public void setListener(ThreadOfertarPlato.EventoOnClickListenerNotification listener) {
+
+        //TODO cuando se presione la notificacion llamar a la interfaz y pasarle el plato
+    }
+
+    /*private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }*/
+
 }
