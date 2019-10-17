@@ -49,7 +49,7 @@ public class ListarItemsFragment extends Fragment {
 
                         if(!platoApretado.getOferta()) {
 
-                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getContext());
+                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getActivity());
                             hilo.start();
 
                             for (Plato p : Plato.getPlatos()) {
