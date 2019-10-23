@@ -1,6 +1,7 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.Home;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.PlatoAdapter;
@@ -49,24 +51,17 @@ public class ListarItemsFragment extends Fragment {
 
                         if(!platoApretado.getOferta()) {
 
-                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getActivity(), new ThreadOfertarPlato.EventoOnClickListenerNotification() {
-                                @Override
-                                public void onButtonClickNotification() {
-                                    //TODO hacer que el fragmento no sea editable cuando se entre desde aca
-                                    CrearItemFragment fragmentEditarPlato = new CrearItemFragment(platoApretado);
-                                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentEditarPlato).addToBackStack(null).commit();
-                                }
-                            });
+                            ThreadOfertarPlato hilo = new ThreadOfertarPlato(getContext(), platoApretado);
                             hilo.start();
 
                             for (Plato p : Plato.getPlatos()) {
                                 if (p.equals(platoApretado)) {
                                     platoApretado.setOferta(true);
+                                    Home.setPlato(platoApretado);
                                 }
+
                             }
 
-                            //ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
-                            //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListarPlato).addToBackStack(null).commit();
 
                         } else {
 
@@ -81,7 +76,7 @@ public class ListarItemsFragment extends Fragment {
                         break;
 
                     case R.id.buttonEditar:
-                        CrearItemFragment fragmentEditarPlato = new CrearItemFragment(platoApretado);
+                        CrearItemFragment fragmentEditarPlato = new CrearItemFragment(platoApretado, 2);
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentEditarPlato).addToBackStack(null).commit();
                         break;
 
@@ -113,4 +108,6 @@ public class ListarItemsFragment extends Fragment {
 
         return root;
     }
+
+
 }

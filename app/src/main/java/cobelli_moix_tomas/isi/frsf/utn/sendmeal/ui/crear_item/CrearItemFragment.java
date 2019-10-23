@@ -20,20 +20,18 @@ public class CrearItemFragment extends Fragment {
 
     private CrearItemViewModel crearItemViewModel;
     private Plato plato;
+    private Integer option;
 
-    public CrearItemFragment() {
 
-    }
+    public CrearItemFragment() {}
 
-    public CrearItemFragment(Plato plato) {
+    public CrearItemFragment(Plato plato, Integer option) {
         this.plato = plato;
+        this.option = option;
 
         //Buscar en base de datos luego
         for(Plato p: Plato.getPlatos()) {
-            //if(p.equals(plato)) plato = p;
-            if (p.getIdPlato().equals(plato.getIdPlato())){
-                plato = p;
-            }
+            if(p.equals(plato)) plato = p;
         }
     }
 
@@ -49,6 +47,11 @@ public class CrearItemFragment extends Fragment {
 
         final Button buttonCrearPlato = root.findViewById(R.id.buttonCrearPlato);
 
+        cambiarEstadoCampo(editTextNombrePLato, true);
+        cambiarEstadoCampo(editTextDecripcionPlato, true);
+        cambiarEstadoCampo(editTextPrecioPlato, true);
+        cambiarEstadoCampo(editTextCaloriasPlato, true);
+
         validarCampoObligatorio(editTextNombrePLato);
         validarCampoObligatorio(editTextDecripcionPlato);
         validarCampoObligatorio(editTextPrecioPlato);
@@ -59,6 +62,13 @@ public class CrearItemFragment extends Fragment {
             editTextDecripcionPlato.setText(plato.getDescripcion());
             editTextPrecioPlato.setText(plato.getPrecio().toString());
             editTextCaloriasPlato.setText(plato.getCalorias().toString());
+
+            if (option == 3) {
+                cambiarEstadoCampo(editTextNombrePLato, false);
+                cambiarEstadoCampo(editTextDecripcionPlato, false);
+                cambiarEstadoCampo(editTextPrecioPlato, false);
+                cambiarEstadoCampo(editTextCaloriasPlato, false);
+            }
         }
 
         buttonCrearPlato.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +142,8 @@ public class CrearItemFragment extends Fragment {
                     toast.show();
                 }
 
+
+
             }
         });
 
@@ -150,4 +162,12 @@ public class CrearItemFragment extends Fragment {
             }
         });
     }
+
+    private void cambiarEstadoCampo(EditText editText, Boolean b){
+        editText.setFocusable(b);
+        editText.setEnabled(b);
+        editText.setCursorVisible(b);
+    }
+
+
 }

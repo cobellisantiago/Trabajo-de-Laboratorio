@@ -13,6 +13,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
@@ -22,6 +24,7 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.RegistrarmeFragme
 public class Home extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static Plato plato;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,16 @@ public class Home extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        if(plato != null) {
+            Intent notifyIntent = this.getIntent();
+            String extras = notifyIntent.getStringExtra("MSJ-OFERTA");
+            if (extras != null && extras.equals("OFERTA")) {
+                CrearItemFragment fragmentEditarPlato = new CrearItemFragment(plato, 3);
+                plato = null;
+                this.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragmentEditarPlato).addToBackStack(null).commit();
+            }
+        }
 
 
         //TODO el getExtra() da null, ver por que
@@ -108,5 +121,13 @@ public class Home extends AppCompatActivity {
     public void onBackPressed() {
         HomeFragment fragmentHome = new HomeFragment();
         this.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentHome).addToBackStack(null).commit();
+    }
+
+    public static Plato getPlato() {
+        return plato;
+    }
+
+    public static void setPlato(Plato p) {
+        plato = p;
     }
 }

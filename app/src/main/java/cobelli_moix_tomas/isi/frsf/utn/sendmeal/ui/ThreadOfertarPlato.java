@@ -13,17 +13,16 @@ public class ThreadOfertarPlato extends Thread {
     }
 
     private Context context;
-    private EventoOnClickListenerNotification listener;
+    private Plato plato;
 
     private BroadcastReceiverOferta receiver = new BroadcastReceiverOferta();
     private Intent intent = new Intent();
 
-    public ThreadOfertarPlato(){}
-
-    public ThreadOfertarPlato(Context context, EventoOnClickListenerNotification listener){
+    public ThreadOfertarPlato(Context context, Plato plato){
         this.context = context;
-        this.listener = listener;
+        this.plato = plato;
     }
+
 
     @Override
     public void run() {
@@ -34,6 +33,6 @@ public class ThreadOfertarPlato extends Thread {
         }
 
         receiver.onReceive(context,intent);
-        receiver.setListener(listener);
+        receiver.setPlato(plato);
     }
 }
