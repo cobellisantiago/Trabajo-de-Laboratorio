@@ -2,13 +2,12 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
-
+import androidx.room.Relation;
 import java.time.LocalDate;
 import java.util.List;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
+
 
 @Entity(tableName = "PEDIDO")
 public class Pedido {
@@ -28,6 +27,7 @@ public class Pedido {
     @ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
 
+    @Relation(parentColumn = "idPedido", entityColumn = "idItemsPedido", entity = ItemsPedido.class)
     private List<ItemsPedido> itemsPedidoList;
 
     public Pedido() {

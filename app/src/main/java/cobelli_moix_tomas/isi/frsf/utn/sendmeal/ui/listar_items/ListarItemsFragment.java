@@ -1,26 +1,24 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.Home;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.PlatoAdapter;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.ThreadOfertarPlato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
+
 
 public class ListarItemsFragment extends Fragment {
 
@@ -108,6 +106,4 @@ public class ListarItemsFragment extends Fragment {
 
         return root;
     }
-
-
 }

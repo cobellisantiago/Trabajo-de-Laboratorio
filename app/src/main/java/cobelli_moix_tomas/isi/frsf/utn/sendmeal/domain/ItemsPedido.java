@@ -2,10 +2,10 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "idPedido",childColumns = "PEDIDO"))
+
+@Entity(tableName = "ITEMS_PEDIDO")
 public class ItemsPedido {
 
     @PrimaryKey(autoGenerate = true)

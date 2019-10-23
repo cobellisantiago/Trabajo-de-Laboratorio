@@ -13,7 +13,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
@@ -43,6 +42,8 @@ public class Home extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+        //Chequea si se llamo a la clase desde la notificacion
         if(plato != null) {
             Intent notifyIntent = this.getIntent();
             String extras = notifyIntent.getStringExtra("MSJ-OFERTA");
@@ -52,17 +53,6 @@ public class Home extends AppCompatActivity {
                 this.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment, fragmentEditarPlato).addToBackStack(null).commit();
             }
         }
-
-
-        //TODO el getExtra() da null, ver por que
-        //Se llama desde la notificacion
-        /*String data = getIntent().getStringExtra("data");
-        System.out.println("HOME     " + data);
-        if (data != null) {
-            CrearItemFragment fragmentCrearPlato = new CrearItemFragment();
-            this.getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentCrearPlato).addToBackStack(null).commit();
-        }*/
-
     }
 
     @Override

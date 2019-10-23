@@ -4,12 +4,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
+
 
 public class PlatoViewHolder extends RecyclerView.ViewHolder {
     public TextView textViewNombre;
@@ -29,7 +28,6 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
         this.editar = base.findViewById(R.id.buttonEditar);
         this.eliminar = base.findViewById(R.id.buttonEliminar);
         this.ofertado = base.findViewById(R.id.ofertado);
-
     }
 
     public void setPlato(final PlatoAdapter.EventoOnClickListenerListaPlatos listener, final Plato plato) {
@@ -62,5 +60,4 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
-
 }

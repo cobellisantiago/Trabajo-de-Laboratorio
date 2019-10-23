@@ -5,17 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.text.DecimalFormat;
 import java.util.List;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
+
 
 public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
 
@@ -47,7 +43,9 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         final Plato plato = platoViewDataSet.get(position);
         DecimalFormat format = new DecimalFormat("0.00");
 
-        if(!plato.getOferta()) holder.ofertado.setVisibility(View.GONE);
+        if(!plato.getOferta()){
+            holder.ofertado.setVisibility(View.GONE);
+        }
 
         holder.textViewNombre.setText(plato.getNombre());
         holder.textViewPrecio.setText("$"+format.format(plato.getPrecio()));
@@ -60,7 +58,4 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
     public int getItemCount() {
         return platoViewDataSet.size();
     }
-
-
-
 }

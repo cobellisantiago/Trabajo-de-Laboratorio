@@ -5,7 +5,6 @@ import android.os.Message;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.rest.PlatoRest;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import retrofit2.Call;
@@ -99,23 +98,17 @@ public class Controller {
                     Message m = new Message();
                     m.arg1 = _BORRADO_PLATO;
                     h.sendMessage(m);
-
-
                 }
-
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-
                 Log.d("APP_2", "ERROR " + t.getMessage());
                 Message m = new Message();
                 m.arg1 = _ERROR_PLATO;
                 h.sendMessage(m);
-
             }
         });
-
     }
 
     public void actualizar(final Plato plato, final Handler h) {
@@ -129,29 +122,23 @@ public class Controller {
                 Log.d("App_2", "Codigo" + response.code());
 
                 if (response.isSuccessful()) {
-
                     Log.d("App_2", "EJECUTO");
                     listaPlatos.remove(plato);
                     listaPlatos.add(response.body());
                     Message m = new Message();
                     m.arg1 = _UPDATE_PLATO;
                     h.sendMessage(m);
-
                 }
-
             }
 
             @Override
             public void onFailure(Call<Plato> call, Throwable t) {
-
                 Log.d("APP_2", "ERROR" + t.getMessage());
                 Message m = new Message();
                 m.arg1 = _ERROR_PLATO;
                 h.sendMessage(m);
-
             }
         });
-
     }
 
     public void crear(final Plato plato, final Handler h) {
@@ -171,17 +158,14 @@ public class Controller {
                     m.arg1 = _ALTA_PLATO;
                     h.sendMessage(m);
                 }
-
             }
 
             @Override
             public void onFailure(Call<Plato> call, Throwable t) {
-
                 Log.d("APP_2", "ERROR" + t.getMessage());
                 Message m = new Message();
                 m.arg1 = _ERROR_PLATO;
                 h.sendMessage(m);
-
             }
         });
     }
