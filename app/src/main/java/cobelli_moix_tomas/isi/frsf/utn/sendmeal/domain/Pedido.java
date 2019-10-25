@@ -4,36 +4,37 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
 
 
-@Entity(tableName = "PEDIDO")
-public class Pedido {
+//@Entity(tableName = "PEDIDO")
+public class Pedido implements Serializable{
 
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private Integer idPedido;
 
-    @ColumnInfo(name = "FECHA_CREACION")
-    private LocalDate fechaCreacion;
+    //@ColumnInfo(name = "FECHA_CREACION")
+    private Date fechaCreacion;
 
-    @ColumnInfo(name = "ESTADO_PEDIDO")
+    //@ColumnInfo(name = "ESTADO_PEDIDO")
     private EstadoPedido estadoPedido;
 
-    @ColumnInfo(name = "LATITUD_CORDENADA")
+    //@ColumnInfo(name = "LATITUD_CORDENADA")
     private Double latitudCordenada;
 
-    @ColumnInfo(name = "LONGITUD_CORDENADA")
+    //@ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
 
-    @Relation(parentColumn = "idPedido", entityColumn = "idItemsPedido", entity = ItemsPedido.class)
+    //@Relation(parentColumn = "idPedido", entityColumn = "idItemsPedido", entity = ItemsPedido.class)
     private List<ItemsPedido> itemsPedidoList;
 
     public Pedido() {
     }
 
-    public Pedido(Integer idPedido, LocalDate fechaCreacion, EstadoPedido estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
+    public Pedido(Integer idPedido, Date fechaCreacion, EstadoPedido estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
         this.idPedido = idPedido;
         this.fechaCreacion = fechaCreacion;
         this.estadoPedido = estadoPedido;
@@ -50,11 +51,11 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public LocalDate getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDate fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

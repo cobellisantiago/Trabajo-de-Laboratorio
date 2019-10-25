@@ -4,23 +4,25 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 
-@Entity(tableName = "ITEMS_PEDIDO")
-public class ItemsPedido {
 
-    @PrimaryKey(autoGenerate = true)
+//@Entity(tableName = "ITEMS_PEDIDO")
+public class ItemsPedido implements Serializable {
+
+    //@PrimaryKey(autoGenerate = true)
     private Integer idItemsPedido;
 
-    @ColumnInfo(name = "PEDIDO")
+    //@ColumnInfo(name = "PEDIDO")
     private Pedido pedido;
 
-    @ColumnInfo(name = "PLATO")
+    //@ColumnInfo(name = "PLATO")
     private Plato plato;
 
-    @ColumnInfo(name = "CANTIDAD")
+    //@ColumnInfo(name = "CANTIDAD")
     private Integer cantidad;
 
-    @ColumnInfo(name = "PRECIO")
+    //@ColumnInfo(name = "PRECIO")
     private Double precio;
 
     public ItemsPedido() {

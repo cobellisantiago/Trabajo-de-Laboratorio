@@ -18,6 +18,8 @@ public class Controller {
 
     private static String _SERVER = "http://192.168.99.1:5000";
     private List<Plato> listaPlatos;
+    private Retrofit rf;
+    private PlatoRest platoRest;
 
     public static final int _ALTA_PLATO = 1;
     public static final int _UPDATE_PLATO = 2;
@@ -27,7 +29,7 @@ public class Controller {
 
     private static Controller _INSTANCE;
 
-    private Controller(){}
+    public Controller(){}
 
     public static Controller getInstance(){
         if(_INSTANCE == null){
@@ -38,8 +40,6 @@ public class Controller {
         return _INSTANCE;
     }
 
-    private Retrofit rf;
-    private PlatoRest platoRest;
 
     private void configurarRetrofit(){
         this.rf = new Retrofit.Builder().baseUrl("http://192.168.99.1:50000/").addConverterFactory(GsonConverterFactory.create()).build();

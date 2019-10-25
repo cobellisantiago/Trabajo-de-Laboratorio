@@ -2,6 +2,10 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
 
@@ -21,6 +26,7 @@ public class CrearItemFragment extends Fragment {
     private CrearItemViewModel crearItemViewModel;
     private Plato plato;
     private Integer option;
+    private Controller controller;
 
 
     public CrearItemFragment() {}
@@ -29,7 +35,7 @@ public class CrearItemFragment extends Fragment {
         this.plato = plato;
         this.option = option;
 
-        //Buscar en base de datos luego
+        //TODO Buscar en base de datos
         for(Plato p: Plato.getPlatos()) {
             if(p.equals(plato)) plato = p;
         }
@@ -102,7 +108,7 @@ public class CrearItemFragment extends Fragment {
                         plato.setPrecio(precio);
                         plato.setCalorias(calorias);
                         text = "Plato Editado correctamente";
-                        //Guardar en base de datos luego
+                        //TODO Guardar en base de datos
                         /*for(Plato p: Plato.getPlatos()) {
                             if(p.equals(plato)) p = plato;
                         }*/
@@ -121,6 +127,8 @@ public class CrearItemFragment extends Fragment {
 
                         plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
                         text = "Plato creado correctamente";
+
+                        controller.getInstance().crear(plato, miHandler);
 
                         editTextNombrePLato.setText(null);
                         editTextDecripcionPlato.setText(null);
@@ -169,5 +177,19 @@ public class CrearItemFragment extends Fragment {
         editText.setCursorVisible(b);
     }
 
+
+    Handler miHandler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(Message msg) {
+            Log.d("APP_2","Vuelve al handler"+msg.arg1);
+
+            switch (msg.arg1 ){
+                case Controller._ALTA_PLATO:
+                    break;
+                case Controller._UPDATE_PLATO:
+                    break;
+            }
+        }
+    };
 
 }

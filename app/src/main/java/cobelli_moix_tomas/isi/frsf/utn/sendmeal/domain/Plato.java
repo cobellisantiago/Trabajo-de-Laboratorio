@@ -4,32 +4,33 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity(tableName = "PLATO")
-public class Plato {
+//@Entity(tableName = "PLATO")
+public class Plato implements Serializable {
 
     private static List<Plato> platos = new ArrayList<>();
     private static Plato platoGenerico = new Plato("Hamburguesa re gorda", "muy rica", 1800.00, 2000);
 
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private Integer idPlato;
 
-    @ColumnInfo(name = "NOMBRE")
+    //@ColumnInfo(name = "NOMBRE")
     private String nombre;
 
-    @ColumnInfo(name = "DESCRIPCION")
+    //@ColumnInfo(name = "DESCRIPCION")
     private String descripcion;
 
-    @ColumnInfo(name = "PRECIO")
+    //@ColumnInfo(name = "PRECIO")
     private Double precio;
 
-    @ColumnInfo(name = "CALORIAS")
+    //@ColumnInfo(name = "CALORIAS")
     private Integer calorias;
 
-    @ColumnInfo(name = "OFERTA")
+    //@ColumnInfo(name = "OFERTA")
     private Boolean oferta;
 
     public Plato() {
