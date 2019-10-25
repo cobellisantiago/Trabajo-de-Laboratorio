@@ -26,7 +26,6 @@ public class CrearItemFragment extends Fragment {
     private CrearItemViewModel crearItemViewModel;
     private Plato plato;
     private Integer option;
-    private Controller controller;
 
 
     public CrearItemFragment() {}
@@ -128,7 +127,7 @@ public class CrearItemFragment extends Fragment {
                         plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
                         text = "Plato creado correctamente";
 
-                        controller.getInstance().crear(plato, miHandler);
+                        Controller.getInstance().crear(plato, miHandler);
 
                         editTextNombrePLato.setText(null);
                         editTextDecripcionPlato.setText(null);
@@ -149,12 +148,8 @@ public class CrearItemFragment extends Fragment {
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
-
-
-
             }
         });
-
 
         return root;
     }

@@ -16,10 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller {
 
-    private static String _SERVER = "http://192.168.99.1:5000";
+    public static String _SERVER = "http://192.168.99.1:5000/";
     private List<Plato> listaPlatos;
-    private Retrofit rf;
-    private PlatoRest platoRest;
 
     public static final int _ALTA_PLATO = 1;
     public static final int _UPDATE_PLATO = 2;
@@ -40,9 +38,11 @@ public class Controller {
         return _INSTANCE;
     }
 
+    private Retrofit rf;
+    private PlatoRest platoRest;
 
     private void configurarRetrofit(){
-        this.rf = new Retrofit.Builder().baseUrl("http://192.168.99.1:50000/").addConverterFactory(GsonConverterFactory.create()).build();
+        this.rf = new Retrofit.Builder().baseUrl("http://192.168.99.1:5000/").addConverterFactory(GsonConverterFactory.create()).build();
         Log.d("APP_2", "INSTANCIA CREADA");
         this.platoRest = this.rf.create(PlatoRest.class);
     }
@@ -141,7 +141,7 @@ public class Controller {
         });
     }
 
-    public void crear(final Plato plato, final Handler h) {
+    public void crear(Plato plato, final Handler h) {
 
         Call<Plato> llamada = this.platoRest.crear(plato);
         llamada.enqueue(new Callback<Plato>() {
@@ -153,7 +153,7 @@ public class Controller {
 
                 if(response.isSuccessful()) {
                     Log.d("App_2", "EJECUTO");
-                    listaPlatos.add(plato);
+                    listaPlatos.add(response.body());
                     Message m = new Message();
                     m.arg1 = _ALTA_PLATO;
                     h.sendMessage(m);
