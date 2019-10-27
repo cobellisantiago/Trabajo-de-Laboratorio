@@ -20,9 +20,11 @@
             android:id="@+id/navigation_listar_items"
             android:icon="@drawable/ic_dish"
             android:title="@string/itemListarPLatos" />
+        <item
+            android:id="@+id/navigation_crear_pedido"
+            android:icon="@drawable/ic_dish"
+            android:title="@string/itemCrearPedido" />
 
     </group>
-
-
 
 </menu>

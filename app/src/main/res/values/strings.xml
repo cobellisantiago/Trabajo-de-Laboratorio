@@ -55,4 +55,8 @@
     <string name="boton_eliminar_plato">Eliminar</string>
     <string name="channel_name">SendMealNotification</string>
     <string name="channel_description">Este canal se ocupa de administrar las notificaciones de SendMeal</string>
+
+    <string name="itemCrearPedido">Crear Pedido</string>
+    <string name="buttonCrearPedido">Crear Pedido</string>
+    <string name="buttonEnviarPedido">Enviar Pedido</string>
 </resources>

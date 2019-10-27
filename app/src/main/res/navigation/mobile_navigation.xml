@@ -29,4 +29,10 @@
         android:label="@string/menu_listar_item"
         tools:layout="@layout/fragment_listar_item" />
 
+    <fragment
+        android:id="@+id/navigation_crear_pedido"
+        android:name="cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido.CrearPedidoFragment"
+        android:label="Crear pedido"
+        tools:layout="@layout/fragment_crear_pedido" />
+
 </navigation>

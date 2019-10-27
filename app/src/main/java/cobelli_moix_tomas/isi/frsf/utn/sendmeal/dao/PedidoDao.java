@@ -11,7 +11,7 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 
 @Dao
 public interface PedidoDao {
-    @Query("SELECT * FROM PEDIDO")
+    //@Query("SELECT * FROM PEDIDO")
     List<Pedido> getAll();
 
     @Insert

@@ -1,5 +1,6 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,6 +8,8 @@ import androidx.room.Relation;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
 
 
@@ -14,6 +17,7 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
 public class Pedido implements Serializable{
 
     //@PrimaryKey(autoGenerate = true)
+    //@NonNull
     private Integer idPedido;
 
     //@ColumnInfo(name = "FECHA_CREACION")
@@ -34,8 +38,8 @@ public class Pedido implements Serializable{
     public Pedido() {
     }
 
-    public Pedido(Integer idPedido, Date fechaCreacion, EstadoPedido estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
-        this.idPedido = idPedido;
+    public Pedido(Date fechaCreacion, EstadoPedido estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
+        this.idPedido = Integer.parseInt(UUID.randomUUID().toString());
         this.fechaCreacion = fechaCreacion;
         this.estadoPedido = estadoPedido;
         this.latitudCordenada = latitudCordenada;
@@ -47,8 +51,8 @@ public class Pedido implements Serializable{
         return idPedido;
     }
 
-    public void setIdPedido(Integer idPedido) {
-        this.idPedido = idPedido;
+    public void setIdPedido() {
+        this.idPedido = Integer.parseInt(UUID.randomUUID().toString());
     }
 
     public Date getFechaCreacion() {

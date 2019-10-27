@@ -124,10 +124,16 @@ public class CrearItemFragment extends Fragment {
                 }else {
                     if (!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && precio != 0.0 && calorias != 0) {
 
-                        plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
+                        //plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
+                        Plato dish = new Plato();
+                        dish.setNombre(editTextNombrePLato.getText().toString());
+                        dish.setDescripcion(editTextDecripcionPlato.getText().toString());
+                        dish.setPrecio(precio);
+                        dish.setCalorias(calorias);
                         text = "Plato creado correctamente";
 
-                        Controller.getInstance().crear(plato, miHandler);
+                        //TODO no agrega el plato
+                        Controller.getInstance().crear(dish, miHandler);
 
                         editTextNombrePLato.setText(null);
                         editTextDecripcionPlato.setText(null);

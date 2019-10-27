@@ -5,6 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 
 //@Entity(tableName = "ITEMS_PEDIDO")
@@ -14,10 +15,10 @@ public class ItemsPedido implements Serializable {
     private Integer idItemsPedido;
 
     //@ColumnInfo(name = "PEDIDO")
-    private Pedido pedido;
+    private Integer idPedido;
 
     //@ColumnInfo(name = "PLATO")
-    private Plato plato;
+    private Integer idPlato;
 
     //@ColumnInfo(name = "CANTIDAD")
     private Integer cantidad;
@@ -28,10 +29,10 @@ public class ItemsPedido implements Serializable {
     public ItemsPedido() {
     }
 
-    public ItemsPedido(Integer idItemsPedido, Pedido pedido, Plato plato, Integer cantidad, Double precio) {
-        this.idItemsPedido = idItemsPedido;
-        this.pedido = pedido;
-        this.plato = plato;
+    public ItemsPedido(Integer idPedido, Integer idPlato, Integer cantidad, Double precio) {
+        this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
+        this.idPedido = idPedido;
+        this.idPlato = idPlato;
         this.cantidad = cantidad;
         this.precio = precio;
     }
@@ -40,24 +41,24 @@ public class ItemsPedido implements Serializable {
         return idItemsPedido;
     }
 
-    public void setIdItemsPedido(Integer idItemsPedido) {
-        this.idItemsPedido = idItemsPedido;
+    public void setIdItemsPedido() {
+        this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public Integer getPedido() {
+        return idPedido;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedido(Integer pedido) {
+        this.idPedido = pedido;
     }
 
-    public Plato getPlato() {
-        return plato;
+    public Integer getPlato() {
+        return idPlato;
     }
 
-    public void setPlato(Plato plato) {
-        this.plato = plato;
+    public void setPlato(Integer plato) {
+        this.idPlato = plato;
     }
 
     public Integer getCantidad() {

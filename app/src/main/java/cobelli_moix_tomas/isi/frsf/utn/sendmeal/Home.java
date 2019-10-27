@@ -15,6 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido.CrearPedidoFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.RegistrarmeFragment;
@@ -97,6 +98,13 @@ public class Home extends AppCompatActivity {
                 ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment,fragmentListarPlato)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.navigation_crear_pedido:
+                CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment();
+                this.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.nav_host_fragment,crearPedidoFragment)
                         .addToBackStack(null)
                         .commit();
                 break;
