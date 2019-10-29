@@ -6,6 +6,8 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 
 import static androidx.room.OnConflictStrategy.REPLACE;
@@ -13,8 +15,8 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface PedidoDao {
-    @Query("SELECT * FROM ITEMS_PEDIDO WHERE ID_ITEMS_PEDIDO = ")
-    List<Pedido> getAll();
+    @Query("SELECT * FROM ITEMS_PEDIDO")
+    List<ItemsPedido> loadPedidoWithItemsPedido();
 
     @Insert (onConflict = REPLACE)
     void insert(Pedido pedido);

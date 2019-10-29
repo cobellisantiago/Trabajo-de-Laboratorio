@@ -30,30 +30,20 @@ public class Pedido {
     @ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
 
-    //@Embedded
-    //public ItemsPedido itemsPedido;
-
-    @Relation(parentColumn = "ID_ITEMS_PEDIDO", entityColumn = "idItemsPedido", entity = ItemsPedido.class)
-    private List<ItemsPedido> itemsPedidoList;
 
     public Pedido() {
     }
 
     public Pedido(Date fechaCreacion, EstadoPedido estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
-        this.idPedido = Integer.parseInt(UUID.randomUUID().toString());
+
         this.fechaCreacion = fechaCreacion;
         //this.estadoPedido = estadoPedido;
         this.latitudCordenada = latitudCordenada;
         this.longitudCordenada = longitudCordenada;
-        this.itemsPedidoList = itemsPedidoList;
     }
 
     public Integer getIdPedido() {
         return idPedido;
-    }
-
-    public void setIdPedido() {
-        this.idPedido = Integer.parseInt(UUID.randomUUID().toString());
     }
 
     public Date getFechaCreacion() {
@@ -88,11 +78,19 @@ public class Pedido {
         this.longitudCordenada = longitudCordenada;
     }
 
-    public List<ItemsPedido> getItemsPedidoList() {
-        return itemsPedidoList;
-    }
+    public class PedidoToItemsPedido {
+        @Embedded
+        public Pedido pedido;
 
-    public void setItemsPedidoList(List<ItemsPedido> itemsPedidoList) {
-        this.itemsPedidoList = itemsPedidoList;
+        @Relation(parentColumn = "ID_PEDIDO", entityColumn = "PEDIDO", entity = ItemsPedido.class)
+        private List<ItemsPedido> itemsPedidoList;
+
+        public List<ItemsPedido> getItemsPedidoList() {
+            return itemsPedidoList;
+        }
+
+        public void setItemsPedidoList(List<ItemsPedido> itemsPedidoList) {
+            this.itemsPedidoList = itemsPedidoList;
+        }
     }
 }

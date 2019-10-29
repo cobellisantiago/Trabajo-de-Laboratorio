@@ -4,14 +4,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 
 import java.util.UUID;
 
 
-@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = {@ForeignKey(entity = Pedido.class, parentColumns = "ID_PEDIDO", childColumns = "ID_ITEMS_PEDIDO"),
-                                    @ForeignKey(entity = Plato.class, parentColumns = "ID_PLATO", childColumns = "ID_ITEMS_PEDIDO")})
+@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = {@ForeignKey(entity = Pedido.class, parentColumns = "ID_PEDIDO", childColumns = "PEDIDO"),
+                                    @ForeignKey(entity = Plato.class, parentColumns = "ID_PLATO", childColumns = "PLATO")}, indices = {@Index("PEDIDO"),@Index("PLATO")})
 public class ItemsPedido {
 
     @PrimaryKey(autoGenerate = true)

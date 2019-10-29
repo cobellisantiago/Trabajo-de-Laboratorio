@@ -20,10 +20,20 @@ public class Plato implements Serializable {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID_PLATO")
     private Integer idPlato;
+
+    @ColumnInfo(name = "NOMBRE")
     private String nombre;
+
+    @ColumnInfo(name = "DESCRIPCION")
     private String descripcion;
+
+    @ColumnInfo(name = "PRECIO")
     private Double precio;
+
+    @ColumnInfo(name = "CALORIAS")
     private Integer calorias;
+
+    @ColumnInfo(name = "OFERTA")
     private Boolean oferta;
 
     @Ignore
@@ -34,8 +44,6 @@ public class Plato implements Serializable {
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
 
-        //TODO implementar otra manera de hacer el id
-        this.idPlato = platos.size();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
