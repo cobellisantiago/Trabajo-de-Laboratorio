@@ -1,16 +1,24 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
+@Entity(tableName = "PLATO")
 public class Plato implements Serializable {
 
     private static List<Plato> platos = new ArrayList<>();
     private static Plato platoGenerico = new Plato("Hamburguesa re gorda", "muy rica", 1800.00, 2000);
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "ID_PLATO")
     private Integer idPlato;
     private String nombre;
     private String descripcion;
@@ -18,6 +26,7 @@ public class Plato implements Serializable {
     private Integer calorias;
     private Boolean oferta;
 
+    @Ignore
     public Plato() {
 
     }

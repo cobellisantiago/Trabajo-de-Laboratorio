@@ -1,6 +1,7 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
@@ -14,6 +15,7 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
 public class Pedido {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "ID_PEDIDO")
     public Integer idPedido;
 
     @ColumnInfo(name = "FECHA_CREACION")
@@ -28,7 +30,10 @@ public class Pedido {
     @ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
 
-    //@Relation(parentColumn = "idPedido", entityColumn = "idItemsPedido", entity = ItemsPedido.class)
+    //@Embedded
+    //public ItemsPedido itemsPedido;
+
+    @Relation(parentColumn = "ID_ITEMS_PEDIDO", entityColumn = "idItemsPedido", entity = ItemsPedido.class)
     private List<ItemsPedido> itemsPedidoList;
 
     public Pedido() {

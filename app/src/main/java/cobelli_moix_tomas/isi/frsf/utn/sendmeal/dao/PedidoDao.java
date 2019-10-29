@@ -13,7 +13,7 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface PedidoDao {
-    @Query("SELECT * FROM PEDIDO")
+    @Query("SELECT * FROM ITEMS_PEDIDO WHERE ID_ITEMS_PEDIDO = ")
     List<Pedido> getAll();
 
     @Insert (onConflict = REPLACE)
