@@ -2,30 +2,30 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import java.io.Serializable;
 import java.util.UUID;
 
 
-//@Entity(tableName = "ITEMS_PEDIDO")
-public class ItemsPedido implements Serializable {
+@Entity(tableName = "ITEMS_PEDIDO")
+public class ItemsPedido {
 
-    //@PrimaryKey(autoGenerate = true)
-    private Integer idItemsPedido;
+    @PrimaryKey(autoGenerate = true)
+    public Integer idItemsPedido;
 
-    //@ColumnInfo(name = "PEDIDO")
-    private Integer idPedido;
+    @ColumnInfo(name = "PEDIDO")
+    public Integer idPedido;
 
-    //@ColumnInfo(name = "PLATO")
-    private Integer idPlato;
+    @ColumnInfo(name = "PLATO")
+    public Integer idPlato;
 
-    //@ColumnInfo(name = "CANTIDAD")
+    @ColumnInfo(name = "CANTIDAD")
     private Integer cantidad;
 
-    //@ColumnInfo(name = "PRECIO")
+    @ColumnInfo(name = "PRECIO")
     private Double precio;
 
+    @Ignore
     public ItemsPedido() {
     }
 

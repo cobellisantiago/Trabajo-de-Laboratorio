@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.Home;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
@@ -107,10 +109,8 @@ public class CrearItemFragment extends Fragment {
                         plato.setPrecio(precio);
                         plato.setCalorias(calorias);
                         text = "Plato Editado correctamente";
-                        //TODO Guardar en base de datos
-                        /*for(Plato p: Plato.getPlatos()) {
-                            if(p.equals(plato)) p = plato;
-                        }*/
+
+                        Controller.getInstance().actualizar(plato,miHandler);
 
                         ListarItemsFragment fragmentListaPlato = new ListarItemsFragment();
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListaPlato).addToBackStack(null).commit();
@@ -124,16 +124,10 @@ public class CrearItemFragment extends Fragment {
                 }else {
                     if (!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && precio != 0.0 && calorias != 0) {
 
-                        //plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
-                        Plato dish = new Plato();
-                        dish.setNombre(editTextNombrePLato.getText().toString());
-                        dish.setDescripcion(editTextDecripcionPlato.getText().toString());
-                        dish.setPrecio(precio);
-                        dish.setCalorias(calorias);
+                        plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
                         text = "Plato creado correctamente";
 
-                        //TODO no agrega el plato
-                        Controller.getInstance().crear(dish, miHandler);
+                        Controller.getInstance().crear(plato, miHandler);
 
                         editTextNombrePLato.setText(null);
                         editTextDecripcionPlato.setText(null);

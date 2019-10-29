@@ -8,13 +8,15 @@ import androidx.room.Update;
 import java.util.List;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 
+import static androidx.room.OnConflictStrategy.REPLACE;
+
 
 @Dao
 public interface PedidoDao {
-    //@Query("SELECT * FROM PEDIDO")
+    @Query("SELECT * FROM PEDIDO")
     List<Pedido> getAll();
 
-    @Insert
+    @Insert (onConflict = REPLACE)
     void insert(Pedido pedido);
 
     @Insert

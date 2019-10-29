@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller {
 
-    public static String _SERVER = "http://192.168.99.1:5000/";
+    public static String _SERVER = "http://10.15.153.77:5000/";
     private List<Plato> listaPlatos;
 
     public static final int _ALTA_PLATO = 1;
@@ -42,7 +42,7 @@ public class Controller {
     private PlatoRest platoRest;
 
     private void configurarRetrofit(){
-        this.rf = new Retrofit.Builder().baseUrl("http://192.168.99.1:5000/").addConverterFactory(GsonConverterFactory.create()).build();
+        this.rf = new Retrofit.Builder().baseUrl(_SERVER).addConverterFactory(GsonConverterFactory.create()).build();
         Log.d("APP_2", "INSTANCIA CREADA");
         this.platoRest = this.rf.create(PlatoRest.class);
     }
@@ -89,7 +89,11 @@ public class Controller {
                     }
 
                     Log.d("APP_2", "BORRA Obra " + plato.getIdPlato());
-                    listaPlatos.remove(plato);
+                    for (Plato p: listaPlatos){
+                        if(p.equals(plato)){
+                            listaPlatos.remove(plato);
+                        }
+                    }
 
                     for (Plato p : listaPlatos) {
                         Log.d("APP_2", "Obra " + p.getIdPlato());
@@ -119,11 +123,16 @@ public class Controller {
             public void onResponse(Call<Plato> call, Response<Plato> response) {
 
                 Log.d("APP_2", "Despues que ejecuta" + response.isSuccessful());
-                Log.d("App_2", "Codigo" + response.code());
+                Log.d("APP_2", "Codigo" + response.code());
 
                 if (response.isSuccessful()) {
                     Log.d("App_2", "EJECUTO");
-                    listaPlatos.remove(plato);
+
+                    for (Plato p: listaPlatos){
+                        if(p.equals(plato)){
+                            listaPlatos.remove(plato);
+                        }
+                    }
                     listaPlatos.add(response.body());
                     Message m = new Message();
                     m.arg1 = _UPDATE_PLATO;
@@ -149,10 +158,10 @@ public class Controller {
             public void onResponse(Call<Plato> call, Response<Plato> response) {
 
                 Log.d("APP_2", "Despues que ejecuta" + response.isSuccessful());
-                Log.d("App_2", "Codigo" +response.code());
+                Log.d("APP_2", "Codigo" +response.code());
 
                 if(response.isSuccessful()) {
-                    Log.d("App_2", "EJECUTO");
+                    Log.d("APP_2", "EJECUTO");
                     listaPlatos.add(response.body());
                     Message m = new Message();
                     m.arg1 = _ALTA_PLATO;

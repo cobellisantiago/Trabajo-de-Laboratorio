@@ -24,6 +24,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
+    implementation 'com.google.code.gson:gson:2.6.2'
+
     def rf_version = "2.6.2"
     implementation "com.squareup.retrofit2:retrofit:$rf_version"
     implementation "com.squareup.retrofit2:converter-gson:$rf_version"
