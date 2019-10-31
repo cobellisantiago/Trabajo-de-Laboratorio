@@ -7,11 +7,19 @@ import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 import java.util.Date;
 import java.util.List;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
 
 
 @Entity(tableName = "PEDIDO")
 public class Pedido {
+
+    public static final Integer PENDIENTE = 1;
+    public static final Integer ENVIADO = 2;
+    public static final Integer ACEPTADO = 3;
+    public static final Integer RECHAZADO = 4;
+    public static final Integer EN_PREPARACION = 5;
+    public static final Integer EN_ENVIO = 6;
+    public static final Integer ENTREGADO = 7;
+    public static final Integer CANCELADO = 8;
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID_PEDIDO")
@@ -20,8 +28,8 @@ public class Pedido {
     @ColumnInfo(name = "FECHA_CREACION")
     private Date fechaCreacion;
 
-    //@ColumnInfo(name = "ESTADO_PEDIDO")
-    //private EstadoPedido estadoPedido;
+    @ColumnInfo(name = "ESTADO_PEDIDO")
+    private Integer estadoPedido;
 
     @ColumnInfo(name = "LATITUD_CORDENADA")
     private Double latitudCordenada;
@@ -37,10 +45,9 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(Date fechaCreacion, EstadoPedido estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
-
+    public Pedido(Date fechaCreacion, Integer estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
         this.fechaCreacion = fechaCreacion;
-        //this.estadoPedido = estadoPedido;
+        this.estadoPedido = estadoPedido;
         this.latitudCordenada = latitudCordenada;
         this.longitudCordenada = longitudCordenada;
     }
@@ -57,13 +64,13 @@ public class Pedido {
         this.fechaCreacion = fechaCreacion;
     }
 
-    /*public EstadoPedido getEstadoPedido() {
+    public Integer getEstadoPedido() {
         return estadoPedido;
     }
 
-    public void setEstadoPedido(EstadoPedido estadoPedido) {
+    public void setEstadoPedido(Integer estadoPedido) {
         this.estadoPedido = estadoPedido;
-    }*/
+    }
 
     public Double getLatitudCordenada() {
         return latitudCordenada;

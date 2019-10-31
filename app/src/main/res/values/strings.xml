@@ -59,4 +59,6 @@
     <string name="itemCrearPedido">Crear Pedido</string>
     <string name="buttonCrearPedido">Crear Pedido</string>
     <string name="buttonEnviarPedido">Enviar Pedido</string>
+    <string name="agregarPlato">Agregar plato a mi pedido: </string>
+    <string name="buttonAgregarPlato">Agregar</string>
 </resources>
