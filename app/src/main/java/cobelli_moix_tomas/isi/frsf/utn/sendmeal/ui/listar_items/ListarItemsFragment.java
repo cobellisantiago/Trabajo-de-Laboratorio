@@ -89,6 +89,7 @@ public class ListarItemsFragment extends Fragment {
                                 //Hacer cosas aqui al hacer clic en el boton de aceptar
                                 Controller.getInstance().borrar(platoApretado,miHandler);
                                 ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                                //TODO arreglar este error que sucede cuando cambias de pantalla
                                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListarPlato).addToBackStack(null).commit();
                             }
                         });

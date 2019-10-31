@@ -5,11 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F1F1">
+    android:background="#F3F1F1"
+    android:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#F3F1F1"
+        android:visibility="visible">
 
         <ScrollView
             android:id="@+id/ScrollViewListaPlatos"

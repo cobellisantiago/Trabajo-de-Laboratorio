@@ -77,6 +77,7 @@ public class Home extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.navigation_home:
                 HomeFragment fragmentHome = new HomeFragment();
+
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment,fragmentHome)
                         .addToBackStack(null)
