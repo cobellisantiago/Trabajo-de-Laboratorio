@@ -1,9 +1,11 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
+import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -98,24 +100,39 @@ public class Home extends AppCompatActivity {
                         .commit();
                 break;
             case R.id.navigation_listar_items:
-                ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                /*ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment,fragmentListarPlato)
                         .addToBackStack(null)
-                        .commit();
+                        .commit();*/
+                replaceFragments(ListarItemsFragment.class);
                 break;
             case R.id.navigation_crear_pedido:
-                CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment();
+                /*CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment();
                 this.getSupportFragmentManager().beginTransaction()
                         .replace(R.id.nav_host_fragment,crearPedidoFragment)
                         .addToBackStack(null)
-                        .commit();
+                        .commit();*/
+                replaceFragments(CrearPedidoFragment.class);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
         }
         
         return super.onOptionsItemSelected(item);
+    }
+
+    public void replaceFragments(Class fragmentClass) {
+        Fragment fragment = null;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
+                .commit();
     }
 
     @Override

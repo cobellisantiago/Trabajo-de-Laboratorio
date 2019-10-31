@@ -58,7 +58,7 @@ public class ListarItemsFragment extends Fragment {
                             ThreadOfertarPlato hilo = new ThreadOfertarPlato(getContext(), platoApretado);
                             hilo.start();
 
-                            for (Plato p : Plato.getPlatos()) {
+                            for (Plato p : Controller.getInstance().getListaPlatos()) {
                                 if (p.equals(platoApretado)) {
                                     platoApretado.setOferta(true);
                                     Home.setPlato(platoApretado);
@@ -66,7 +66,7 @@ public class ListarItemsFragment extends Fragment {
                             }
 
                         } else {
-                            for (Plato p : Plato.getPlatos()) {
+                            for (Plato p : Controller.getInstance().getListaPlatos()) {
                                 if (p.equals(platoApretado)) {
                                     platoApretado.setOferta(false);
                                 }
@@ -88,9 +88,9 @@ public class ListarItemsFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 //Hacer cosas aqui al hacer clic en el boton de aceptar
                                 Controller.getInstance().borrar(platoApretado,miHandler);
-                                ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                                //ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
                                 //TODO arreglar este error que sucede cuando cambias de pantalla
-                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListarPlato).addToBackStack(null).commit();
+                                ((Home)getActivity()).replaceFragments(ListarItemsFragment.class);
                             }
                         });
                         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -119,6 +119,8 @@ public class ListarItemsFragment extends Fragment {
                     break;
                 case Controller._CONSULTA_PLATO:
                     //TODO Buscar manera de que espere la respuesta para cargar la lista
+                    break;
+                case Controller._ERROR_PLATO:
                     break;
             }
         }

@@ -36,8 +36,7 @@ public class CrearItemFragment extends Fragment {
         this.plato = plato;
         this.option = option;
 
-        //TODO Buscar en base de datos
-        for(Plato p: Plato.getPlatos()) {
+        for(Plato p: Controller.getInstance().getListaPlatos()) {
             if(p.equals(plato)) plato = p;
         }
     }

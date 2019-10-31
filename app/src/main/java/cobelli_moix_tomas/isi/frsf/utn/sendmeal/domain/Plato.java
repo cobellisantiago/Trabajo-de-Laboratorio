@@ -6,11 +6,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
 
 
 public class Plato implements Serializable {
 
-    private static List<Plato> platos = new ArrayList<>();
     private static Plato platoGenerico = new Plato("Hamburguesa re gorda", "muy rica", 1800.00, 2000);
 
     private Integer idPlato;
@@ -26,24 +28,12 @@ public class Plato implements Serializable {
 
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
+        this.idPlato = Controller.getInstance().getListaPlatos().size()+1;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.calorias = calorias;
         this.oferta = false;
-        platos.add(this);
-    }
-
-    public static void setPlatos(List<Plato> platos) {
-        Plato.platos = platos;
-    }
-
-    public static List<Plato> getPlatos() {
-        return platos;
-    }
-
-    public static Plato getPlato (int pos){
-        return platos.get(pos);
     }
 
     public Integer getIdPlato() {
