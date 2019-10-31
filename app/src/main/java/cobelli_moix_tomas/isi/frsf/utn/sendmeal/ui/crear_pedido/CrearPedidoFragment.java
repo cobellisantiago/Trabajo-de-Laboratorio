@@ -11,9 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
 
 
 public class CrearPedidoFragment extends Fragment {
+
+    private static final int requestCode = 777;
 
     private CrearPedidoViewModel crearPedidoViewModel;
     private Button agregarPlato;
@@ -28,7 +31,8 @@ public class CrearPedidoFragment extends Fragment {
         agregarPlato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), AgregarPlatosAlPedido.class);
+                startActivityForResult(intent, requestCode);
 
             }
         });
