@@ -20,7 +20,7 @@ public interface PedidoDao {
 
     @Transaction
     @Query("SELECT * FROM PEDIDO")
-    List<Pedido.PedidoToItemsPedido> getAllPedidosAndItemsPedidos();
+    List<Pedido> getAllPedidos();
 
     @Insert (onConflict = REPLACE)
     void insert(Pedido pedido);

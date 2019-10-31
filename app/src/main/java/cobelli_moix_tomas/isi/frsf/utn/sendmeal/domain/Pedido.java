@@ -21,6 +21,7 @@ public class Pedido {
     public static final Integer ENTREGADO = 7;
     public static final Integer CANCELADO = 8;
 
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID_PEDIDO")
     public Integer idPedido;
