@@ -61,4 +61,10 @@
     <string name="buttonEnviarPedido">Enviar Pedido</string>
     <string name="agregarPlato">Agregar plato a mi pedido: </string>
     <string name="buttonAgregarPlato">Agregar</string>
+    <string name="nombrePlatoPedido">Nombre</string>
+    <string name="descripcionPLatoPedido">Descripcion</string>
+    <string name="precioPlatoPedido">Precio</string>
+    <string name="buttonPlusPlato">+</string>
+    <string name="buttonMinusPlato">-</string>
+    <string name="buttonAgregarAMiPedido">Agregar a mi pedido</string>
 </resources>

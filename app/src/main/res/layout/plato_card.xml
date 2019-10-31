@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/cardView"
+        android:id="@+id/cardViewPlatoPedido"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_margin="8dp"
@@ -25,7 +25,7 @@
             android:text="@string/boton_ofertar_plato"
             app:layout_constraintBottom_toTopOf="@+id/buttonEditar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageCard" />
+            app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido" />
 
         <Button
             android:id="@+id/buttonEditar"
@@ -53,18 +53,18 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonEditar" />
 
         <TextView
-            android:id="@+id/textViewPrecio"
+            android:id="@+id/textViewPrecioPlatoPedido"
             android:layout_width="98dp"
             android:layout_height="35dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/lato"
             android:text="Precio"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewNombre"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNombre" />
+            app:layout_constraintStart_toStartOf="@+id/textViewNombrePlatoPedido"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNombrePlatoPedido" />
 
         <TextView
-            android:id="@+id/textViewNombre"
+            android:id="@+id/textViewNombrePlatoPedido"
             android:layout_width="250dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
@@ -73,7 +73,7 @@
             android:text="Nombre"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageCard" />
+            app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido" />
 
         <TextView
             android:id="@+id/ofertado"
@@ -83,10 +83,10 @@
             android:layout_marginTop="8dp"
             android:text="Plato ofertado"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPrecio" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPrecioPlatoPedido" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/imageCard"
+            android:id="@+id/imageCardPlatoPedido"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:cardBackgroundColor="@android:color/white"
@@ -96,7 +96,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageViewPlato"
+                android:id="@+id/imageViewPlatoPedido"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
