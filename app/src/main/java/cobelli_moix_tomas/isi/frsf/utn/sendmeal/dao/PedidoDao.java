@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 import java.util.List;
 
@@ -15,8 +16,11 @@ import static androidx.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface PedidoDao {
-    @Query("SELECT * FROM ITEMS_PEDIDO")
-    List<ItemsPedido> loadPedidoWithItemsPedido();
+    //With LiveData<Pedido> automatically dispatch changes as the DB changes
+
+    @Transaction
+    @Query("SELECT * FROM PEDIDO")
+    List<Pedido.PedidoToItemsPedido> getAllPedidosAndItemsPedidos();
 
     @Insert (onConflict = REPLACE)
     void insert(Pedido pedido);

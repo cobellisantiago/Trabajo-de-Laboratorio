@@ -11,6 +11,7 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 
 @Dao
 public interface ItemsPedidoDao {
+    //TODO ver si esta query esta bien porque tengo un plato embedded en items
     @Query("SELECT * FROM ITEMS_PEDIDO")
     List<ItemsPedido> getAll();
 

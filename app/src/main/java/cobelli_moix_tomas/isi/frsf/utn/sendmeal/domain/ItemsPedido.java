@@ -1,37 +1,27 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-import androidx.room.Relation;
-
-import java.util.UUID;
 
 
-@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = {@ForeignKey(entity = Pedido.class, parentColumns = "ID_PEDIDO", childColumns = "PEDIDO"),
-                                    @ForeignKey(entity = Plato.class, parentColumns = "ID_PLATO", childColumns = "PLATO")}, indices = {@Index("PEDIDO"),@Index("PLATO")})
+//TODO ver si es necesaria la foreign key
+@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "ID_PEDIDO", childColumns = "PEDIDO"), indices = {@Index("PEDIDO")})
 public class ItemsPedido {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "ID_ITEMS_PEDIDO")
     public Integer idItemsPedido;
 
-    //@Relation(parentColumn = "idItemsPedido", entityColumn = "idPedido", entity = Pedido.class)
-    //@ColumnInfo(name = "PEDIDO")
-    //public Pedido pedido;
-
     @ColumnInfo(name = "PEDIDO")
     public Integer pedido;
 
-    //@Relation(parentColumn = "idItemsPedido", entityColumn = "idPlato", entity = Plato.class)
-    //@ColumnInfo(name = "PLATO")
-    //public Plato plato;
-
-    @ColumnInfo(name = "PLATO")
-    public Integer plato;
+    @Embedded (prefix = "plato_")
+    public Plato plato;
 
     @ColumnInfo(name = "CANTIDAD")
     private Integer cantidad;
@@ -43,8 +33,7 @@ public class ItemsPedido {
     public ItemsPedido() {
     }
 
-    public ItemsPedido(Integer pedido, Integer plato, Integer cantidad, Double precio) {
-        this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
+    public ItemsPedido(Integer pedido, Plato plato, Integer cantidad, Double precio) {
         this.pedido = pedido;
         this.plato = plato;
         this.cantidad = cantidad;
@@ -55,10 +44,6 @@ public class ItemsPedido {
         return idItemsPedido;
     }
 
-    public void setIdItemsPedido() {
-        this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
-    }
-
     public Integer getPedido() {
         return pedido;
     }
@@ -67,11 +52,11 @@ public class ItemsPedido {
         this.pedido = pedido;
     }
 
-    public Integer getPlato() {
+    public Plato getPlato() {
         return plato;
     }
 
-    public void setPlato(Integer plato) {
+    public void setPlato(Plato plato) {
         this.plato = plato;
     }
 

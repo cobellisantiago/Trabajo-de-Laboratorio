@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.enumeration.EstadoPedido;
 
 
@@ -29,6 +28,10 @@ public class Pedido {
 
     @ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
+
+    //TODO ver si conviene esto o el metodo que esta hecho al final con las Relations
+    //@Embedded
+    //private List<ItemsPedido> itemsPedidoList;
 
 
     public Pedido() {
@@ -82,7 +85,7 @@ public class Pedido {
         @Embedded
         public Pedido pedido;
 
-        @Relation(parentColumn = "ID_PEDIDO", entityColumn = "PEDIDO", entity = ItemsPedido.class)
+        @Relation(parentColumn = "ID_PEDIDO", entityColumn = "ID_ITEMS_PEDIDO", entity = ItemsPedido.class)
         private List<ItemsPedido> itemsPedidoList;
 
         public List<ItemsPedido> getItemsPedidoList() {
