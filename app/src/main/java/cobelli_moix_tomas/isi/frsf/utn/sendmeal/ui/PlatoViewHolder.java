@@ -21,9 +21,9 @@ public class PlatoViewHolder extends RecyclerView.ViewHolder {
 
     public PlatoViewHolder(@NonNull View base, PlatoAdapter.EventoOnClickListenerListaPlatos listener) {
         super(base);
-        this.textViewNombre = (TextView) base.findViewById(R.id.textViewNombre);
-        this.textViewPrecio = (TextView) base.findViewById(R.id.textViewPrecio);
-        this.imageViewFoto = (ImageView) base.findViewById(R.id.imageViewPlato);
+        this.textViewNombre = (TextView) base.findViewById(R.id.textViewNombrePlatoPedido);
+        this.textViewPrecio = (TextView) base.findViewById(R.id.textViewPrecioPlatoPedido);
+        this.imageViewFoto = (ImageView) base.findViewById(R.id.imageViewPlatoPedido);
         this.oferta = base.findViewById(R.id.buttonOferta);
         this.editar = base.findViewById(R.id.buttonEditar);
         this.eliminar = base.findViewById(R.id.buttonEliminar);
