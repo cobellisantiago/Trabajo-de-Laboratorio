@@ -81,39 +81,44 @@ public class Home extends AppCompatActivity {
                 HomeFragment fragmentHome = new HomeFragment();
 
                 this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment,fragmentHome)
+                        //.replace(R.id.nav_host_fragment,fragmentHome)
+                        .hide(fragmentHome)
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.navigation_registrarme:
                 RegistrarmeFragment fragmentRegistrarme = new RegistrarmeFragment();
                 this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment,fragmentRegistrarme)
+                       .hide(fragmentRegistrarme)
+                        // .replace(R.id.nav_host_fragment,fragmentRegistrarme)
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.navigation_crear_plato:
                 CrearItemFragment fragmentCrearPlato = new CrearItemFragment();
                 this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment,fragmentCrearPlato)
+                        //.replace(R.id.nav_host_fragment,fragmentCrearPlato)
+                        .hide(fragmentCrearPlato)
                         .addToBackStack(null)
                         .commit();
                 break;
             case R.id.navigation_listar_items:
-                /*ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
+                ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
                 this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment,fragmentListarPlato)
+                        //.replace(R.id.nav_host_fragment,fragmentListarPlato)
+                        .hide(fragmentListarPlato)
                         .addToBackStack(null)
-                        .commit();*/
-                replaceFragments(ListarItemsFragment.class);
+                        .commit();
+                //replaceFragments(ListarItemsFragment.class);
                 break;
             case R.id.navigation_crear_pedido:
-                /*CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment();
+                CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment();
                 this.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment,crearPedidoFragment)
+                        //.replace(R.id.nav_host_fragment,crearPedidoFragment)
+                        .hide(crearPedidoFragment)
                         .addToBackStack(null)
-                        .commit();*/
-                replaceFragments(CrearPedidoFragment.class);
+                        .commit();
+                //replaceFragments(CrearPedidoFragment.class);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
