@@ -1,47 +1,41 @@
-<ScrollView
-    android:id="@+id/scrollViewPedidos"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#F3F1F1"
     android:visibility="visible">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/ScrollViewListaPlatos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#F3F1F1"
-        android:visibility="visible">
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
-            android:id="@+id/ScrollViewListaPlatos"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/pedidosRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                tools:listitem="@layout/pedido_card" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/pedidosRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:listitem="@layout/pedido_card" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </ScrollView>
+    <Button
+        android:id="@+id/buttonAgregarAMiPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonAgregarAMiPedido"
+        android:background="@drawable/bttn_rounded"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ScrollViewListaPlatos" />
 
-        <Button
-            android:id="@+id/buttonAgregarAMiPedido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/buttonAgregarAMiPedido"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ScrollViewListaPlatos" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

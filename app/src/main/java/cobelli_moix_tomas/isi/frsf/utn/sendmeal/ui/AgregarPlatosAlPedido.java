@@ -21,6 +21,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Controller.getInstance().listarPlatos(miHandler);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_platos_al_pedido);

@@ -40,6 +40,6 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        return platoViewDataSet.size();
     }
 }

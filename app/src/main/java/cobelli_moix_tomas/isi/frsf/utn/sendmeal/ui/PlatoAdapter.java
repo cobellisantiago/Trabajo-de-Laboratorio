@@ -29,7 +29,6 @@ public class PlatoAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
         this.listener = listener;
     }
 
-    @NonNull
     @Override
     public PlatoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
