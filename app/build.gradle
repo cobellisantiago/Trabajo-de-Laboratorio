@@ -20,6 +20,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+
     def room_version = "2.2.0-beta01"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
@@ -43,5 +45,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
 }
+
+apply plugin: 'com.google.gms.google-services'

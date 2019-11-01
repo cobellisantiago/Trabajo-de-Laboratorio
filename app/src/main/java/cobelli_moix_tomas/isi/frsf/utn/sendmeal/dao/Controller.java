@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller {
 
-    public static String _SERVER = "http://10.15.156.69:5000/";
+    public static String _SERVER = "http://10.15.153.77:5000/";
     private List<Plato> listaPlatos;
 
     public static final int _ALTA_PLATO = 1;

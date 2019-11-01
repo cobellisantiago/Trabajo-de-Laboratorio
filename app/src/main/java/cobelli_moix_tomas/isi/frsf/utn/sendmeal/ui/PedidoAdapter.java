@@ -32,14 +32,30 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
         final Plato plato = platoViewDataSet.get(position);
         DecimalFormat format = new DecimalFormat("0.00");
 
+
         holder.nombre.setText(plato.getNombre());
         holder.descripcion.setText(plato.getDescripcion());
         holder.precio.setText("$"+format.format(plato.getPrecio()));
         holder.imagen.setImageResource(R.drawable.hamburguesa);
+
+
+        holder.minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return platoViewDataSet.size();
     }
 }

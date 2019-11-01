@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
@@ -18,6 +21,8 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
     private RecyclerView pedidoRecyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private Button agregarPlatosAlPedido;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,16 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
 
         adapter = new PedidoAdapter(Controller.getInstance().getListaPlatos());
         pedidoRecyclerView.setAdapter(adapter);
+
+        agregarPlatosAlPedido = findViewById(R.id.buttonAgregarAMiPedido);
+        agregarPlatosAlPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
     }
 
     Handler miHandler = new Handler(Looper.myLooper()){
