@@ -1,5 +1,6 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -47,6 +48,27 @@ public class ListarItemsFragment extends Fragment {
         layoutManager = new LinearLayoutManager(root.getContext());
         platoRecyclerView.setLayoutManager(layoutManager);
 
+        return root;
+    }
+
+    Handler miHandler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(Message msg) {
+            Log.d("APP_2","Vuelve al handler" + msg.arg1);
+
+            switch (msg.arg1 ){
+                case Controller._BORRADO_PLATO:
+                    break;
+                case Controller._CONSULTA_PLATO:
+                    cargarListaPlatos();
+                    break;
+                case Controller._ERROR_PLATO:
+                    break;
+            }
+        }
+    };
+
+    private void cargarListaPlatos() {
         adapter = new PlatoAdapter(Controller.getInstance().getListaPlatos(), new PlatoAdapter.EventoOnClickListenerListaPlatos() {
             @Override
             public void onButtonClickListaPlatos(Button button, final Plato platoApretado) {
@@ -80,7 +102,7 @@ public class ListarItemsFragment extends Fragment {
                         break;
 
                     case R.id.buttonEliminar:
-                        AlertDialog.Builder builder = new AlertDialog.Builder(root.getContext());
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                         builder.setTitle("Eliminar un Plato");
                         builder.setMessage("¿Esta seguro que quiere eliminar este plato?");
                         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
@@ -105,24 +127,5 @@ public class ListarItemsFragment extends Fragment {
             }
         });
         platoRecyclerView.setAdapter(adapter);
-
-        return root;
     }
-
-    Handler miHandler = new Handler(Looper.myLooper()){
-        @Override
-        public void handleMessage(Message msg) {
-            Log.d("APP_2","Vuelve al handler" + msg.arg1);
-
-            switch (msg.arg1 ){
-                case Controller._BORRADO_PLATO:
-                    break;
-                case Controller._CONSULTA_PLATO:
-                    //TODO Buscar manera de que espere la respuesta para cargar la lista
-                    break;
-                case Controller._ERROR_PLATO:
-                    break;
-            }
-        }
-    };
 }

@@ -89,7 +89,7 @@ public class Pedido {
         this.longitudCordenada = longitudCordenada;
     }
 
-    public class PedidoToItemsPedido {
+    public static class PedidoToItemsPedido {
         @Embedded
         public Pedido pedido;
 
