@@ -24,7 +24,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class CrearPedidoFragment extends Fragment {
 
-    private static final int requestCode = 777;
+    private static final int requestCode = 7;
 
     private CrearPedidoViewModel crearPedidoViewModel;
     private Button agregarPlato;
@@ -69,11 +69,10 @@ public class CrearPedidoFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == 777){
-            if (resultCode == RESULT_OK){
-                //TODO usar el constructor con todo
-                ItemsPedido itemsPedido = new ItemsPedido();
-            }
+        if (requestCode == 7){
+            //TODO usar el constructor con todo
+            ItemsPedido itemsPedido = new ItemsPedido();
+            System.out.println(itemsPedido.getIdItemsPedido());
         }
 
     }

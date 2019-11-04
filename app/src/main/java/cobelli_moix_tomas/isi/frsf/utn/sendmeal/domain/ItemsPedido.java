@@ -3,17 +3,16 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.util.UUID;
 
-//TODO ver si es necesaria la foreign key
-@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "ID_PEDIDO", childColumns = "PEDIDO"), indices = {@Index("PEDIDO")})
+
+@Entity(tableName = "ITEMS_PEDIDO")
 public class ItemsPedido {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "ID_ITEMS_PEDIDO")
     public Integer idItemsPedido;
 
@@ -29,11 +28,14 @@ public class ItemsPedido {
     @ColumnInfo(name = "PRECIO")
     private Double precio;
 
-    @Ignore
+
     public ItemsPedido() {
+        //this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
     }
 
+    @Ignore
     public ItemsPedido(Integer pedido, Plato plato, Integer cantidad, Double precio) {
+        //this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
         this.pedido = pedido;
         this.plato = plato;
         this.cantidad = cantidad;

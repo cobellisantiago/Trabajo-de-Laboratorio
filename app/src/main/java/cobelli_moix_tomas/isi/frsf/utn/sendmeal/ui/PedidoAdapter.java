@@ -15,6 +15,8 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
     private List<Plato> platoViewDataSet;
     private Context context;
+    public Plato platoForItem;
+    public PedidoViewHolder holderForItem;
 
     public PedidoAdapter (List<Plato> myPlatosDataSet) {
         platoViewDataSet = myPlatosDataSet;
@@ -29,7 +31,10 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PedidoViewHolder holder, int position) {
+
         final Plato plato = platoViewDataSet.get(position);
+        platoForItem = plato;
+        holderForItem = holder;
         DecimalFormat format = new DecimalFormat("0.00");
 
 
@@ -54,8 +59,19 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
         });
     }
 
+
     @Override
     public int getItemCount() {
         return platoViewDataSet.size();
+    }
+
+
+    public int getCantidad(){
+        return Integer.parseInt(holderForItem.cantidad.getText().toString());
+    }
+
+
+    public Plato getPlatoForItem (){
+        return platoForItem;
     }
 }

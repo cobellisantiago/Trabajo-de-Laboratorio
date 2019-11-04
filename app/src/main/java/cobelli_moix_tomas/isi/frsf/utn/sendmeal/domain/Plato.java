@@ -29,6 +29,7 @@ public class Plato implements Serializable {
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
         this.idPlato = Controller.getInstance().getListaPlatos().size()+1;
+        //this.idPlato = Integer.parseInt(UUID.randomUUID().toString());
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity(tableName = "PEDIDO")
@@ -21,8 +22,9 @@ public class Pedido {
     public static final Integer ENTREGADO = 7;
     public static final Integer CANCELADO = 8;
 
+    //TODO ver como generar id
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey
     @ColumnInfo(name = "ID_PEDIDO")
     public Integer idPedido;
 
@@ -38,15 +40,12 @@ public class Pedido {
     @ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
 
-    //TODO ver si conviene esto o el metodo que esta hecho al final con las Relations
-    //@Embedded
-    //private List<ItemsPedido> itemsPedidoList;
-
 
     public Pedido() {
     }
 
     public Pedido(Date fechaCreacion, Integer estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
+        //this.idPedido = Integer.parseInt(UUID.randomUUID().toString());
         this.fechaCreacion = fechaCreacion;
         this.estadoPedido = estadoPedido;
         this.latitudCordenada = latitudCordenada;

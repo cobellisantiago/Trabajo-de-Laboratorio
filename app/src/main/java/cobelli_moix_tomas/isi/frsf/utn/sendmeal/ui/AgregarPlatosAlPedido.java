@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 
 public class AgregarPlatosAlPedido extends AppCompatActivity {
 
@@ -44,6 +45,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
         agregarPlatosAlPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO ver si al item lo creamos aca y lo mandamos por el intent o si lo creamos en el onActivityResult
                 finish();
             }
         });
