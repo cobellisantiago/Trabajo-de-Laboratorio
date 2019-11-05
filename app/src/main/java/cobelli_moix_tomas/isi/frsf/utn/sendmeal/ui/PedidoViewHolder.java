@@ -29,4 +29,5 @@ public class PedidoViewHolder extends RecyclerView.ViewHolder {
         this.imagen = base.findViewById(R.id.imageViewPlatoPedido);
         this.cantidad = base.findViewById(R.id.editTextCantidadPlato);
     }
+
 }

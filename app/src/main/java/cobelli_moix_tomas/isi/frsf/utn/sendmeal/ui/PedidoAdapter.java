@@ -28,7 +28,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PedidoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PedidoViewHolder holder, final int position) {
         final Plato plato = platoViewDataSet.get(position);
         DecimalFormat format = new DecimalFormat("0.00");
 
@@ -38,20 +38,21 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
         holder.precio.setText("$"+format.format(plato.getPrecio()));
         holder.imagen.setImageResource(R.drawable.hamburguesa);
 
-
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (Integer.parseInt(holder.cantidad.getText().toString()) > 0) holder.cantidad.setText(Integer.parseInt(holder.cantidad.getText().toString()) - 1);
             }
         });
 
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                platoViewDataSet.get(position).set
             }
         });
+
+
     }
 
     @Override
