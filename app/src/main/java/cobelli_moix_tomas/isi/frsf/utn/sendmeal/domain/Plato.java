@@ -15,7 +15,7 @@ public class Plato implements Serializable {
 
     private static Plato platoGenerico = new Plato("Hamburguesa re gorda", "muy rica", 1800.00, 2000);
 
-    private Integer idPlato;
+    private String idPlato;
     private String nombre;
     private String descripcion;
     private Double precio;
@@ -24,12 +24,12 @@ public class Plato implements Serializable {
 
     @Ignore
     public Plato() {
+        this.idPlato = UUID.randomUUID().toString();
     }
 
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
-        this.idPlato = Controller.getInstance().getListaPlatos().size()+1;
-        //this.idPlato = Integer.parseInt(UUID.randomUUID().toString());
+        this.idPlato = UUID.randomUUID().toString();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -37,11 +37,11 @@ public class Plato implements Serializable {
         this.oferta = false;
     }
 
-    public Integer getIdPlato() {
+    public String getIdPlato() {
         return idPlato;
     }
 
-    public void setIdPlato(Integer idPlato) {
+    public void setIdPlato(String idPlato) {
         this.idPlato = idPlato;
     }
 

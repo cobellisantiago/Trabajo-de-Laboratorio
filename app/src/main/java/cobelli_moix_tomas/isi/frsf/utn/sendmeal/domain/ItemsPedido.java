@@ -1,23 +1,26 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 
 @Entity(tableName = "ITEMS_PEDIDO")
-public class ItemsPedido {
+public class ItemsPedido implements Serializable {
 
     @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "ID_ITEMS_PEDIDO")
-    public Integer idItemsPedido;
+    public String idItemsPedido;
 
     @ColumnInfo(name = "PEDIDO")
-    public Integer pedido;
+    public String pedido;
 
     @Embedded (prefix = "plato_")
     public Plato plato;
@@ -30,27 +33,27 @@ public class ItemsPedido {
 
 
     public ItemsPedido() {
-        //this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
+        this.idItemsPedido = UUID.randomUUID().toString();
     }
 
     @Ignore
-    public ItemsPedido(Integer pedido, Plato plato, Integer cantidad, Double precio) {
-        //this.idItemsPedido = Integer.parseInt(UUID.randomUUID().toString());
+    public ItemsPedido(String pedido, Plato plato, Integer cantidad, Double precio) {
+        this.idItemsPedido = UUID.randomUUID().toString();
         this.pedido = pedido;
         this.plato = plato;
         this.cantidad = cantidad;
         this.precio = precio;
     }
 
-    public Integer getIdItemsPedido() {
+    public String getIdItemsPedido() {
         return idItemsPedido;
     }
 
-    public Integer getPedido() {
+    public String getPedido() {
         return pedido;
     }
 
-    public void setPedido(Integer pedido) {
+    public void setPedido(String pedido) {
         this.pedido = pedido;
     }
 

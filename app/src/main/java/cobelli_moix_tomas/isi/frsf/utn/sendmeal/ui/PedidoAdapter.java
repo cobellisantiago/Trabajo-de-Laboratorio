@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.DecimalFormat;
 import java.util.List;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 
 
 public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
     private List<Plato> platoViewDataSet;
     private Context context;
-    public Plato platoForItem;
-    public PedidoViewHolder holderForItem;
+    private AgregarPlatosAlPedido agregarPlatosAlPedido = new AgregarPlatosAlPedido();
 
     public PedidoAdapter (List<Plato> myPlatosDataSet) {
         platoViewDataSet = myPlatosDataSet;
@@ -30,13 +30,10 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PedidoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PedidoViewHolder holder, int position) {
 
         final Plato plato = platoViewDataSet.get(position);
-        platoForItem = plato;
-        holderForItem = holder;
         DecimalFormat format = new DecimalFormat("0.00");
-
 
         holder.nombre.setText(plato.getNombre());
         holder.descripcion.setText(plato.getDescripcion());
@@ -57,21 +54,22 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
 
             }
         });
+
+        holder.agregarPlatoAMiPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ItemsPedido itemsPedido = new ItemsPedido();
+                itemsPedido.setCantidad(Integer.parseInt(holder.cantidad.getText().toString()));
+                itemsPedido.setPrecio(plato.getPrecio());
+                itemsPedido.setPlato(plato);
+                agregarPlatosAlPedido.getItemPedidoFromAdapter(itemsPedido);
+            }
+        });
     }
 
 
     @Override
     public int getItemCount() {
         return platoViewDataSet.size();
-    }
-
-
-    public int getCantidad(){
-        return Integer.parseInt(holderForItem.cantidad.getText().toString());
-    }
-
-
-    public Plato getPlatoForItem (){
-        return platoForItem;
     }
 }

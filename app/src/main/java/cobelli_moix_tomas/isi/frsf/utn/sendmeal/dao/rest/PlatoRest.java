@@ -12,10 +12,10 @@ public interface PlatoRest {
     Call<List<Plato>> buscarPlatos();
 
     @DELETE("platos/{id}")
-    Call<Void> borrar(@Path("id") Integer id);
+    Call<Void> borrar(@Path("id") String id);
 
     @PUT("platos/{id}")
-    Call<Plato> actualizar(@Path("id") Integer id, @Body Plato plato);
+    Call<Plato> actualizar(@Path("id") String id, @Body Plato plato);
 
     @POST("platos/")
     Call<Plato> crear(@Body Plato plato);

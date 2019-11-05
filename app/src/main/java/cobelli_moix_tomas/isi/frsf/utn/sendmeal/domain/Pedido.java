@@ -1,17 +1,26 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
+import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoDao;
+
 
 @Entity(tableName = "PEDIDO")
-public class Pedido {
+public class Pedido implements Serializable {
 
     public static final Integer PENDIENTE = 1;
     public static final Integer ENVIADO = 2;
@@ -22,11 +31,11 @@ public class Pedido {
     public static final Integer ENTREGADO = 7;
     public static final Integer CANCELADO = 8;
 
-    //TODO ver como generar id
 
     @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "ID_PEDIDO")
-    public Integer idPedido;
+    public String idPedido;
 
     @ColumnInfo(name = "FECHA_CREACION")
     private Date fechaCreacion;
@@ -40,19 +49,20 @@ public class Pedido {
     @ColumnInfo(name = "LONGITUD_CORDENADA")
     private Double longitudCordenada;
 
-
+    @Ignore
     public Pedido() {
+        this.idPedido = UUID.randomUUID().toString();
     }
 
-    public Pedido(Date fechaCreacion, Integer estadoPedido, Double latitudCordenada, Double longitudCordenada, List<ItemsPedido> itemsPedidoList) {
-        //this.idPedido = Integer.parseInt(UUID.randomUUID().toString());
+    public Pedido(Date fechaCreacion, Integer estadoPedido, Double latitudCordenada, Double longitudCordenada) {
+        this.idPedido = UUID.randomUUID().toString();
         this.fechaCreacion = fechaCreacion;
         this.estadoPedido = estadoPedido;
         this.latitudCordenada = latitudCordenada;
         this.longitudCordenada = longitudCordenada;
     }
 
-    public Integer getIdPedido() {
+    public String getIdPedido() {
         return idPedido;
     }
 

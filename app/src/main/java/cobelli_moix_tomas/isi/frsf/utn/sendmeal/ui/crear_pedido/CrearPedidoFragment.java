@@ -11,20 +11,24 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.AppDB;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.ItemsPedidoDao;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoDao;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
 
-import static android.app.Activity.RESULT_OK;
 
-
-public class CrearPedidoFragment extends Fragment {
+public class CrearPedidoFragment extends Fragment implements Serializable{
 
     private static final int requestCode = 7;
+    private Pedido pedido = new Pedido();
 
     private CrearPedidoViewModel crearPedidoViewModel;
     private Button agregarPlato;
@@ -51,8 +55,15 @@ public class CrearPedidoFragment extends Fragment {
         crearPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO utilizar constructor entero
-                Pedido pedido = new Pedido();
+                pedido.setEstadoPedido(1);
+                pedido.setFechaCreacion(new Date());
+
+                //TODO cambiar las coordenadas una vez que usemos el mapa
+                pedido.setLatitudCordenada(0.0);
+                pedido.setLongitudCordenada(0.0);
+
+                PedidoDao pedidoDao = DBClient.getInstance(getActivity()).getAppDB().pedidoDao();
+                pedidoDao.insert(pedido);
             }
         });
 
@@ -69,11 +80,13 @@ public class CrearPedidoFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
-        if (requestCode == 7){
-            //TODO usar el constructor con todo
-            ItemsPedido itemsPedido = new ItemsPedido();
-            System.out.println(itemsPedido.getIdItemsPedido());
-        }
+        ItemsPedidoDao itemsPedidoDao = DBClient.getInstance(getActivity()).getAppDB().itemsPedidoDao();
+
+        /*if (requestCode == 7){
+            ItemsPedido itemsPedido = (ItemsPedido) data.getSerializableExtra("item");
+            itemsPedido.setPedido(pedido.getIdPedido());
+            itemsPedidoDao.insert(itemsPedido);
+        }*/
 
     }
 
