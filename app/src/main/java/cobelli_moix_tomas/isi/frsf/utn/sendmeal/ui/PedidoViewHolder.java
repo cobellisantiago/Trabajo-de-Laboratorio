@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 
 
 public class PedidoViewHolder extends RecyclerView.ViewHolder {
@@ -31,4 +33,16 @@ public class PedidoViewHolder extends RecyclerView.ViewHolder {
         this.cantidad = base.findViewById(R.id.editTextCantidadPlato);
         this.agregarPlatoAMiPedido = base.findViewById(R.id.botonAgregarAMiPedido);
     }
+
+    public void setItemPedido(final PedidoAdapter.EventoOnClickListenerListaPlatosPedidos listener, final ItemsPedido itemsPedido) {
+
+        agregarPlatoAMiPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onButtonClickListaPlatos(agregarPlatoAMiPedido, itemsPedido);
+            }
+        });
+
+    }
+
 }

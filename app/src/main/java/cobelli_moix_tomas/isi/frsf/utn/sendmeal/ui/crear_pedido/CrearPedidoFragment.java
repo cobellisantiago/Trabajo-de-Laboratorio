@@ -71,7 +71,6 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
 

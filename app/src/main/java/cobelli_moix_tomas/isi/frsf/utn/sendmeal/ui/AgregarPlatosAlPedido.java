@@ -42,7 +42,12 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         pedidoRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PedidoAdapter(Controller.getInstance().getListaPlatos());
+        adapter = new PedidoAdapter(Controller.getInstance().getListaPlatos(), new PedidoAdapter.EventoOnClickListenerListaPlatosPedidos() {
+            @Override
+            public void onButtonClickListaPlatos(Button button, ItemsPedido itemsPedido) {
+
+            }
+        });
         pedidoRecyclerView.setAdapter(adapter);
 
 

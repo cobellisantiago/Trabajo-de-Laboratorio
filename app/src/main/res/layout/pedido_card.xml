@@ -26,6 +26,22 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/textViewPrecioPlatoPedido"
             app:layout_constraintStart_toEndOf="@+id/textViewPrecioPlatoPedido" />
 
+<<<<<<< HEAD
+        <EditText
+            android:id="@+id/editTextCantidadPlato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:ems="4"
+            android:inputType="number"
+            android:textSize="10dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonMinusPlato"
+            app:layout_constraintStart_toEndOf="@+id/buttonMinusPlato"
+            app:layout_constraintTop_toTopOf="@+id/buttonMinusPlato" />
+
+=======
+>>>>>>> 6d052850d516c1da9d607a239f9bde75860348c3
         <Button
             android:id="@+id/buttonPlusPlato"
             style="@style/Widget.AppCompat.Button"
