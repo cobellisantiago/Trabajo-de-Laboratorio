@@ -24,10 +24,12 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
 
+import static android.app.Activity.RESULT_OK;
+
 
 public class CrearPedidoFragment extends Fragment implements Serializable{
 
-    private static final int requestCode = 7;
+    private static final int requestCode = 13;
     private Pedido pedido = new Pedido();
 
     private CrearPedidoViewModel crearPedidoViewModel;
@@ -81,11 +83,11 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         ItemsPedidoDao itemsPedidoDao = DBClient.getInstance(getActivity()).getAppDB().itemsPedidoDao();
 
-        /*if (requestCode == 7){
+        if (requestCode == 13 && resultCode == RESULT_OK){
             ItemsPedido itemsPedido = (ItemsPedido) data.getSerializableExtra("item");
             itemsPedido.setPedido(pedido.getIdPedido());
-            itemsPedidoDao.insert(itemsPedido);
-        }*/
+            //itemsPedidoDao.insert(itemsPedido);
+        }
 
     }
 

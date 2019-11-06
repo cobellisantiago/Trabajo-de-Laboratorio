@@ -45,20 +45,14 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
         adapter = new PedidoAdapter(Controller.getInstance().getListaPlatos(), new PedidoAdapter.EventoOnClickListenerListaPlatosPedidos() {
             @Override
             public void onButtonClickListaPlatos(Button button, ItemsPedido itemsPedido) {
-
+                Intent intent = getIntent();
+                intent.putExtra("item", itemsPedido);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
         pedidoRecyclerView.setAdapter(adapter);
 
-
-    }
-
-
-    public void getItemPedidoFromAdapter (ItemsPedido itemsPedido){
-
-        //intent.putExtra("item", itemsPedido);
-        //getIntent().putExtra("item", itemsPedido);
-        finish();
     }
 
 

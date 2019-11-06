@@ -34,15 +34,19 @@ public class PedidoViewHolder extends RecyclerView.ViewHolder {
         this.agregarPlatoAMiPedido = base.findViewById(R.id.botonAgregarAMiPedido);
     }
 
-    public void setItemPedido(final PedidoAdapter.EventoOnClickListenerListaPlatosPedidos listener, final ItemsPedido itemsPedido) {
+
+
+    public void setPlato(final PedidoAdapter.EventoOnClickListenerListaPlatosPedidos listener, final Plato plato) {
 
         agregarPlatoAMiPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ItemsPedido itemsPedido = new ItemsPedido();
+                itemsPedido.setPlato(plato);
+                itemsPedido.setPrecio(plato.getPrecio());
+                itemsPedido.setCantidad(Integer.parseInt(cantidad.getText().toString()));
                 listener.onButtonClickListaPlatos(agregarPlatoAMiPedido, itemsPedido);
             }
         });
-
     }
-
 }
