@@ -17,7 +17,7 @@ public class ItemsPedido implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "ID_ITEMS_PEDIDO")
-    public String idItemsPedido;
+    public String id;
 
     @ColumnInfo(name = "PEDIDO")
     public String pedido;
@@ -33,20 +33,20 @@ public class ItemsPedido implements Serializable {
 
 
     public ItemsPedido() {
-        this.idItemsPedido = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
     }
 
     @Ignore
     public ItemsPedido(String pedido, Plato plato, Integer cantidad, Double precio) {
-        this.idItemsPedido = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.pedido = pedido;
         this.plato = plato;
         this.cantidad = cantidad;
         this.precio = precio;
     }
 
-    public String getIdItemsPedido() {
-        return idItemsPedido;
+    public String getId() {
+        return id;
     }
 
     public String getPedido() {

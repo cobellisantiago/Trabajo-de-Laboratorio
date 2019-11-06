@@ -2,28 +2,30 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.AppDB;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.ItemsPedidoDao;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoDao;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
-
 import static android.app.Activity.RESULT_OK;
 
 
@@ -66,6 +68,13 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
 
                 PedidoDao pedidoDao = DBClient.getInstance(getActivity()).getAppDB().pedidoDao();
                 pedidoDao.insert(pedido);
+
+                Toast toast = Toast.makeText(getContext(), "Pedido creado correctamente!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
+                enviarPedido.setEnabled(true);
+                enviarPedido.setBackgroundResource(R.drawable.bttn_rounded);
             }
         });
 
@@ -73,6 +82,8 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
         enviarPedido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pedido.setEstadoPedido(2);
+                PedidoRepository.getInstance().crear(pedido, miHandler);
             }
         });
 
@@ -85,10 +96,24 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
 
         if (requestCode == 13 && resultCode == RESULT_OK){
             ItemsPedido itemsPedido = (ItemsPedido) data.getSerializableExtra("item");
-            itemsPedido.setPedido(pedido.getIdPedido());
-            //itemsPedidoDao.insert(itemsPedido);
+            itemsPedido.setPedido(pedido.getId());
+            itemsPedidoDao.insert(itemsPedido);
         }
 
     }
+
+    Handler miHandler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(Message msg) {
+            Log.d("APP_2","Vuelve al handler"+msg.arg1);
+
+            switch (msg.arg1 ){
+                case PedidoRepository._ALTA_PEDIDO:
+                    break;
+                case PedidoRepository._UPDATE_PEDIDO:
+                    break;
+            }
+        }
+    };
 
 }

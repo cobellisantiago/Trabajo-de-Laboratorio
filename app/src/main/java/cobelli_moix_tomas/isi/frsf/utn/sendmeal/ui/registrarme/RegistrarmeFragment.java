@@ -17,28 +17,22 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
+
 
 public class RegistrarmeFragment extends Fragment {
 
     private RegistrarmeViewModel registrarmeViewModel;
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        registrarmeViewModel =
-                ViewModelProviders.of(this).get(RegistrarmeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        registrarmeViewModel = ViewModelProviders.of(this).get(RegistrarmeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_registrarme, container, false);
 
 
@@ -195,36 +189,28 @@ public class RegistrarmeFragment extends Fragment {
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-
+                if(b){
                     textViewAliasCBU.setVisibility(View.VISIBLE);
                     editTextAliasCBU.setVisibility(View.VISIBLE);
                     textViewCBU.setVisibility(View.VISIBLE);
                     editTextCBU.setVisibility(View.VISIBLE);
-
-                }else{
-
+                }
+                else {
                     textViewAliasCBU.setVisibility(View.GONE);
                     editTextAliasCBU.setVisibility(View.GONE);
                     textViewCBU.setVisibility(View.GONE);
                     editTextCBU.setVisibility(View.GONE);
-
-
                 }
             }
         });
 
-
     }
-    private void progresoSeekBar(final SeekBar s, final TextView textViewValorCredito) {
 
+    private void progresoSeekBar(final SeekBar s, final TextView textViewValorCredito) {
         s.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
                 textViewValorCredito.setText(new Integer(i + (1500-s.getMax())).toString());
-
-
             }
 
             @Override

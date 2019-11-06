@@ -10,16 +10,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PlatoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido.CrearPedidoFragment;
 
 public class AgregarPlatosAlPedido extends AppCompatActivity {
 
@@ -32,7 +27,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         intent = getIntent();
-        Controller.getInstance().listarPlatos(miHandler);
+        PlatoRepository.getInstance().listarPlatos(miHandler);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_platos_al_pedido);
 
@@ -42,7 +37,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         pedidoRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PedidoAdapter(Controller.getInstance().getListaPlatos(), new PedidoAdapter.EventoOnClickListenerListaPlatosPedidos() {
+        adapter = new PedidoAdapter(PlatoRepository.getInstance().getListaPlatos(), new PedidoAdapter.EventoOnClickListenerListaPlatosPedidos() {
             @Override
             public void onButtonClickListaPlatos(Button button, ItemsPedido itemsPedido) {
                 Intent intent = getIntent();
@@ -62,9 +57,9 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
             Log.d("APP_2","Vuelve al handler" + msg.arg1);
 
             switch (msg.arg1 ){
-                case Controller._BORRADO_PLATO:
+                case PlatoRepository._BORRADO_PLATO:
                     break;
-                case Controller._CONSULTA_PLATO:
+                case PlatoRepository._CONSULTA_PLATO:
                     //TODO ver cuales manejar aca y en los demas handler
                     break;
             }

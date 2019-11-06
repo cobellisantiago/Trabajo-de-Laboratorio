@@ -1,7 +1,5 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
@@ -14,9 +12,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoDao;
 
 
 @Entity(tableName = "PEDIDO")
@@ -35,7 +30,7 @@ public class Pedido implements Serializable {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "ID_PEDIDO")
-    public String idPedido;
+    public String id;
 
     @ColumnInfo(name = "FECHA_CREACION")
     private Date fechaCreacion;
@@ -51,19 +46,19 @@ public class Pedido implements Serializable {
 
     @Ignore
     public Pedido() {
-        this.idPedido = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
     }
 
     public Pedido(Date fechaCreacion, Integer estadoPedido, Double latitudCordenada, Double longitudCordenada) {
-        this.idPedido = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.fechaCreacion = fechaCreacion;
         this.estadoPedido = estadoPedido;
         this.latitudCordenada = latitudCordenada;
         this.longitudCordenada = longitudCordenada;
     }
 
-    public String getIdPedido() {
-        return idPedido;
+    public String getId() {
+        return id;
     }
 
     public Date getFechaCreacion() {

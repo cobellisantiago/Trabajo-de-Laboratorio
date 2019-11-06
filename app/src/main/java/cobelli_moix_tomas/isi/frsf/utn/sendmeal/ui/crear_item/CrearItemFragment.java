@@ -16,9 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.Home;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PlatoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
 
@@ -36,7 +35,7 @@ public class CrearItemFragment extends Fragment {
         this.plato = plato;
         this.option = option;
 
-        for(Plato p: Controller.getInstance().getListaPlatos()) {
+        for(Plato p: PlatoRepository.getInstance().getListaPlatos()) {
             if(p.equals(plato)) plato = p;
         }
     }
@@ -109,7 +108,7 @@ public class CrearItemFragment extends Fragment {
                         plato.setCalorias(calorias);
                         text = "Plato Editado correctamente";
 
-                        Controller.getInstance().actualizar(plato,miHandler);
+                        PlatoRepository.getInstance().actualizar(plato,miHandler);
 
                         ListarItemsFragment fragmentListaPlato = new ListarItemsFragment();
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragmentListaPlato).addToBackStack(null).commit();
@@ -126,7 +125,7 @@ public class CrearItemFragment extends Fragment {
                         plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
                         text = "Plato creado correctamente";
 
-                        Controller.getInstance().crear(plato, miHandler);
+                        PlatoRepository.getInstance().crear(plato, miHandler);
 
                         editTextNombrePLato.setText(null);
                         editTextDecripcionPlato.setText(null);
@@ -178,9 +177,9 @@ public class CrearItemFragment extends Fragment {
             Log.d("APP_2","Vuelve al handler"+msg.arg1);
 
             switch (msg.arg1 ){
-                case Controller._ALTA_PLATO:
+                case PlatoRepository._ALTA_PLATO:
                     break;
-                case Controller._UPDATE_PLATO:
+                case PlatoRepository._UPDATE_PLATO:
                     break;
             }
         }
