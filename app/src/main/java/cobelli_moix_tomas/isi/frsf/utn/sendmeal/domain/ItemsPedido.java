@@ -1,24 +1,26 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.Ignore;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+import java.util.UUID;
 
-//TODO ver si es necesaria la foreign key
-@Entity(tableName = "ITEMS_PEDIDO", foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "ID_PEDIDO", childColumns = "PEDIDO"), indices = {@Index("PEDIDO")})
-public class ItemsPedido {
 
-    @PrimaryKey(autoGenerate = true)
+@Entity(tableName = "ITEMS_PEDIDO")
+public class ItemsPedido implements Serializable {
+
+    @PrimaryKey
+    @NonNull
     @ColumnInfo(name = "ID_ITEMS_PEDIDO")
-    public Integer idItemsPedido;
+    public String idItemsPedido;
 
     @ColumnInfo(name = "PEDIDO")
-    public Integer pedido;
+    public String pedido;
 
     @Embedded (prefix = "plato_")
     public Plato plato;
@@ -29,26 +31,29 @@ public class ItemsPedido {
     @ColumnInfo(name = "PRECIO")
     private Double precio;
 
-    @Ignore
+
     public ItemsPedido() {
+        this.idItemsPedido = UUID.randomUUID().toString();
     }
 
-    public ItemsPedido(Integer pedido, Plato plato, Integer cantidad, Double precio) {
+    @Ignore
+    public ItemsPedido(String pedido, Plato plato, Integer cantidad, Double precio) {
+        this.idItemsPedido = UUID.randomUUID().toString();
         this.pedido = pedido;
         this.plato = plato;
         this.cantidad = cantidad;
         this.precio = precio;
     }
 
-    public Integer getIdItemsPedido() {
+    public String getIdItemsPedido() {
         return idItemsPedido;
     }
 
-    public Integer getPedido() {
+    public String getPedido() {
         return pedido;
     }
 
-    public void setPedido(Integer pedido) {
+    public void setPedido(String pedido) {
         this.pedido = pedido;
     }
 

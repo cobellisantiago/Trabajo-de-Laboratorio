@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewPlatoPedido"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="10dp"
@@ -14,16 +14,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textViewPrecioPlatoPedido"
-            android:layout_width="98dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/precioPlatoPedido"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewDescripcionPlatoPedidos"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDescripcionPlatoPedidos" />
+        <Button
+            android:id="@+id/buttonMinusPlato"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="150dp"
+            android:background="@drawable/button_completly_circle"
+            android:text="@string/buttonMinusPlato"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textViewPrecioPlatoPedido"
+            app:layout_constraintStart_toEndOf="@+id/textViewPrecioPlatoPedido" />
+
+<<<<<<< HEAD
+        <EditText
+            android:id="@+id/editTextCantidadPlato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:ems="4"
+            android:inputType="number"
+            android:textSize="10dp"
+            android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonMinusPlato"
+            app:layout_constraintStart_toEndOf="@+id/buttonMinusPlato"
+            app:layout_constraintTop_toTopOf="@+id/buttonMinusPlato" />
+
+=======
+>>>>>>> 6d052850d516c1da9d607a239f9bde75860348c3
+        <Button
+            android:id="@+id/buttonPlusPlato"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/button_completly_circle"
+            android:text="@string/buttonPlusPlato"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextCantidadPlato"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextCantidadPlato"
+            app:layout_constraintTop_toTopOf="@+id/editTextCantidadPlato" />
+
+        <Button
+            android:id="@+id/botonAgregarAMiPedido"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="145dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bttn_rounded"
+            android:text="@string/buttonAgregarAMiPedido"
+            android:textColor="@android:color/background_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <EditText
+            android:id="@+id/editTextCantidadPlato"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="2dp"
+            android:ems="2"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonMinusPlato"
+            app:layout_constraintStart_toEndOf="@+id/buttonMinusPlato"
+            app:layout_constraintTop_toTopOf="@+id/buttonMinusPlato" />
 
         <TextView
             android:id="@+id/textViewNombrePlatoPedido"
@@ -42,50 +101,21 @@
             android:layout_width="250dp"
             android:layout_height="35dp"
             android:layout_marginTop="8dp"
-            android:text="@string/descripcionPLatoPedido"
             android:fontFamily="@font/lato"
+            android:text="@string/descripcionPLatoPedido"
             app:layout_constraintStart_toStartOf="@+id/textViewNombrePlatoPedido"
             app:layout_constraintTop_toBottomOf="@+id/textViewNombrePlatoPedido" />
 
-        <Button
-            android:id="@+id/buttonMinusPlato"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="150dp"
-            android:background="@drawable/button_completly_circle"
-            android:text="@string/buttonMinusPlato"
-            android:textColor="@android:color/background_dark"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textViewPrecioPlatoPedido"
-            app:layout_constraintStart_toEndOf="@+id/textViewPrecioPlatoPedido" />
-
-        <EditText
-            android:id="@+id/editTextCantidadPlato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:ems="4"
-            android:inputType="number"
-            android:textSize="10dp"
-            android:text="0"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonMinusPlato"
-            app:layout_constraintStart_toEndOf="@+id/buttonMinusPlato"
-            app:layout_constraintTop_toTopOf="@+id/buttonMinusPlato" />
-
-        <Button
-            android:id="@+id/buttonPlusPlato"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/button_completly_circle"
-            android:text="@string/buttonPlusPlato"
-            android:textColor="@android:color/background_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/editTextCantidadPlato"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editTextCantidadPlato"
-            app:layout_constraintTop_toTopOf="@+id/editTextCantidadPlato" />
+        <TextView
+            android:id="@+id/textViewPrecioPlatoPedido"
+            android:layout_width="98dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato"
+            android:text="@string/precioPlatoPedido"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/textViewDescripcionPlatoPedidos"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescripcionPlatoPedidos" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imageCardPlatoPedido"
