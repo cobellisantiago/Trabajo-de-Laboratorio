@@ -3,19 +3,15 @@ package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 import androidx.room.Ignore;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-
-import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.Controller;
 
 
 public class Plato implements Serializable {
 
     private static Plato platoGenerico = new Plato("Hamburguesa re gorda", "muy rica", 1800.00, 2000);
 
-    private String idPlato;
+    private String id;
     private String nombre;
     private String descripcion;
     private Double precio;
@@ -24,12 +20,12 @@ public class Plato implements Serializable {
 
     @Ignore
     public Plato() {
-        this.idPlato = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
     }
 
 
     public Plato (String nombre, String descripcion, Double precio, Integer calorias) {
-        this.idPlato = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -37,12 +33,12 @@ public class Plato implements Serializable {
         this.oferta = false;
     }
 
-    public String getIdPlato() {
-        return idPlato;
+    public String getId() {
+        return id;
     }
 
-    public void setIdPlato(String idPlato) {
-        this.idPlato = idPlato;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -90,11 +86,11 @@ public class Plato implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Plato)) return false;
         Plato plato = (Plato) o;
-        return Objects.equals(getIdPlato(), plato.getIdPlato());
+        return Objects.equals(getId(), plato.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getIdPlato(), getNombre(), getDescripcion(), getPrecio(), getCalorias());
+        return Objects.hash(getId(), getNombre(), getDescripcion(), getPrecio(), getCalorias());
     }
 }

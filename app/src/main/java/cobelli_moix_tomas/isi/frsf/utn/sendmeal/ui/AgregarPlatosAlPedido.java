@@ -66,7 +66,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
                 case Controller._BORRADO_PLATO:
                     break;
                 case Controller._CONSULTA_PLATO:
-                    //TODO ver cuales manejar aca
+                    //TODO ver cuales manejar aca y en los demas handler
                     break;
             }
         }

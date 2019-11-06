@@ -110,8 +110,6 @@ public class ListarItemsFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 //Hacer cosas aqui al hacer clic en el boton de aceptar
                                 Controller.getInstance().borrar(platoApretado,miHandler);
-                                //ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
-                                //TODO arreglar este error que sucede cuando cambias de pantalla
                                 ((Home)getActivity()).replaceFragments(ListarItemsFragment.class);
                             }
                         });

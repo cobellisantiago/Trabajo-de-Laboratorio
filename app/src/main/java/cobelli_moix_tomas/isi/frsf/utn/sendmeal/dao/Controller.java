@@ -72,7 +72,7 @@ public class Controller {
 
     public void borrar(final Plato plato, final Handler h) {
 
-        Call<Void> llamada = this.platoRest.borrar(plato.getIdPlato());
+        Call<Void> llamada = this.platoRest.borrar(plato.getId());
         llamada.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -85,17 +85,17 @@ public class Controller {
                     Log.d("APP_2", "EJECUTO");
 
                     for (Plato p : listaPlatos) {
-                        Log.d("APP_2", "Obra " + p.getIdPlato());
+                        Log.d("APP_2", "Obra " + p.getId());
                     }
                     listaPlatos.remove(plato);
-                    Log.d("APP_2", "BORRA Obra " + plato.getIdPlato());
+                    Log.d("APP_2", "BORRA Obra " + plato.getId());
                     for (Plato p: listaPlatos){
                         if(p.equals(plato)){
                             listaPlatos.remove(plato);
                         }
                     }
                     for (Plato p : listaPlatos) {
-                        Log.d("APP_2", "Obra " + p.getIdPlato());
+                        Log.d("APP_2", "Obra " + p.getId());
                     }
 
                     Message m = new Message();
@@ -116,7 +116,7 @@ public class Controller {
 
     public void actualizar(final Plato plato, final Handler h) {
 
-        final Call<Plato> llamada = this.platoRest.actualizar(plato.getIdPlato(), plato);
+        final Call<Plato> llamada = this.platoRest.actualizar(plato.getId(), plato);
         llamada.enqueue(new Callback<Plato>() {
             @Override
             public void onResponse(Call<Plato> call, Response<Plato> response) {
