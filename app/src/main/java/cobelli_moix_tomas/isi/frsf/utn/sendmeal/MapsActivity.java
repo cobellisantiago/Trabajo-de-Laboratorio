@@ -1,6 +1,7 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -8,9 +9,13 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -29,6 +34,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
+
+        LatLng sydney = new LatLng(-34, 151);
+        this.googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
     private void actualizarMapa(){
