@@ -31,7 +31,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_platos_al_pedido);
 
-        pedidoRecyclerView = findViewById(R.id.pedidosRecyclerView);
+        pedidoRecyclerView = findViewById(R.id.platoInPedidoRecyclerView);
         pedidoRecyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);

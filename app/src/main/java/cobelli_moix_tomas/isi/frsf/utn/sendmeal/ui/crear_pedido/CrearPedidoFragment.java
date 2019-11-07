@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.io.Serializable;
 import java.util.Date;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
@@ -38,6 +41,9 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
     private Button agregarPlato;
     private Button crearPedido;
     private  Button enviarPedido;
+    private RecyclerView platoInPedidoRecyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     public CrearPedidoFragment(){}
 
@@ -53,6 +59,14 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
                 startActivityForResult(intent, requestCode);
             }
         });
+
+        platoInPedidoRecyclerView = root.findViewById(R.id.platoInPedidoRecyclerView);
+        platoInPedidoRecyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(root.getContext());
+        platoInPedidoRecyclerView.setLayoutManager(layoutManager);
+
+        adapter = new PlatoInPedidoAdapter()
 
 
         crearPedido = root.findViewById(R.id.buttonCrearPedido);

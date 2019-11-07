@@ -23,7 +23,6 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
 
     private List<Plato> platoViewDataSet;
     private Context context;
-    private AgregarPlatosAlPedido agregarPlatosAlPedido = new AgregarPlatosAlPedido();
     private EventoOnClickListenerListaPlatosPedidos listener;
 
     public PedidoAdapter (List<Plato> myPlatosDataSet, EventoOnClickListenerListaPlatosPedidos listener) {
