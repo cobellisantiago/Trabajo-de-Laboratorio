@@ -18,6 +18,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import java.io.Serializable;
 import java.util.Date;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.MapsActivity;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.ItemsPedidoDao;
@@ -75,6 +77,9 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
 
                 enviarPedido.setEnabled(true);
                 enviarPedido.setBackgroundResource(R.drawable.bttn_rounded);
+
+                Intent map = new Intent(getActivity(),MapsActivity.class);
+                getActivity().startActivity(map);
             }
         });
 
