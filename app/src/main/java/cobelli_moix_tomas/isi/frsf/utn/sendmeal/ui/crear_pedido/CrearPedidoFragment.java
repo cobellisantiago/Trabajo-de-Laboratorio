@@ -83,6 +83,8 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             @Override
             public void onClick(View view) {
                 pedido.setEstadoPedido(2);
+                ItemsPedidoDao itemsPedidoDao = DBClient.getInstance(getActivity()).getAppDB().itemsPedidoDao();
+                pedido.setItemsPedidoList(itemsPedidoDao.getAll());
                 PedidoRepository.getInstance().crear(pedido, miHandler);
             }
         });
@@ -98,6 +100,8 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             ItemsPedido itemsPedido = (ItemsPedido) data.getSerializableExtra("item");
             itemsPedido.setPedido(pedido.getId());
             itemsPedidoDao.insert(itemsPedido);
+
+            Pedido.PedidoToItemsPedido.getItemsPedidoList().add(itemsPedido);
         }
 
     }

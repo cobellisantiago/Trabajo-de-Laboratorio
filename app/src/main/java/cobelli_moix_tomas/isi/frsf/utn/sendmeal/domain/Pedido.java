@@ -1,6 +1,7 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
@@ -9,8 +10,12 @@ import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 
 
@@ -25,6 +30,8 @@ public class Pedido implements Serializable {
     public static final Integer EN_ENVIO = 6;
     public static final Integer ENTREGADO = 7;
     public static final Integer CANCELADO = 8;
+
+    private List<ItemsPedido> itemsPedidoList = new ArrayList<ItemsPedido>();
 
 
     @PrimaryKey
@@ -81,6 +88,14 @@ public class Pedido implements Serializable {
         return latitudCordenada;
     }
 
+    public List<ItemsPedido> getItemsPedidoList() {
+        return itemsPedidoList;
+    }
+
+    public void setItemsPedidoList(List<ItemsPedido> itemsPedidoList) {
+        this.itemsPedidoList = itemsPedidoList;
+    }
+
     public void setLatitudCordenada(Double latitudCordenada) {
         this.latitudCordenada = latitudCordenada;
     }
@@ -98,14 +113,17 @@ public class Pedido implements Serializable {
         public Pedido pedido;
 
         @Relation(parentColumn = "ID_PEDIDO", entityColumn = "ID_ITEMS_PEDIDO", entity = ItemsPedido.class)
-        private List<ItemsPedido> itemsPedidoList;
+        private static List<ItemsPedido> itemsPedidoList = new ArrayList<ItemsPedido>();
 
-        public List<ItemsPedido> getItemsPedidoList() {
+
+        public static List<ItemsPedido> getItemsPedidoList() {
             return itemsPedidoList;
         }
 
-        public void setItemsPedidoList(List<ItemsPedido> itemsPedidoList) {
-            this.itemsPedidoList = itemsPedidoList;
+        public static void setItemsPedidoList(List<ItemsPedido> itemsPedidoList) {
+            PedidoToItemsPedido.itemsPedidoList = itemsPedidoList;
         }
     }
+
+
 }

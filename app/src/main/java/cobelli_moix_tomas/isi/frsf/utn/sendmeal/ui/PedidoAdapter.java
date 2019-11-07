@@ -55,9 +55,9 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
         holder.minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Integer.parseInt(holder.cantidad.getText().toString()) > 0)
+                if (Integer.parseInt(holder.cantidad.getText().toString()) > 0){
                     holder.cantidad.setText(String.valueOf(Integer.parseInt(holder.cantidad.getText().toString()) - 1));
-            }
+            }   }
         });
 
         holder.plus.setOnClickListener(new View.OnClickListener() {
