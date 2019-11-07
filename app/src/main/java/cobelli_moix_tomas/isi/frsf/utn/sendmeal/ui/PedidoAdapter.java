@@ -48,6 +48,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
         holder.descripcion.setText(plato.getDescripcion());
         holder.precio.setText("$" + format.format(plato.getPrecio()));
         holder.imagen.setImageResource(R.drawable.hamburguesa);
+        holder.cantidad.setText("0");
 
         holder.setPlato(listener, plato);
 
@@ -55,14 +56,14 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
             @Override
             public void onClick(View view) {
                 if (Integer.parseInt(holder.cantidad.getText().toString()) > 0)
-                    holder.cantidad.setText(Integer.parseInt(holder.cantidad.getText().toString()) - 1);
+                    holder.cantidad.setText(String.valueOf(Integer.parseInt(holder.cantidad.getText().toString()) - 1));
             }
         });
 
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                holder.cantidad.setText(String.valueOf(Integer.parseInt(holder.cantidad.getText().toString()) + 1));
             }
         });
     }
