@@ -1,5 +1,6 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import java.io.Serializable;
@@ -34,7 +36,8 @@ import static android.app.Activity.RESULT_OK;
 
 public class CrearPedidoFragment extends Fragment implements Serializable{
 
-    private static final int requestCode = 13;
+    private static final int requestCode1 = 13;
+    private static final int requestCode2 = 77;
     private Pedido pedido = new Pedido();
 
     private CrearPedidoViewModel crearPedidoViewModel;
@@ -53,7 +56,7 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AgregarPlatosAlPedido.class);
-                startActivityForResult(intent, requestCode);
+                startActivityForResult(intent, requestCode1);
             }
         });
 
@@ -65,22 +68,18 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
                 pedido.setEstadoPedido(1);
                 pedido.setFechaCreacion(new Date());
 
-                //TODO cambiar las coordenadas una vez que usemos el mapa
-                pedido.setLatitudCordenada(0.0);
-                pedido.setLongitudCordenada(0.0);
+                new AlertDialog.Builder(getContext()).setTitle("Ubicacion").setMessage("Agregar ubicacion al pedido?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent map = new Intent(getActivity(), MapsActivity.class);
+                                map.putExtra("pedido", pedido);
+                                //startActivity(map);
+                                startActivityForResult(map, requestCode2);
+                            }
+                        })
 
-                PedidoDao pedidoDao = DBClient.getInstance(getActivity()).getAppDB().pedidoDao();
-                pedidoDao.insert(pedido);
+                        .setNegativeButton(android.R.string.no, null).setIcon(android.R.drawable.ic_dialog_alert).show();
 
-                Toast toast = Toast.makeText(getContext(), "Pedido creado correctamente!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-
-                enviarPedido.setEnabled(true);
-                enviarPedido.setBackgroundResource(R.drawable.bttn_rounded);
-
-                Intent map = new Intent(getActivity(), MapsActivity.class);
-                startActivity(map);
 
             }
         });
@@ -111,7 +110,20 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             Pedido.PedidoToItemsPedido.getItemsPedidoList().add(itemsPedido);
         }
 
+        if (requestCode == 77 && resultCode == RESULT_OK){
+            PedidoDao pedidoDao = DBClient.getInstance(getActivity()).getAppDB().pedidoDao();
+            pedidoDao.insert(pedido);
+
+            Toast toast = Toast.makeText(getContext(), "Pedido creado correctamente!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+
+            enviarPedido.setEnabled(true);
+            enviarPedido.setBackgroundResource(R.drawable.bttn_rounded);
+        }
+
     }
+
 
     Handler miHandler = new Handler(Looper.myLooper()){
         @Override

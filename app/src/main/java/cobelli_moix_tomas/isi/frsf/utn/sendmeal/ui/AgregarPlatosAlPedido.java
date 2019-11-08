@@ -23,6 +23,8 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Intent intent;
 
+    //TODO corregir porque se agregan 7362478234 millones de cosas en el json-server cuando se crea un pedido
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

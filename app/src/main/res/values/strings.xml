@@ -67,4 +67,6 @@
     <string name="buttonPlusPlato">+</string>
     <string name="buttonMinusPlato">-</string>
     <string name="buttonAgregarAMiPedido">Agregar plato a mi pedido</string>
+
+    <string name="botonAgregarUbicacion">Agregar ubicacion</string>
 </resources>

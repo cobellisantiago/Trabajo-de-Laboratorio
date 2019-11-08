@@ -1,26 +1,36 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
-import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
+    private Marker ubicacion;
+    private Button agregarUbicacion;
+    private Pedido pedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +39,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        agregarUbicacion = findViewById(R.id.botonAgregarUbicacion);
+        pedido = (Pedido) getIntent().getSerializableExtra("pedido");
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-
-        LatLng sydney = new LatLng(-34, 151);
-        this.googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        this.actualizarMapa();
     }
 
     private void actualizarMapa(){
@@ -46,6 +56,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
         this.googleMap.setMyLocationEnabled(true);
+
+        this.googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(final LatLng latLng) {
+                //Bitmap icon = BitmapFactory.decodeResource(getApplication().getResources(), R.drawable.circulo_icono);
+
+                //TODO creo que a esto hay que agregarle .icon depende los estados
+                googleMap.addMarker(new MarkerOptions().position(latLng).draggable(true).title("probando"));
+                agregarUbicacion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        pedido.setLongitudCordenada(latLng.longitude);
+                        pedido.setLatitudCordenada(latLng.latitude);
+                        Intent intent = getIntent();
+                        setResult(RESULT_OK, intent);
+                        finish();
+                    }
+                });
+            }
+        });
     }
 
     @Override
