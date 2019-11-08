@@ -19,7 +19,7 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:layout_marginTop="145dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bttn_rounded"
             android:text="@string/buttonQuitarPlatoAMiPedido"
@@ -27,58 +27,53 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPrecioPlatoDelPedido"
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textViewNombrePlatoPedido"
-            android:layout_width="250dp"
+            android:id="@+id/textViewPrecioPlatoDelPedido"
+            android:layout_width="98dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/lato_bold"
-            android:text="@string/nombrePlatoPedido"
+            android:fontFamily="@font/lato"
+            android:text="@string/precioPlatoPedido"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido" />
 
         <TextView
-            android:id="@+id/textViewDescripcionPlatoPedidos"
-            android:layout_width="250dp"
+            android:id="@+id/textViewCantidadPlatoDelPedido"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ems="2"
             android:fontFamily="@font/lato"
-            android:text="@string/descripcionPLatoPedido"
-            app:layout_constraintStart_toStartOf="@+id/textViewNombrePlatoPedido"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNombrePlatoPedido" />
-
-        <TextView
-            android:id="@+id/textViewPrecioPlatoPedido"
-            android:layout_width="98dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/lato"
-            android:text="@string/precioPlatoPedido"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/textViewDescripcionPlatoPedidos"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDescripcionPlatoPedidos" />
+            android:hint="Cantidad"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/imageCardPlatoPedido"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:cardBackgroundColor="@android:color/white"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/colorFondoAmarillo"
             app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageViewPlatoPedido"
+            <TextView
+                android:id="@+id/textViewNombrePlatoDelPedido"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/hamburguesa" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/nombrePlatoPedido"
+                android:textSize="25sp" />
         </androidx.cardview.widget.CardView>
 
 

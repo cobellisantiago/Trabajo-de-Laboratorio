@@ -18,13 +18,14 @@
             android:id="@+id/layuotRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@android:color/white">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/platoInPedidoRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/pedido_card" />
+                tools:listitem="@layout/plato_en_pedido_card" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

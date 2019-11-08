@@ -20,7 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.MapsActivity;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.ItemsPedidoDao;
@@ -29,13 +33,15 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.PlatoInPedidoAdapter;
+
 import static android.app.Activity.RESULT_OK;
 
 
 public class CrearPedidoFragment extends Fragment implements Serializable{
 
     private static final int requestCode = 13;
-    private Pedido pedido = new Pedido();
+    private Pedido pedido;
 
     private CrearPedidoViewModel crearPedidoViewModel;
     private Button agregarPlato;
@@ -45,20 +51,18 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    public CrearPedidoFragment(){}
+    public CrearPedidoFragment(){
+
+    }
+
+    public CrearPedidoFragment(Pedido pedido) {
+        this.pedido = pedido;
+
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         crearPedidoViewModel = ViewModelProviders.of(this).get(CrearPedidoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_crear_pedido, container, false);
-
-        agregarPlato = root.findViewById(R.id.buttonAgregarPlato);
-        agregarPlato.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AgregarPlatosAlPedido.class);
-                startActivityForResult(intent, requestCode);
-            }
-        });
 
         platoInPedidoRecyclerView = root.findViewById(R.id.platoInPedidoRecyclerView);
         platoInPedidoRecyclerView.setHasFixedSize(true);
@@ -66,8 +70,22 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
         layoutManager = new LinearLayoutManager(root.getContext());
         platoInPedidoRecyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PlatoInPedidoAdapter()
+        if (pedido != null) {
+            ItemsPedidoDao itemsPedidoDao = DBClient.getInstance(getActivity()).getAppDB().itemsPedidoDao();
+            adapter = new PlatoInPedidoAdapter(itemsPedidoDao.getAllItemsPedidoInPedido(pedido.getId()));
+            platoInPedidoRecyclerView.setAdapter(adapter);
+        } else {
+            pedido = new Pedido();
+        }
+        agregarPlato = root.findViewById(R.id.buttonAgregarPlato);
+        agregarPlato.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AgregarPlatosAlPedido.class);
+                startActivityForResult(intent, requestCode);
 
+            }
+        });
 
         crearPedido = root.findViewById(R.id.buttonCrearPedido);
         crearPedido.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +107,10 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
 
                 enviarPedido.setEnabled(true);
                 enviarPedido.setBackgroundResource(R.drawable.bttn_rounded);
+
+                Intent map = new Intent(getActivity(), MapsActivity.class);
+                startActivity(map);
+
             }
         });
 
@@ -97,6 +119,8 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             @Override
             public void onClick(View view) {
                 pedido.setEstadoPedido(2);
+                ItemsPedidoDao itemsPedidoDao = DBClient.getInstance(getActivity()).getAppDB().itemsPedidoDao();
+                pedido.setItemsPedidoList(itemsPedidoDao.getAllItemsPedidoInPedido(pedido.getId()));
                 PedidoRepository.getInstance().crear(pedido, miHandler);
             }
         });
@@ -112,6 +136,13 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             ItemsPedido itemsPedido = (ItemsPedido) data.getSerializableExtra("item");
             itemsPedido.setPedido(pedido.getId());
             itemsPedidoDao.insert(itemsPedido);
+
+            Pedido.PedidoToItemsPedido.getItemsPedidoList().add(itemsPedido);
+
+            CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment(pedido);
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,crearPedidoFragment).addToBackStack(null).commit();
+
+
         }
 
     }

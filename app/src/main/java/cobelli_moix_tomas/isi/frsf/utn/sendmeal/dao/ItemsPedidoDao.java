@@ -15,6 +15,9 @@ public interface ItemsPedidoDao {
     @Query("SELECT * FROM ITEMS_PEDIDO")
     List<ItemsPedido> getAll();
 
+    @Query("SELECT * FROM ITEMS_PEDIDO WHERE :idPedido == PEDIDO")
+    List<ItemsPedido> getAllItemsPedidoInPedido(String idPedido);
+
     @Insert
     void insert(ItemsPedido itemsPedido);
 

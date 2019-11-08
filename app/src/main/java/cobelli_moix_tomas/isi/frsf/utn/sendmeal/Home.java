@@ -1,6 +1,8 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.fragment.app.Fragment;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -137,6 +139,11 @@ public class Home extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
                 .commit();
+    }
+
+    public void replaceActivity(Class<MapsActivity> mapsActivity) {
+        Intent intent = new Intent(Home.this, mapsActivity);
+        startActivity(intent);
     }
 
     @Override
