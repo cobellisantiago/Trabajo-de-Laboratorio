@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewPlatoPedido"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="350dp"
+    android:layout_height="140dp"
     android:layout_margin="8dp"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="10dp"
@@ -17,13 +17,13 @@
         <Button
             android:id="@+id/botonQuitarPlatoAMiPedido"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="300dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/bttn_rounded"
+            android:layout_width="220dp"
+            android:layout_height="35dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bttn_rounded_red"
             android:text="@string/buttonQuitarPlatoAMiPedido"
             android:textColor="@android:color/background_dark"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_width="98dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/lato"
             android:text="@string/precioPlatoPedido"
             android:textSize="18sp"
@@ -46,12 +46,12 @@
             android:id="@+id/textViewCantidadPlatoDelPedido"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:ems="2"
             android:fontFamily="@font/lato"
             android:hint="Cantidad"
-            android:textSize="22sp"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageCardPlatoPedido" />
 
@@ -73,7 +73,7 @@
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/lato_bold"
                 android:text="@string/nombrePlatoPedido"
-                android:textSize="25sp" />
+                android:textSize="22sp" />
         </androidx.cardview.widget.CardView>
 
 

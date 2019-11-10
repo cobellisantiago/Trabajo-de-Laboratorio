@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PedidoRepository {
 
-    public static String _SERVER = "http://192.168.1.10:5000/";
+    public static String _SERVER = "http://192.168.0.3:5000/";
 
     private List<Pedido> listaPedidos;
 

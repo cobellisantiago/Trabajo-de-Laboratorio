@@ -20,7 +20,7 @@
             android:layout_height="43dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/bttn_rounded"
+            android:background="@drawable/bttn_rounded_yellow"
             android:text="@string/alta_plato_guardar"
             android:textColor="@android:color/background_dark"
             android:textSize="16sp"

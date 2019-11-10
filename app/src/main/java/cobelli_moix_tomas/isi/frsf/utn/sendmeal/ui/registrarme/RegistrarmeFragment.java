@@ -231,7 +231,7 @@ public class RegistrarmeFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     buttonRegistrar.setEnabled(true);
-                    buttonRegistrar.setBackgroundResource(R.drawable.bttn_rounded);
+                    buttonRegistrar.setBackgroundResource(R.drawable.bttn_rounded_yellow);
                 } else {
                     buttonRegistrar.setEnabled(false);
                     buttonRegistrar.setBackgroundResource(R.drawable.bttn_rounded_disabled);

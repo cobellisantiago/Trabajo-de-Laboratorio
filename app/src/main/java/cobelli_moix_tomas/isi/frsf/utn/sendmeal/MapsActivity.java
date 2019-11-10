@@ -28,8 +28,8 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
-    private Marker ubicacion;
     private Button agregarUbicacion;
+    private Marker ubicacion;
     private Pedido pedido;
 
     @Override
@@ -61,9 +61,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onMapLongClick(final LatLng latLng) {
                 //Bitmap icon = BitmapFactory.decodeResource(getApplication().getResources(), R.drawable.circulo_icono);
+                //TODO agregarle .icon depende los estados
 
-                //TODO creo que a esto hay que agregarle .icon depende los estados
-                googleMap.addMarker(new MarkerOptions().position(latLng).draggable(true).title("probando"));
+                if (ubicacion != null){
+                    ubicacion.setPosition(latLng);
+                }
+                else{
+                    ubicacion = googleMap.addMarker(new MarkerOptions().position(latLng).draggable(true).title("Enviar pedido"));
+                }
+
                 agregarUbicacion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

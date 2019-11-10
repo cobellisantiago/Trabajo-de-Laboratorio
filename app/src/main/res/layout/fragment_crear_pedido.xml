@@ -7,6 +7,40 @@
     android:background="#F3F1F1"
     android:visibility="visible">
 
+    <Button
+        android:id="@+id/buttonCrearPedido"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bttn_rounded_yellow"
+        android:text="@string/buttonCrearPedido"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonEnviarPedido"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bttn_rounded_disabled"
+        android:text="@string/buttonEnviarPedido"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonCrearPedido" />
+
+    <Button
+        android:id="@+id/buttonAgregarPlato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonAgregarPlato"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewBuscarPedido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewBuscarPedido" />
+
     <ScrollView
         android:id="@+id/ScrollViewListaPlatosEnPedido"
         android:layout_width="match_parent"
@@ -33,40 +67,6 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
     </ScrollView>
-
-    <Button
-        android:id="@+id/buttonCrearPedido"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/bttn_rounded"
-        android:text="@string/buttonCrearPedido"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonEnviarPedido"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/bttn_rounded_disabled"
-        android:text="@string/buttonEnviarPedido"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/buttonAgregarPlato"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/buttonAgregarPlato"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewBuscarPedido"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewBuscarPedido" />
 
     <TextView
         android:id="@+id/textViewBuscarPedido"

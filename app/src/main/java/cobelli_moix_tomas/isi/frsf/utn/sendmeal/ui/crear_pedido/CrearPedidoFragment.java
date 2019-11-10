@@ -22,9 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.MapsActivity;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
@@ -35,6 +33,7 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.ItemsPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.PlatoInPedidoAdapter;
 
 import static android.app.Activity.RESULT_OK;
@@ -102,14 +101,11 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent map = new Intent(getActivity(), MapsActivity.class);
                                 map.putExtra("pedido", pedido);
-                                //startActivity(map);
                                 startActivityForResult(map, requestCode2);
                             }
                         })
 
                         .setNegativeButton(android.R.string.no, null).setIcon(android.R.drawable.ic_dialog_alert).show();
-
-
             }
         });
 
@@ -121,6 +117,13 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
                 ItemsPedidoDao itemsPedidoDao = DBClient.getInstance(getActivity()).getAppDB().itemsPedidoDao();
                 pedido.setItemsPedidoList(itemsPedidoDao.getAllItemsPedidoInPedido(pedido.getId()));
                 PedidoRepository.getInstance().crear(pedido, miHandler);
+
+                Toast toast = Toast.makeText(getContext(), "Pedido enviado correctamente!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+
+                HomeFragment homeFragment = new HomeFragment();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,homeFragment).addToBackStack(null).commit();
             }
         });
 
@@ -140,8 +143,6 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
 
             CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment(pedido);
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,crearPedidoFragment).addToBackStack(null).commit();
-
-
         }
 
         if (requestCode == 77 && resultCode == RESULT_OK){
@@ -153,7 +154,7 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
             toast.show();
 
             enviarPedido.setEnabled(true);
-            enviarPedido.setBackgroundResource(R.drawable.bttn_rounded);
+            enviarPedido.setBackgroundResource(R.drawable.bttn_rounded_yellow);
         }
 
     }
