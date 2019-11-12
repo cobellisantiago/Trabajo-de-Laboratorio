@@ -74,7 +74,7 @@ public class ItemsPedido implements Serializable {
     }
 
     public Double getPrecio() {
-        return precio;
+        return precio * getCantidad();
     }
 
     public void setPrecio(Double precio) {

@@ -1,8 +1,6 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.fragment.app.Fragment;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,12 +15,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido.CrearPedidoFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
+import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.mis_pedidos.MisPedidosFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.RegistrarmeFragment;
 
 
@@ -80,49 +78,29 @@ public class Home extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.navigation_home:
                 HomeFragment fragmentHome = new HomeFragment();
-
-                this.getSupportFragmentManager().beginTransaction()
-                        //.replace(R.id.nav_host_fragment,fragmentHome)
-                        .hide(fragmentHome)
-                        .addToBackStack(null)
-                        .commit();
+                this.getSupportFragmentManager().beginTransaction().hide(fragmentHome).addToBackStack(null).commit();
                 break;
             case R.id.navigation_registrarme:
                 RegistrarmeFragment fragmentRegistrarme = new RegistrarmeFragment();
-                this.getSupportFragmentManager().beginTransaction()
-                       .hide(fragmentRegistrarme)
-                        // .replace(R.id.nav_host_fragment,fragmentRegistrarme)
-                        .addToBackStack(null)
-                        .commit();
+                this.getSupportFragmentManager().beginTransaction().hide(fragmentRegistrarme).addToBackStack(null).commit();
                 break;
             case R.id.navigation_crear_plato:
                 CrearItemFragment fragmentCrearPlato = new CrearItemFragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        //.replace(R.id.nav_host_fragment,fragmentCrearPlato)
-                        .hide(fragmentCrearPlato)
-                        .addToBackStack(null)
-                        .commit();
+                this.getSupportFragmentManager().beginTransaction().hide(fragmentCrearPlato).addToBackStack(null).commit();
                 break;
             case R.id.navigation_listar_items:
                 ListarItemsFragment fragmentListarPlato = new ListarItemsFragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        //.replace(R.id.nav_host_fragment,fragmentListarPlato)
-                        .hide(fragmentListarPlato)
-                        .addToBackStack(null)
-                        .commit();
-                //replaceFragments(ListarItemsFragment.class);
+                this.getSupportFragmentManager().beginTransaction().hide(fragmentListarPlato).addToBackStack(null).commit();
                 break;
             case R.id.navigation_crear_pedido:
                 CrearPedidoFragment crearPedidoFragment = new CrearPedidoFragment();
-                this.getSupportFragmentManager().beginTransaction()
-                        //.replace(R.id.nav_host_fragment,crearPedidoFragment)
-                        .hide(crearPedidoFragment)
-                        .addToBackStack(null)
-                        .commit();
-                //replaceFragments(CrearPedidoFragment.class);
+                this.getSupportFragmentManager().beginTransaction().hide(crearPedidoFragment).addToBackStack(null).commit();
                 break;
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.navigation_mis_pedidos:
+                MisPedidosFragment misPedidosFragment = new MisPedidosFragment();
+                this.getSupportFragmentManager().beginTransaction().hide(misPedidosFragment).addToBackStack(null).commit();
+                break;
+            default: return super.onOptionsItemSelected(item);
         }
         
         return super.onOptionsItemSelected(item);
@@ -137,8 +115,7 @@ public class Home extends AppCompatActivity {
         }
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment)
-                .commit();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
     }
 
     public void replaceActivity(Class<MapsActivity> mapsActivity) {

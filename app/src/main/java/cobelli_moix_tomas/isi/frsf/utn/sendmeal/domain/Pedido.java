@@ -125,5 +125,12 @@ public class Pedido implements Serializable {
         }
     }
 
+    public Double getPrecioTotal(){
+        Double precio = 0.0;
+        for (ItemsPedido item : itemsPedidoList){
+            precio += item.getPrecio();
+        }
+        return precio;
+    }
 
 }

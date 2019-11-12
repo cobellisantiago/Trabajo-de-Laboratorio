@@ -24,6 +24,10 @@
             android:id="@+id/navigation_crear_pedido"
             android:icon="@drawable/ic_dish"
             android:title="@string/itemCrearPedido" />
+        <item
+            android:id="@+id/navigation_mis_pedidos"
+            android:icon="@drawable/ic_dish"
+            android:title="@string/misPedidos" />
 
     </group>
 

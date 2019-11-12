@@ -13,17 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.io.Serializable;
 import java.util.Date;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.MapsActivity;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.DBClient;
@@ -35,7 +32,6 @@ import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.AgregarPlatosAlPedido;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.home.HomeFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.registrarme.PlatoInPedidoAdapter;
-
 import static android.app.Activity.RESULT_OK;
 
 
@@ -45,7 +41,6 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
     private static final int requestCode2 = 77;
     private Pedido pedido;
 
-
     private CrearPedidoViewModel crearPedidoViewModel;
     private Button agregarPlato;
     private Button crearPedido;
@@ -54,14 +49,14 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    public CrearPedidoFragment(){
 
+    public CrearPedidoFragment(){
     }
 
     public CrearPedidoFragment(Pedido pedido) {
         this.pedido = pedido;
-
     }
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         crearPedidoViewModel = ViewModelProviders.of(this).get(CrearPedidoViewModel.class);
@@ -146,6 +141,8 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
         }
 
         if (requestCode == 77 && resultCode == RESULT_OK){
+            Pedido pedidoMapsActivity = (Pedido) data.getSerializableExtra("Pedido");
+            this.pedido = pedidoMapsActivity;
             PedidoDao pedidoDao = DBClient.getInstance(getActivity()).getAppDB().pedidoDao();
             pedidoDao.insert(pedido);
 
