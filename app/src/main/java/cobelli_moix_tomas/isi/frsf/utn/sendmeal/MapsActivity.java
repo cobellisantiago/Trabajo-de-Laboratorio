@@ -154,11 +154,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             switch (msg.arg1){
                 case PedidoRepository._CONSULTA_PEDIDO:{
                     //TODO manejar esto
-                    /*pedidoList = (List<Pedido>) msg.obj;
+                    pedidoList = PedidoRepository.getInstance().getListaPedidos();
                     showPedidosOnMap();
-                    if(progressDialog.isShowing()){
-                        progressDialog.cancel();
-                    }*/
                     break;
                 }
             }
