@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="states_array">
+        <item>PENDIENTE</item>
+        <item>ENVIADO</item>
+        <item>RECHAZADO</item>
+        <item>ACEPTADO</item>
+        <item>EN_PREPARACION</item>
+        <item>EN_ENVIO</item>
+        <item>ENTREGADO</item>
+        <item>CANCELADO</item>
+    </string-array>
+</resources>

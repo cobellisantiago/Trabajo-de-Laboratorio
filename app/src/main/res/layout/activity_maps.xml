@@ -29,5 +29,16 @@
         map:layout_constraintTop_toTopOf="parent"
         map:layout_constraintVertical_bias="1.0" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/colorFondoAmarillo"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="@+id/map" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

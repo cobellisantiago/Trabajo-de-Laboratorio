@@ -13,7 +13,10 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -32,6 +35,8 @@ import static android.view.View.GONE;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
+    private Spinner spinnerEstados;
+    private ArrayAdapter<CharSequence> estadosPedidos;
     private ProgressDialog progressDialog;
     private Button agregarUbicacion;
     private Marker ubicacion;
@@ -50,6 +55,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         agregarUbicacion = findViewById(R.id.botonAgregarUbicacion);
         pedido = (Pedido) getIntent().getSerializableExtra("pedido");
+
+
+        spinnerEstados = findViewById(R.id.spinner);
+        estadosPedidos = ArrayAdapter.createFromResource(this, R.array.states_array, android.R.layout.simple_spinner_item);
+        estadosPedidos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEstados.setAdapter(estadosPedidos);
+
+
+        //TODO hacer aca el if para ver si se llama a la actividad para seleccionar ubicacion al crear pedido o si se llama para showPedidosOnMap
 
     }
 
@@ -95,14 +109,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //TODO visualizar pedidos en el mapa
         //TODO no anda. Ver como hacer para esperar a que traiga los pedidos antes de acceder a dicha lista desde showPedidosOnMap
-        Intent intent = getIntent();
+        /*Intent intent = getIntent();
         if (intent.getExtras().get("Mis pedidos").equals(1)){
             pedidoList = PedidoRepository.getInstance().getListaPedidos();
 
             agregarUbicacion.setVisibility(GONE);
             progressDialog = ProgressDialog.show(this,"Wait","Cargando pedidos");
             progressDialog.setCancelable(false);
-        }
+        }*/
     }
 
     public void showPedidosOnMap (){
@@ -139,11 +153,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             switch (msg.arg1){
                 case PedidoRepository._CONSULTA_PEDIDO:{
-                    pedidoList = (List<Pedido>) msg.obj;
+                    //TODO manejar esto
+                    /*pedidoList = (List<Pedido>) msg.obj;
                     showPedidosOnMap();
                     if(progressDialog.isShowing()){
                         progressDialog.cancel();
-                    }
+                    }*/
                     break;
                 }
             }
