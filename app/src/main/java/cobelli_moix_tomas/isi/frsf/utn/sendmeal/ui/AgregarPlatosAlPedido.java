@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PlatoRepository;
@@ -22,6 +23,7 @@ public class AgregarPlatosAlPedido extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private Intent intent;
+    private EditText cantidad;
 
 
     @Override

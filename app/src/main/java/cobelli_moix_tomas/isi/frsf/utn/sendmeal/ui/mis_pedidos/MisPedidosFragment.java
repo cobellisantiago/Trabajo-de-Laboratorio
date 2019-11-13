@@ -24,7 +24,7 @@ public class MisPedidosFragment extends Fragment {
         final View root = inflater.inflate(R.layout.activity_maps, container, false);
 
         Intent intentMap = new Intent(getActivity(), MapsActivity.class);
-        intentMap.putExtra("Mis pedidos", 1);
+        intentMap.putExtra("pedido",1);
         startActivity(intentMap);
 
         return root;

@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PedidoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Pedido;
-import static android.view.View.GONE;
 
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -46,15 +45,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        PedidoRepository.getInstance().listarPedidos(miHandler);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        agregarUbicacion = findViewById(R.id.botonAgregarUbicacion);
+
+        Intent intent = getIntent();
+        if (intent.getExtras().get("pedido").equals(1)){
+            PedidoRepository.getInstance().listarPedidos(miHandler);
+            agregarUbicacion.setVisibility(View.GONE);
+        }else {
+            pedido = (Pedido) getIntent().getSerializableExtra("pedido");
+            agregarUbicacion.setVisibility(View.VISIBLE);
+        }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        agregarUbicacion = findViewById(R.id.botonAgregarUbicacion);
-        pedido = (Pedido) getIntent().getSerializableExtra("pedido");
+
+
 
 
         spinnerEstados = findViewById(R.id.spinner);
@@ -109,14 +119,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //TODO visualizar pedidos en el mapa
         //TODO no anda. Ver como hacer para esperar a que traiga los pedidos antes de acceder a dicha lista desde showPedidosOnMap
-        /*Intent intent = getIntent();
-        if (intent.getExtras().get("Mis pedidos").equals(1)){
-            pedidoList = PedidoRepository.getInstance().getListaPedidos();
 
-            agregarUbicacion.setVisibility(GONE);
-            progressDialog = ProgressDialog.show(this,"Wait","Cargando pedidos");
-            progressDialog.setCancelable(false);
-        }*/
     }
 
     public void showPedidosOnMap (){
