@@ -7,12 +7,14 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -24,6 +26,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +39,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap googleMap;
     private Spinner spinnerEstados;
     private ArrayAdapter<CharSequence> estadosPedidos;
-    private ProgressDialog progressDialog;
     private Button agregarUbicacion;
     private Marker ubicacion;
     private Pedido pedido;
     private List<Pedido> pedidoList = new ArrayList<Pedido>();
+    private List<Pedido> pedidosEnEnvio;
 
 
     @Override
@@ -52,29 +55,56 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         agregarUbicacion = findViewById(R.id.botonAgregarUbicacion);
 
         Intent intent = getIntent();
+
         if (intent.getExtras().get("pedido").equals(1)){
             PedidoRepository.getInstance().listarPedidos(miHandler);
             agregarUbicacion.setVisibility(View.GONE);
-        }else {
+            spinnerEstados = findViewById(R.id.spinner);
+            estadosPedidos = ArrayAdapter.createFromResource(this, R.array.states_array, android.R.layout.simple_spinner_item);
+            estadosPedidos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerEstados.setAdapter(estadosPedidos);
+
+            spinnerEstados.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+                    pedidosEnEnvio = new ArrayList<Pedido>();
+                    googleMap.clear();
+                    if (pos == 0){
+                        showPedidosOnMap();
+                    }
+                    else {
+                        for (Pedido p : pedidoList){
+                            if (p.getEstadoPedido() == pos){
+                                googleMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(p.getLatitudCordenada(), p.getLongitudCordenada()))
+                                        .title(p.getId() + " " + p.getId())
+                                        .snippet(p.getEstadoPedido() + "-" + "$ " + p.getPrecioTotal())
+                                        .icon(BitmapDescriptorFactory.defaultMarker(addMarker(p.getEstadoPedido()))));
+                            }
+                            if (p.getEstadoPedido() == 6){
+                                pedidosEnEnvio.add(p);
+                            }
+                        }
+                    }
+
+                    if (pedidosEnEnvio.size() > 0){
+                        caminoPedidosEnEnvio(pedidosEnEnvio);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
+                }
+            });
+        }
+        else {
             pedido = (Pedido) getIntent().getSerializableExtra("pedido");
             agregarUbicacion.setVisibility(View.VISIBLE);
         }
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
-
-
-
-        spinnerEstados = findViewById(R.id.spinner);
-        estadosPedidos = ArrayAdapter.createFromResource(this, R.array.states_array, android.R.layout.simple_spinner_item);
-        estadosPedidos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerEstados.setAdapter(estadosPedidos);
-
-
-        //TODO hacer aca el if para ver si se llama a la actividad para seleccionar ubicacion al crear pedido o si se llama para showPedidosOnMap
-
     }
 
     @Override
@@ -93,7 +123,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         this.googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
             @Override
             public void onMapLongClick(final LatLng latLng) {
-                //TODO agregarle .icon depende los estados
 
                 if (ubicacion != null){
                     ubicacion.setPosition(latLng);
@@ -115,21 +144,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
             }
         });
-
-
-        //TODO visualizar pedidos en el mapa
-        //TODO no anda. Ver como hacer para esperar a que traiga los pedidos antes de acceder a dicha lista desde showPedidosOnMap
-
     }
 
     public void showPedidosOnMap (){
-
         for (Pedido p : pedidoList){
             googleMap.addMarker(new MarkerOptions().position(new LatLng(p.getLatitudCordenada(), p.getLongitudCordenada()))
                     .title(p.getId() + " " + p.getId())
-                    .snippet(p.getEstadoPedido() + "-" + "$ " + p.getPrecioTotal()).draggable(true)
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                    .snippet(p.getEstadoPedido() + "-" + "$ " + p.getPrecioTotal())
+                    .icon(BitmapDescriptorFactory.defaultMarker(addMarker(p.getEstadoPedido()))));
         }
+    }
+
+
+    public float addMarker (Integer estadoPedido){
+        float marcador = 0;
+        switch (estadoPedido){
+            case 1:
+                marcador = BitmapDescriptorFactory.HUE_YELLOW;
+                break;
+            case 2:
+                marcador = BitmapDescriptorFactory.HUE_AZURE;
+            break;
+            case 3:
+                marcador = BitmapDescriptorFactory.HUE_ROSE;
+            break;
+            case 4:
+                marcador = BitmapDescriptorFactory.HUE_RED;
+            break;
+            case 5:
+                marcador = BitmapDescriptorFactory.HUE_MAGENTA;
+            break;
+            case 6:
+                marcador = BitmapDescriptorFactory.HUE_GREEN;
+            break;
+            case 7:
+                marcador = BitmapDescriptorFactory.HUE_CYAN;
+                break;
+            case 8:
+                marcador = BitmapDescriptorFactory.HUE_AZURE;
+                break;
+        }
+        return marcador;
+    }
+
+    public void caminoPedidosEnEnvio(List<Pedido> pedidosEnEnvio){
+        PolygonOptions camino = new PolygonOptions();
+        LatLng latLng;
+        for (Pedido p : pedidosEnEnvio){
+            latLng = new LatLng(p.getLatitudCordenada(), p.getLongitudCordenada());
+            camino.add(latLng).fillColor(Color.GREEN).strokeColor(Color.GREEN);
+        }
+        googleMap.addPolygon(camino);
     }
 
 
@@ -156,7 +221,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             switch (msg.arg1){
                 case PedidoRepository._CONSULTA_PEDIDO:{
-                    //TODO manejar esto
                     pedidoList = PedidoRepository.getInstance().getListaPedidos();
                     showPedidosOnMap();
                     break;
@@ -164,5 +228,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     };
-
 }
