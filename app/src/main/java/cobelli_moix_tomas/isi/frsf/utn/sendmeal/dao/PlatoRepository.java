@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlatoRepository {
 
-    public static String _SERVER = "http://10.15.155.16:5000/";
+    public static String _SERVER = "http://192.168.1.10:5000/";
 
     private List<Plato> listaPlatos;
 

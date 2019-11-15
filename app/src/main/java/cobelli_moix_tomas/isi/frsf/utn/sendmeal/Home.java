@@ -1,8 +1,14 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.fragment.app.Fragment;
+
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -10,11 +16,18 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Toast;
+
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido.CrearPedidoFragment;
@@ -31,6 +44,21 @@ public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        FirebaseMessaging.getInstance().subscribeToTopic("general").addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                String msg = "Subscrito";
+                if (!task.isSuccessful()) {
+                    msg = "Fallo Subscripcion";
+                }
+                Log.d("Notificacion_Pedido", msg);
+                Toast.makeText(Home.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        createNotificationChannel();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -118,10 +146,6 @@ public class Home extends AppCompatActivity {
         fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
     }
 
-    public void replaceActivity(Class<MapsActivity> mapsActivity) {
-        Intent intent = new Intent(Home.this, mapsActivity);
-        startActivity(intent);
-    }
 
     @Override
     public void onBackPressed() {
@@ -135,5 +159,18 @@ public class Home extends AppCompatActivity {
 
     public static void setPlato(Plato p) {
         plato = p;
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name1 = "Canal 1 - SendMead";
+            CharSequence name2 = "Canal 2 - Firebase";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel1 = new NotificationChannel("001", name1, importance);
+            NotificationChannel channel2 = new NotificationChannel("002", name2, importance);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel1);
+            notificationManager.createNotificationChannel(channel2);
+        }
     }
 }
