@@ -1,10 +1,8 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal;
 
 import androidx.fragment.app.Fragment;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,18 +14,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
-
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Toast;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item.CrearItemFragment;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_pedido.CrearPedidoFragment;

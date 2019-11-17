@@ -27,6 +27,7 @@
         android:layout_marginBottom="32dp"
         android:background="@drawable/bttn_rounded_disabled"
         android:text="@string/buttonEnviarPedido"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonCrearPedido" />

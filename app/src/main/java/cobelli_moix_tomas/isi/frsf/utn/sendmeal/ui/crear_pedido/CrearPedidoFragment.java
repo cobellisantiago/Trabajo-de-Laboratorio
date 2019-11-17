@@ -101,6 +101,9 @@ public class CrearPedidoFragment extends Fragment implements Serializable{
                         })
 
                         .setNegativeButton(android.R.string.no, null).setIcon(android.R.drawable.ic_dialog_alert).show();
+
+                crearPedido.setBackgroundResource(R.drawable.bttn_rounded_disabled);
+                crearPedido.setEnabled(false);
             }
         });
 
