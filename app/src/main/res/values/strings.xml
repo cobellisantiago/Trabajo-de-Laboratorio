@@ -72,4 +72,6 @@
     <string name="botonAgregarUbicacion">Agregar ubicacion</string>
     <string name="misPedidos">Mis Pedidos</string>
 
+    <string name="botonSacarFoto">Sacar foto</string>
+
 </resources>

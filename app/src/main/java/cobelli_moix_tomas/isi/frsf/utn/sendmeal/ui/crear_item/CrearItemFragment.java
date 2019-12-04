@@ -1,32 +1,42 @@
 package cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.crear_item;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.R;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.dao.PlatoRepository;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.domain.Plato;
 import cobelli_moix_tomas.isi.frsf.utn.sendmeal.ui.listar_items.ListarItemsFragment;
+import static android.app.Activity.RESULT_OK;
 
 
 public class CrearItemFragment extends Fragment {
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
     private CrearItemViewModel crearItemViewModel;
     private Plato plato;
     private Integer option;
+
+    private Bitmap imagenPlato;
+    private ImageView imageViewPlato;
 
 
     public CrearItemFragment() {}
@@ -51,6 +61,8 @@ public class CrearItemFragment extends Fragment {
         final EditText editTextCaloriasPlato = root.findViewById(R.id.editTextCaloriasPlato);
 
         final Button buttonCrearPlato = root.findViewById(R.id.buttonCrearPlato);
+        final Button sacarFoto = root.findViewById(R.id.buttonSacarFoto);
+        imageViewPlato = root.findViewById(R.id.imageViewPlato);
 
         cambiarEstadoCampo(editTextNombrePLato, true);
         cambiarEstadoCampo(editTextDecripcionPlato, true);
@@ -61,6 +73,17 @@ public class CrearItemFragment extends Fragment {
         validarCampoObligatorio(editTextDecripcionPlato);
         validarCampoObligatorio(editTextPrecioPlato);
         validarCampoObligatorio(editTextCaloriasPlato);
+
+        sacarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentFoto = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (intentFoto.resolveActivity(getActivity().getPackageManager()) != null){
+                    startActivityForResult(intentFoto, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        });
+
 
         if(plato != null) {
             editTextNombrePLato.setText(plato.getNombre());
@@ -106,6 +129,7 @@ public class CrearItemFragment extends Fragment {
                         plato.setDescripcion((editTextDecripcionPlato.getText().toString()));
                         plato.setPrecio(precio);
                         plato.setCalorias(calorias);
+                        plato.setImage(imagenPlato);
                         text = "Plato Editado correctamente";
 
                         PlatoRepository.getInstance().actualizar(plato,miHandler);
@@ -123,6 +147,7 @@ public class CrearItemFragment extends Fragment {
                     if (!editTextNombrePLato.getText().toString().equals(null) && !editTextDecripcionPlato.getText().toString().equals(null) && precio != 0.0 && calorias != 0) {
 
                         plato = new Plato(editTextNombrePLato.getText().toString(), editTextDecripcionPlato.getText().toString(), precio, calorias);
+                        plato.setImage(imagenPlato);
                         text = "Plato creado correctamente";
 
                         PlatoRepository.getInstance().crear(plato, miHandler);
@@ -170,6 +195,16 @@ public class CrearItemFragment extends Fragment {
         editText.setCursorVisible(b);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            if (data != null && data.getExtras() != null){
+                imagenPlato = (Bitmap) data.getExtras().get("data");
+                imageViewPlato.setImageBitmap(imagenPlato);
+            }
+
+        }
+    }
 
     Handler miHandler = new Handler(Looper.myLooper()){
         @Override

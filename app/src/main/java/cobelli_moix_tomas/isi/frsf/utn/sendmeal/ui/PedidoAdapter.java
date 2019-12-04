@@ -47,10 +47,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoViewHolder> {
         holder.nombre.setText(plato.getNombre());
         holder.descripcion.setText(plato.getDescripcion());
         holder.precio.setText("$" + format.format(plato.getPrecio()));
-        holder.imagen.setImageResource(R.drawable.hamburguesa);
+        holder.imagen.setImageBitmap(plato.getImage());
         holder.cantidad.setText("0");
-
-
 
         holder.setPlato(listener, plato);
 
